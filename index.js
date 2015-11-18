@@ -1,10 +1,10 @@
 'use strict';
 
-var config    = require('./src/config'),
-    artist    =  require('./src/artist'),
+var config    = require('./src/config');
+/*    artist    =  require('./src/artist'),
     playlist  =  require('./src/playlist'),
     users     =  require('./src/users'),
-    songs     =  require('./src/songs');
+    songs     =  require('./src/songs');*/
 
 module.exports = global.HUMM = {
   initialize: function initialize(options) {
@@ -15,8 +15,8 @@ module.exports = global.HUMM = {
     config.set('redirect_uri', options.redirect_uri);
     config.set('baseURL', options.baseURL);
     config.set('connectURL', options.connectURL);
-  },
-  users: function users(){
+  }
+/*  users: function users(){
     return users;
   },
   artist: function artist(){
@@ -27,5 +27,5 @@ module.exports = global.HUMM = {
   },
   songs: function songs(){
       return songs;
-  }
+  }*/
 };
