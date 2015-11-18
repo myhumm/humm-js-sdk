@@ -18,13 +18,6 @@ module.exports = {
       query: {
         cacheDirectory: true
       }
-    },{
-      test: /\.worker\.js?$/,
-      exclude: /(node_modules)/,
-      loader: 'worker-loader?inline=true',
-      query: {
-        inline: true
-      }
     }]
   },
   devServer: {

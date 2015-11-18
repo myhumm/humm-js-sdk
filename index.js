@@ -16,18 +16,15 @@ module.exports = global.HUMM = {
     config.set('baseURL', options.baseURL);
     config.set('connectURL', options.connectURL);
   },
-
   users: function users(){
     return users;
   },
   artist: function artist(){
     return artist;
   },
-
   playlist: function playlist(){
     return playlist;
   },
-
   songs: function songs(){
       return songs;
   }
