@@ -5,9 +5,9 @@ var config      = require('./src/config'),
     artists     = require('./src/components/artists'),
     playlists   = require('./src/components/playlists'),
     songs       = require('./src/components/songs'),
-    users       = require('./src/components/users');
+    users        = require('./src/components/users');
 
-module.exports = global.HUMM = {
+module.exports = global.humm = {
     initialize: function initialize(options) {
         // options = options ? options : {};
         // set tokens
