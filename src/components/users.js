@@ -125,13 +125,13 @@ module.exports = {
     get: function get(userId, cb) {
 
     },
-    DiscoverAlbums: function DiscoverAlbums(cb) {
+    discoverAlbums: function discoverAlbums(cb) {
 
     },
-    DiscoverPlaylists: function DiscoverPlaylists(cb) {
+    discoverPlaylists: function discoverPlaylists(cb) {
 
     },
-    DiscoverArtists: function DiscoverArtists(cb) {
+    discoverArtists: function discoverArtists(cb) {
 
     },
     follow: function follow(userId, cb) {

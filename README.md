@@ -56,9 +56,9 @@
 
 - humm.users.current()
 - humm.users.get()
-- humm.users.DiscoverAlbums()
-- humm.users.DiscoverPlaylists()
-- humm.users.DiscoverArtists()
+- humm.users.discoverAlbums()
+- humm.users.discoverPlaylists()
+- humm.users.discoverArtists()
 - humm.users.follow()
 - humm.users.unFollow()
 - humm.users.getFollowing()
