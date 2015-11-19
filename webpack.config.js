@@ -1,7 +1,7 @@
-const VERSION  = require('./package.json').version;
-const IS_NPM   = process.env.IS_NPM;
-const path     = IS_NPM ? __dirname : __dirname + '/build/sdk';
-const filename = IS_NPM ? 'sdk.js' : 'sdk-' + VERSION + '.js';
+var VERSION  = require('./package.json').version,
+    IS_NPM   = process.env.IS_NPM,
+    path     = IS_NPM ? __dirname : __dirname + '/build/sdk',
+    filename = IS_NPM ? 'sdk.js' : 'sdk-' + VERSION + '.js';
 
 module.exports = {
   entry: './index.js',
@@ -11,14 +11,7 @@ module.exports = {
     libraryTarget: 'umd'
   },
   module: {
-    loaders: [{
-      test: /\.js?$/,
-      exclude: /(node_modules)/,
-      loader: 'babel-loader',
-      query: {
-        cacheDirectory: true
-      }
-    }]
+    loaders: []
   },
   devServer: {
     contentBase: './examples'

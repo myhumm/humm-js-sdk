@@ -1,6 +1,19 @@
-# Humm JavaScript
+# Humm JavaScript SDK
 
 ## Documentation
+
+
+#### Artists
+- s
+- s
+- s
+
+#### Playlists
+
+#### Songs
+
+#### Users
+
 
 
 ## Building source

@@ -1,33 +1,23 @@
 'use strict';
 
-var config  = require('./src/config'),
-    api     = require('./src/api');
-
+var config      = require('./src/config'),
+    authorize   = require('./src/authorize'),
+    artists     = require('./src/components/artists'),
+    playlists   = require('./src/components/playlists'),
+    songs       = require('./src/components/songs'),
+    users       = require('./src/components/users');
 
 module.exports = global.HUMM = {
-    initialize: function initialize(options){
-       // options = options ? options : {};
+    initialize: function initialize(options) {
+        // options = options ? options : {};
         // set tokens
-        config.set('oauth_token', options.oauth_token);
-        config.set('client_id', options.client_id);
-        config.set('redirect_uri', options.redirect_uri);
-        config.set('baseURL', options.baseURL);
-        config.set('connectURL', options.connectURL);
+     //   config.set('oauth_token', options.oauth_token);
+     //   config.set('client_id', options.client_id);
+       // config.set('baseURL', options.baseURL);
     },
-    get: function get(path, params){
-        return api.request('GET', path, params);
-    },
-
-    post: function post(path, params){
-        return api.request('POST', path, params);
-    },
-
-    put: function put(path, params){
-        return api.request('PUT', path, params);
-    },
-
-    'delete': function _delete(path){
-        return api.request('DELETE', path);
-    }
-
+    artists: artists,
+    playlists: playlists,
+    songs: songs,
+    users: users,
+    authorize: authorize
 };
