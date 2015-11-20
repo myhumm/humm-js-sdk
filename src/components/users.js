@@ -119,19 +119,19 @@ var usersEnds = [
 ];
 
 module.exports = {
-    current: function current() {
+    me: function me() {
 
     },
     get: function get(userId, cb) {
 
     },
-    discoverAlbums: function discoverAlbums(cb) {
+    getAlbumDiscovery: function getAlbumDiscovery(cb) {
 
     },
-    discoverPlaylists: function discoverPlaylists(cb) {
+    getPlaylistsDiscovery: function getPlaylistsDiscovery(cb) {
 
     },
-    discoverArtists: function discoverArtists(cb) {
+    getArtistsDiscovery: function getArtistsDiscovery(cb) {
 
     },
     follow: function follow(userId, cb) {
@@ -140,13 +140,13 @@ module.exports = {
     unFollow: function unFollow(userId, cb) {
 
     },
-    getFollowing: function getFollowing(cb) {
+    getFollowers: function getFollowers(cb) {
 
     },
     find: function unFollow(text, cb) {
 
     },
-    getFavourite: function getFavourite(cb) {
+    getFavourites: function getFavourites(cb) {
 
     },
     getMyPlaylists: function getMyPlaylists(cb) {

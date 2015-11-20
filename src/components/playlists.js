@@ -136,7 +136,7 @@ module.exports = {
 
 
     },
-    reorderSongs: function reorderSongs() {
+    orderSongs: function reorderSongs() {
 
 
     },
