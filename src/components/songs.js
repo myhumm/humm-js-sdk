@@ -1,4 +1,10 @@
 'use strict';
+
+var config  = require('../config'),
+    request = require('../request'),
+    baseURL = config.get('baseURL');
+
+
 //todo ends
 var songsEnds = [
     {
@@ -76,32 +82,136 @@ var songsEnds = [
 ];
 
 module.exports = {
-    getFeatured: function getFeatured(cb) {
 
+    /**
+     * TODO: server error
+     * Get a list of songs featured by Humm
+     *
+     * @param options
+     * @param cb
+     */
+    getFeatured: function getFeatured(options, cb) {
+        var requestData = {
+            url: baseURL + '/songs/featured',
+            type: 'GET',
+            params: {}
+        };
+        request.start(requestData, options, cb)
     },
-    getPopular: function getPopular(cb) {
 
+    /**
+     * Get a list of songs popular on Humm"
+     *
+     * @param options
+     * @param cb
+     */
+    getPopular: function getPopular(options, cb) {
+        var requestData = {
+            url: baseURL + '/songs/popular',
+            type: 'GET',
+            params: {}
+        };
+        request.start(requestData, options, cb)
     },
-    getRecent: function getRecent(cb) {
 
+    /**
+     * Get a list of songs recently added on Humm
+     *
+     * @param options
+     * @param cb
+     */
+    getRecent: function getRecent(options, cb) {
+        var requestData = {
+            url: baseURL + '/songs/recent',
+            type: 'GET',
+            params: {}
+        };
+        request.start(requestData, options, cb)
     },
-    search: function search(text, cb) {
 
+    /**
+     * TODO: spin v2
+     * Search for a song
+     *
+     * @param keyword
+     * @param options
+     * @param cb
+     */
+    search: function search(keyword, options, cb) {
+        var requestData = {
+            url: baseURL + '/songs',
+            type: 'GET',
+            params: {
+                keyword: keyword
+            }
+        };
+        request.start(requestData, options, cb)
     },
-    appearsIn: function appearsIn(songId, cb) {
 
+    /**
+     * Get a list of playlists a song appears in
+     *
+     * @param songId
+     * @param options
+     * @param cb
+     */
+    appearsIn: function appearsIn(songId, options, cb) {
+        var requestData = {
+            url: baseURL + '/songs/'+ songId +'/appearsin',
+            type: 'GET',
+            params: {}
+        };
+        request.start(requestData, options, cb)
     },
+
+    //TODO: no idea what this end is
     route: function route(songId, cb) {
 
     },
-    get: function get(songId){
 
+    /**
+     * Get a song by id
+     *
+     * @param songId
+     * @param cb
+     */
+    get: function get(songId, cb){
+        var requestData = {
+            url: baseURL + '/songs/'+ songId,
+            type: 'GET',
+            params: {}
+        };
+        request.start(requestData, cb)
     },
-    getSimilar: function getSimilar(songId, cb) {
 
+    /**
+     * Get a list of similar songs
+     *
+     * @param songId
+     * @param options
+     * @param cb
+     */
+    getSimilar: function getSimilar(songId, options, cb) {
+        var requestData = {
+            url: baseURL + '/songs/'+ songId + '/similar',
+            type: 'GET',
+            params: {}
+        };
+        request.start(requestData, options, cb)
     },
-    getStaffPicks: function getStaffPicked(cb) {
 
-
+    /**
+     * Get a list of songs picked by staff at Humm
+     *
+     * @param options
+     * @param cb
+     */
+    getStaffPicks: function getStaffPicked(options, cb) {
+        var requestData = {
+            url: baseURL + '/songs/staffpicks',
+            type: 'GET',
+            params: {}
+        };
+        request.start(requestData, options, cb)
     }
 };

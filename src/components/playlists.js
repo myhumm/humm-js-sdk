@@ -1,5 +1,9 @@
 'use strict';
 
+var config  = require('../config'),
+    request = require('../request'),
+    baseURL = config.get('baseURL');
+
 //todo all
 var playlistEnds = [
     {
@@ -123,42 +127,129 @@ var playlistEnds = [
         "endpoint": "/playlists/staffpicks",
         "usage": "Get a list of playlists picked by staff at Humm",
         "returns": "playlists"
-    },
+    }
 ];
 
 
 module.exports = {
-    create: function create() {
 
 
+    /**
+     * TODO: user auth
+     * Add a playlist for the current user
+     *
+     * @param title
+     * @param description
+     * @param isPrivate
+     * @param cb
+     */
+    create: function create(title, description, isPrivate, cb ) {
+        var requestData = {
+            url: baseURL + '/playlists',
+            type: 'POST',
+            params: {
+                title: title,
+                description: description,
+                isPrivate: isPrivate
+            }
+        };
+        request.start(requestData, cb)
     },
-    getFeatured: function getFeatured() {
 
-
+    /**
+     * TODO: no response
+     * Get a list of playlists featured by Humm
+     *
+     * @param options
+     * @param cb
+     */
+    getFeatured: function getFeatured(options, cb) {
+        var requestData = {
+            url: baseURL + '/playlists/featured',
+            type: 'GET',
+            params: {}
+        };
+        request.start(requestData, options, cb)
     },
-    addContributors: function addContributors() {
 
-
+    /**
+     * TODO: AUTH USER
+     * add a user from a playlist's list of contributors
+     * @param playlistId
+     * @param ContributorId
+     * @param cb
+     */
+    addContributors: function addContributors(playlistId, ContributorId, cb) {
+        var requestData = {
+            url: baseURL + '/'+ playlistId +'/contributors',
+            type: 'POST',
+            params: {
+                contid: ContributorId
+            }
+        };
+        request.start(requestData, cb)
     },
-    removeContributors: function removeContributors() {
 
-
+    /**
+     * TODO: AUTH USER
+     * Remove a user from a playlist's list of contributors
+     *
+     * @param playlistId
+     * @param ContributorId
+     * @param cb
+     */
+    removeContributors: function removeContributors(playlistId, ContributorId, cb) {
+        var requestData = {
+            url: baseURL + '/'+ playlistId +'/contributors',
+            type: 'DELETE',
+            params: {
+                contid: ContributorId
+            }
+        };
+        request.start(requestData, cb)
     },
-    get: function update() {
 
-
+    /**
+     * TODO: no response
+     * Get a playlist
+     *
+     * @param playlistId
+     * @param options
+     * @param cb
+     */
+    get: function update(playlistId, options, cb) {
+        var requestData = {
+            url: baseURL + '/playlists/' + playlistId,
+            type: 'GET',
+            params: {}
+        };
+        request.start(requestData, options, cb)
     },
+
     update: function update() {
 
 
     },
+
     order: function order() {
 
 
     },
-    getSongs: function getSongs() {
 
-
+    /**
+     * Get a list of playlist songs
+     *
+     * @param playlistId
+     * @param options
+     * @param cb
+     */
+    getSongs: function getSongs(playlistId, options, cb) {
+        var requestData = {
+            url: baseURL + '/playlists/' + playlistId + '/songs',
+            type: 'GET',
+            params: {}
+        };
+        request.start(requestData, options, cb)
     },
     addSongs: function addSongs() {
 
@@ -174,17 +265,67 @@ module.exports = {
 
 
     },
-    getPopular: function getPopular() {
 
+    /**
+     * Get a list of playlists popular on Humm
+     *
+     * @param options
+     * @param cb
+     */
+    getPopular: function getPopular(options, cb) {
+        var requestData = {
+            url: baseURL + '/playlists/popular',
+            type: 'GET',
+            params: {}
+        };
+        request.start(requestData, options, cb)
     },
-    getRecent: function getRecent() {
 
+    /**
+     * Get a list of playlists recently added on Humm
+     *
+     * @param options
+     * @param cb
+     */
+    getRecent: function getRecent(options, cb) {
+        var requestData = {
+            url: baseURL + '/playlists/recent',
+            type: 'GET',
+            params: {}
+        };
+        request.start(requestData, options, cb)
     },
-    search: function search() {
 
+    /**
+     * search for albums or playlists
+     *
+     * @param keyword
+     * @param options
+     * @param cb
+     */
+    search: function search(keyword, options, cb) {
+        var requestData = {
+            url: baseURL + '/playlists',
+            type: 'GET',
+            params: {
+                keyword: keyword
+            }
+        };
+        request.start(requestData, options, cb)
     },
-    getStaffPicks: function getStaffPicks() {
 
-
+    /**
+     * Get a list of playlists picked by staff at Humm
+     *
+     * @param options
+     * @param cb
+     */
+    getStaffPicks: function getStaffPicks(options, cb) {
+        var requestData = {
+            url: baseURL + '/staffpicks',
+            type: 'GET',
+            params: {}
+        };
+        request.start(requestData, options, cb)
     }
 };

@@ -123,6 +123,7 @@ module.exports = {
 
     /**
      * TODO: user auth
+     *
      * @param artistId
      * @param cb
      */
@@ -134,15 +135,16 @@ module.exports = {
      * Get playlists / albums associated with an artist
      *
      * @param artistId
+     * @param {Object} options A JSON object with options that can be passed
      * @param cb
      */
-    getPlaylists: function getPlaylists(artistId, cb) {
+    getPlaylists: function getPlaylists(artistId, options, cb) {
         var requestData = {
             url: baseURL + '/artists/' + artistId + '/playlists',
             type: 'GET',
             params: {}
         };
-        request.start(requestData,cb)
+        request.start(requestData, options, cb)
     },
 
     /**
@@ -181,68 +183,73 @@ module.exports = {
      * Get a list of an artist's top songs
      *
      * @param artistId
+     * @param {Object} options A JSON object with options that can be passed
      * @param cb
      */
-    getTopSongs: function similar(artistId, cb) {
+    getTopSongs: function similar(artistId, options, cb) {
         var requestData = {
             url: baseURL + '/artists/' + artistId + '/topsongs',
             type: 'GET',
             params: {}
         };
-        request.start(requestData,cb);
+        request.start(requestData, options, cb);
     },
 
     /**
      * //TODO: no response
      * Get a list of artists featured by Humm"
      *
+     * @param {Object} options A JSON object with options that can be passed
      * @param cb
      */
-    getFeatured: function(cb) {
+    getFeatured: function(options, cb) {
         var requestData = {
             url: baseURL + '/artists/featured',
             type: 'GET',
             params: {}
         };
-        request.start(requestData,cb)
+        request.start(requestData, options, cb)
     },
 
     /**
      * Get a list of artists popular on Humm
      *
+     * @param {Object} options A JSON object with options that can be passed
      * @param cb
      */
-    getPopular: function(cb) {
+    getPopular: function(cb, options) {
         var requestData = {
             url: baseURL + '/artists/popular',
             type: 'GET',
             params: {}
         };
-        request.start(requestData,cb)
+        request.start(requestData, options, cb)
     },
 
     /**
      * Get a list of artists recently added on Humm
      *
+     * @param {Object} options A JSON object with options that can be passed
      * @param cb
      */
-    getRecent: function(cb) {
+    getRecent: function(cb, options) {
         var requestData = {
             url: baseURL + '/artists/recent',
             type: 'GET',
             params: {}
         };
-        request.start(requestData,cb)
+        request.start(requestData, options, cb)
     },
 
     /**
-     * TODO: once v2 is spinning
+     * TODO: test once v2 is spinning
      * Search for an artist using keyword
      *
      * @param keyword
+     * @param {Object} options A JSON object with options that can be passed
      * @param cb
      */
-    search: function(keyword, cb) {
+    search: function(keyword, options, cb) {
         var requestData = {
             url: baseURL + '/artists',
             type: 'GET',
@@ -250,7 +257,7 @@ module.exports = {
                 keyword: keyword
             }
         };
-        request.start(requestData,cb)
+        request.start(requestData, options, cb)
     }
 };
 

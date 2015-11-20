@@ -92,8 +92,7 @@ var send = function send(requestData, callback) {
       }
     }
 
-    var type = requestData.type || 'GET';
-    req.open(type, buildUrl(requestData.url, requestData.params));
+    req.open(requestData.type, buildUrl(requestData.url, requestData.params));
     if (oauth_token) {
       req.setRequestHeader('Authorization', 'Bearer ' + oauth_token);
     }
@@ -115,7 +114,7 @@ var send = function send(requestData, callback) {
       }
     };
 
-    if (type === 'GET') {
+    if (requestData.type === 'GET') {
       req.send(null);
     } else {
       req.send(JSON.stringify(requestData.postData));

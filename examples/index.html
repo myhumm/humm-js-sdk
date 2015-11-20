@@ -57,12 +57,71 @@
          console.log('--------------------- artists.search()----------');
          console.log(res);
      });
-
      //-------------------------------------- End Artist group -----------------------------------------
 
 
+     //-------------------------------------- start playlist group -----------------------------------------
+
+     humm.playlists.getFeatured(function(err, res){
+         console.log('--------------------- playlists.getFeatured()----------');
+         console.log(res);
+     });
+
+     humm.playlists.get('54d2c0e6ae8c50911ba2fcbd', function(err, res){
+         console.log('--------------------- playlists.get()----------');
+         console.log(res);
+     });
+
+
+     //todo others routes
+
+
+     //-------------------------------------- End playlist group -----------------------------------------
+
+
+     //-------------------------------------- start songs group -----------------------------------------
+
+     humm.songs.getFeatured(function(err, res){
+         console.log('--------------------- songs.getFeatured()----------');
+         console.log(res);
+     });
+
+     humm.songs.getPopular(function(err, res){
+         console.log('--------------------- songs.getPopular()----------');
+         console.log(res);
+     });
+
+     humm.songs.getRecent(function(err, res){
+         console.log('--------------------- songs.getRecent()----------');
+         console.log(res);
+     });
+
+     humm.songs.search('heroes', function(err, res){
+         console.log('--------------------- songs.search()----------');
+         console.log(res);
+     });
+
+     humm.songs.appearsIn('557ecbf86a64fc1b8bed533f', function(err, res){
+         console.log('--------------------- songs.appearsIn()----------');
+         console.log(res);
+     });
+
+     humm.songs.get('557ecbf86a64fc1b8bed533f', function(err, res){
+         console.log('--------------------- songs.get()----------');
+         console.log(res);
+     });
+
+     humm.songs.getSimilar('557ecbf86a64fc1b8bed533f', function(err, res){
+         console.log('--------------------- songs.getSimilar()----------');
+         console.log(res);
+     });
+
+
+
+     //-------------------------------------- End songs group -----------------------------------------
+
     //  console.log(HUMM.artist(12, 'this'));
-/*      HUMM.artists.getFeatured(function(err, data) {
+        /*      HUMM.artists.getFeatured(function(err, data) {
         if (err) {
           console.error(err);
         } else {
