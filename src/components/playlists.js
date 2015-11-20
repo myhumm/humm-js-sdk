@@ -5,118 +5,146 @@ var playlistEnds = [
     {
         "group": "Playlists / Albums",
         "name": "Create Playlist",
-        "method": "POST",
+        "method": "humm.playlists.create()",
         "endpoint": "/playlists",
         "usage": "Add a playlist for the current user",
         "returns": "playlist"
-    }, {
+    },
+    {
         "group": "Playlists / Albums",
         "name": "Featured Playlists",
-        "method": "GET",
+        "method": "humm.playlists.getFeatured()",
         "endpoint": "/playlists/featured",
         "usage": "Get a list of playlists featured by Humm",
         "returns": "playlists"
-    }, {
+    },
+    {
         "group": "Playlists / Albums",
         "name": "Playlist: Contributors (Add)",
-        "method": "POST",
+        "method": "humm.playlists.addContributors()",
         "endpoint": "/playlists/{id}/contributors",
         "usage": "Add a user to a playlist's list of contributors"
-    }, {
+    },
+    {
         "group": "Playlists / Albums",
         "name": "Playlist: Contributors (Remove)",
-        "method": "DELETE",
+        "method": "humm.playlists.removeContributors()",
         "endpoint": "/playlists/{id}/contributors",
         "usage": "Remove a user from a playlist's list of contributors"
-    }, {
-        "group": "Playlists / Albums",
-        "name": "Playlist: Songs",
-        "method": "GET",
-        "endpoint": "/playlists/{id}/songs",
-        "usage": "Get a list of playlist songs",
-        "returns": "songs"
-    }, {
-        "group": "Playlists / Albums",
-        "name": "Playlist: Songs (Add)",
-        "method": "POST",
-        "endpoint": "/playlists/{id}/songs",
-        "usage": "Add a song to a playlist"
-    }, {
-        "group": "Playlists / Albums",
-        "name": "Playlist: Songs (Remove)",
-        "method": "DELETE",
-        "endpoint": "/playlists/{id}/songs",
-        "usage": "Remove a song from a playlist"
-    }, {
+    },
+    {
         "group": "Playlists / Albums",
         "name": "Playlist: Details",
-        "method": "GET",
+        "method": "humm.playlists.get()",
         "endpoint": "/playlists/{id}",
         "usage": "Get a playlist",
         "returns": "playlist"
-    }, {
+    },
+    {
         "group": "Playlists / Albums",
         "name": "Playlist: Edit",
-        "method": "PUT",
+        "method": "humm.playlists.update()",
         "endpoint": "/playlists/{id}",
         "usage": "Edit a playlist",
         "returns": "playlist"
-    }, {
+    },
+    {
         "group": "Playlists / Albums",
         "name": "Playlist: Order Songs",
-        "method": "PUT",
+        "method": "humm.playlists.order()",
         "endpoint": "/playlists/{id}/order",
         "usage": "Order the songs in a playlist",
         "returns": "playlist"
-    }, {
+    },
+    {
+        "group": "Playlists / Albums",
+        "name": "Playlist: Songs",
+        "method": "humm.playlists.getSongs()",
+        "endpoint": "/playlists/{id}/songs",
+        "usage": "Get a list of playlist songs",
+        "returns": "songs"
+    },
+    {
+        "group": "Playlists / Albums",
+        "name": "Playlist: Songs (Add)",
+        "method": "humm.playlists.addSongs()",
+        "endpoint": "/playlists/{id}/songs",
+        "usage": "Add a song to a playlist"
+    },
+    {
+        "group": "Playlists / Albums",
+        "name": "Playlist: Songs (Remove)",
+        "method": "humm.playlists.removeSongs()",
+        "endpoint": "/playlists/{id}/songs",
+        "usage": "Remove a song from a playlist"
+    },
+    {
         "group": "Playlists / Albums",
         "name": "Playlist: Subscriptions (Add)",
-        "method": "POST",
+        "method": "humm.playlists.addSubscribers()",
         "endpoint": "/playlists/{id}/subscribers",
         "usage": "Add playlist to the list current user has subscriptions to"
-    }, {
+    },
+    {
         "group": "Playlists / Albums",
         "name": "Playlist: Subscriptions (Remove)",
-        "method": "DELETE",
+        "method": "humm.playlists.removeSubscribers()",
         "endpoint": "/playlists/{id}/subscribers",
         "usage": "Remove playlist from the list current user has subscriptions to"
-    }, {
+    },
+    {
         "group": "Playlists / Albums",
         "name": "Popular Playlists",
-        "method": "GET",
+        "method": "humm.playlists.getPopular()",
         "endpoint": "/playlists/popular",
         "usage": "Get a list of playlists popular on Humm",
         "returns": "playlists"
-    }, {
+    },
+    {
         "group": "Playlists / Albums",
         "name": "Recent Playlists",
-        "method": "GET",
+        "method": "humm.playlists.getRecent()",
         "endpoint": "/playlists/recent",
         "usage": "Get a list of playlists recently added on Humm",
         "returns": "playlists"
-    }, {
+    },
+    {
         "group": "Playlists / Albums",
         "name": "Search Playlists / Albums",
-        "method": "GET",
+        "method": "humm.playlists.search()",
         "endpoint": "/playlists",
-        "usage": "Search Playlists",
+        "usage": "Search Playlists / Albums",
         "returns": "playlists"
-    }, {
+    },
+    {
         "group": "Playlists / Albums",
         "name": "Staff-picked Playlists",
-        "method": "GET",
+        "method": "humm.playlists.getStaffPicks()",
         "endpoint": "/playlists/staffpicks",
         "usage": "Get a list of playlists picked by staff at Humm",
         "returns": "playlists"
-    }
+    },
 ];
 
 
 module.exports = {
-    get: function get(playlistId, cb) {
+    create: function create() {
+
 
     },
-    create: function create() {
+    getFeatured: function getFeatured() {
+
+
+    },
+    addContributors: function addContributors() {
+
+
+    },
+    removeContributors: function removeContributors() {
+
+
+    },
+    get: function update() {
 
 
     },
@@ -124,52 +152,39 @@ module.exports = {
 
 
     },
+    order: function order() {
+
+
+    },
     getSongs: function getSongs() {
 
 
     },
-    addSong: function addSong() {
+    addSongs: function addSongs() {
 
 
     },
-    deleteSong: function addSong() {
+    removeSongs: function removeSongs() {
+
+    },
+    addSubscribers: function addSubscribers() {
+
+    },
+    removeSubscribers: function removeSubscribers() {
 
 
     },
-    orderSongs: function reorderSongs() {
-
-
-    },
-    addContributor: function addContributor(userId, cb) {
-
+    getPopular: function getPopular() {
 
     },
-    deleteContributor: function deleteContributor(userId, cb) {
-
-
-    },
-    subscribe: function sunscribe(playlistId, cb) {
+    getRecent: function getRecent() {
 
     },
-    unsubcribe: function unsubcribe(playlistId, cb) {
+    search: function search() {
 
     },
-    getFeatured: function getFeatured(cb) {
+    getStaffPicks: function getStaffPicks() {
 
-
-    },
-    getPopular: function getPopular(cb) {
-
-    },
-    getRecentlyAdded: function getRecentlyAdded(cb) {
-
-    },
-    getStaffPick: function getStaffPick(cb) {
-
-
-    },
-    find: function find(text, cb) {
 
     }
-
 };

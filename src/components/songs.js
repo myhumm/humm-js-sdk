@@ -4,63 +4,71 @@ var songsEnds = [
     {
         "group": "Songs",
         "name": "Featured Songs",
-        "method": "GET",
+        "method": "humm.songs.getFeatured()",
         "endpoint": "/songs/featured",
         "usage": "Get a llist of songs featured by Humm",
         "returns": "songs"
-    }, {
+    },
+    {
         "group": "Songs",
         "name": "Popular Songs",
-        "method": "GET",
+        "method": "humm.songs.getPopular()",
         "endpoint": "/songs/popular",
         "usage": "Get a list of songs popular on Humm",
         "returns": "songs"
-    }, {
+    },
+    {
         "group": "Songs",
         "name": "Recent Songs",
-        "method": "GET",
+        "method": "humm.songs.getRecent()",
         "endpoint": "/songs/recent",
         "usage": "Get a list of songs recently added on Humm",
         "returns": "songs"
-    }, {
+    },
+    {
         "group": "Songs",
         "name": "Search Songs",
-        "method": "GET",
+        "method": "humm.songs.search()",
         "endpoint": "/songs",
         "usage": "Search for a song",
         "returns": "songs"
-    }, {
+    },
+    {
         "group": "Songs",
         "name": "Song: Appears In",
-        "method": "GET",
+        "method": "humm.songs.appearsIn()",
         "endpoint": "/songs/{id}/appearsin",
         "usage": "Get a list of playlists a song appears in",
         "returns": "playlists"
-    }, {
+    },
+    {
         "group": "Songs",
         "name": "Song: Route",
-        "method": "GET",
+        "method": "humm.songs.route()",
         "endpoint": "/songs/{id}/route",
         "usage": "?",
         "returns": "?"
-    }, {
+    },
+    {
         "group": "Songs",
         "name": "Song: Details",
-        "method": "GET",
+        "method": "humm.songs.get()",
         "endpoint": "/songs/{id}",
         "usage": "Get a song",
         "returns": "song"
-    }, {
+    },
+    {
         "group": "Songs",
         "name": "Song: Similar",
-        "method": "GET",
+        "method": "humm.songs.getSimilar()",
         "endpoint": "/songs/{id}/similar",
         "usage": "Get a list of similar songs",
         "returns": "songs"
-    }, {
+    },
+    {
         "group": "Songs",
         "name": "Staff-picked Songs",
-        "method": "GET",
+        "method": "humm.songs.getStaffPicked()",
         "endpoint": "/songs/staffpicks",
         "usage": "Get a list of songs picked by staff at Humm",
         "returns": "songs"
@@ -68,9 +76,6 @@ var songsEnds = [
 ];
 
 module.exports = {
-    get: function get(songId){
-
-    },
     getFeatured: function getFeatured(cb) {
 
     },
@@ -80,20 +85,22 @@ module.exports = {
     getRecent: function getRecent(cb) {
 
     },
-    find: function find(text, cb) {
+    search: function search(text, cb) {
 
     },
-    getAppearsIn: function getAppearsIn(songId, cb) {
+    appearsIn: function appearsIn(songId, cb) {
 
     },
-    getComments: function getComments(songId, cb) {
+    route: function route(songId, cb) {
 
+    },
+    get: function get(songId){
 
     },
     getSimilar: function getSimilar(songId, cb) {
 
     },
-    getStaffPick: function getStaffPick(cb) {
+    getStaffPicks: function getStaffPicked(cb) {
 
 
     }

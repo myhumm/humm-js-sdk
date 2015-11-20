@@ -1,7 +1,9 @@
 'use strict';
 
 var config      = require('./config'),
-    oauth_token = config.get('oauth_token');
+    oauth_token = config.get('oauth_token'),
+    clientId    = config.get('client_id');
+
 
 var wrapPromiseWithAbort = function wrapPromiseWithAbort(promise, onAbort) {
   promise.abort = onAbort;
@@ -37,6 +39,13 @@ var _extend = function() {
   return target;
 };
 
+/**
+ * construct final URL with params
+ *
+ * @param url
+ * @param parameters
+ * @returns {*}
+ */
 var buildUrl = function buildUrl(url, parameters) {
   var qs = '';
   for (var key in parameters) {
@@ -53,8 +62,14 @@ var buildUrl = function buildUrl(url, parameters) {
   return url;
 };
 
+/**
+ * Fire of request
+ *
+ * @param requestData
+ * @param callback
+ * @returns {null}
+ */
 var send = function send(requestData, callback) {
-
   var req = new XMLHttpRequest();
 
   var promiseFunction = function promiseFunction(resolve, reject) {
@@ -119,16 +134,29 @@ var send = function send(requestData, callback) {
 
 
 module.exports = {
+
+  /**
+   *  Start API request
+   *
+   * @param requestData
+   * @param options
+   * @param callback
+   * @returns {null}
+   */
   start: function start(requestData, options, callback) {
-    //check params
+    //check params as we can pass in less than three params
     var opt = {},
-        cb = null;
+        cb  = null;
     if (typeof options === 'object') {
       opt = options;
       cb = callback;
     } else if (typeof options === 'function') {
       cb = options;
     }
+
+
+    //TODO: Remove as it temp until auth is in place: attach auth as param
+    requestData.params.auth = clientId;
 
     // options extend postData, if any. Otherwise they extend parameters sent in the url
     var type = requestData.type || 'GET';

@@ -3,72 +3,82 @@
 ## Documentation
 
 //TODO: Params & description
-// A Handful of functionlity require a logged in user
 
 #### Artists
 
 - humm.artists.get()
-- humm.artists.follow()
-- humm.artists.unfollow()
+- humm.artists.addFollowers()
+- humm.artists.removeFollowers()
 - humm.artists.getPlaylists()
 - humm.artists.getRadio()
 - humm.artists.getSimilar()
-- humm.artists.getRadio()
 - humm.artists.getTopSongs()
 - humm.artists.getFeatured()
 - humm.artists.getPopular()
-- humm.artists.getRecentlyAdded()
-- humm.artists.find()
+- humm.artists.getRecent()
+- humm.artists.search()
 
 #### Playlists
 
-- humm.playlists.get()
 - humm.playlists.create()
-- humm.playlists.update()
-- humm.playlists.getSongs()
-- humm.playlists.addSong()
-- humm.playlists.deleteSong()
-- humm.playlists.orderSongs()
-- humm.playlists.addContributor()
-- humm.playlists.deleteContributor()
-- humm.playlists.subscribe()
-- humm.playlists.unsubcribe()
 - humm.playlists.getFeatured()
+- humm.playlists.addContributors()
+- humm.playlists.removeContributors()
+- humm.playlists.get()
+- humm.playlists.update()
+- humm.playlists.order()
+- humm.playlists.getSongs()
+- humm.playlists.addSongs()
+- humm.playlists.removeSongs()
+- humm.playlists.addSubscribers()
+- humm.playlists.removeSubscribers()
 - humm.playlists.getPopular()
-- humm.playlists.getRecentlyAdded()
-- humm.playlists.getStaffPick()
-- humm.playlists.find()
+- humm.playlists.getRecent()
+- humm.playlists.search()
+- humm.playlists.getStaffPicks()
 
 #### Songs
 
-- humm.songs.get()
 - humm.songs.getFeatured()
 - humm.songs.getPopular()
 - humm.songs.getRecent()
-- humm.songs.find()
-- humm.songs.getAppearsIn()
-- humm.songs.getComments()
+- humm.songs.search()
+- humm.songs.appearsIn()
+- humm.songs.route()
+- humm.songs.get()
 - humm.songs.getSimilar()
-- humm.songs.getStaffPick()
+- humm.songs.getStaffPicks
 
 #### Users
 
 - humm.users.me()
+- humm.users.discoverReleases()
+- humm.users.discoverArtists()
+- humm.users.discoverPlaylists()
+- humm.users.addFavourites()
+- humm.users.addFollowing()
+- humm.users.removeFollowing()
+- humm.users.addPlays()
+- humm.users.search()
+- humm.users.addSubscriptions()
+- humm.users.removeSubscriptions()
 - humm.users.get()
-- humm.users.getAlbumDiscovery()
-- humm.users.getPlaylistsDiscovery()
-- humm.users.getArtistsDiscovery()
-- humm.users.follow()
-- humm.users.unFollow()
-- humm.users.getFollowers()
-- humm.users.find()
 - humm.users.getFavourites()
-- humm.users.getMyPlaylists()
-- humm.users.getPlaysHistory()
-- humm.users.addSongPlaysHistory()
+- humm.users.getFollowing()
+- humm.users.getPlays()
+
+#### external
+- humm.external.addServices()
+- humm.external.removeServices()
+
+#### settings
+- humm.settings.get()
+- humm.settings.update()
 
 #### others
-//TODO: Chat
+- humm.search()
+- humm.groupSearch()
+- humm.radio()
 
 
 
