@@ -4,26 +4,11 @@ var config      = require('./config'),
     oauth_token = config.get('oauth_token'),
     clientId    = config.get('client_id');
 
-
-var wrapPromiseWithAbort = function wrapPromiseWithAbort(promise, onAbort) {
-  promise.abort = onAbort;
-  return promise;
-};
-
-var promiseProvider = function promiseProvider(promiseFunction, onAbort) {
-  var returnedPromise;
-  if(window.Promise) {
-    returnedPromise = new window.Promise(promiseFunction);
-
-  }
-  if (returnedPromise) {
-    return new wrapPromiseWithAbort(returnedPromise, onAbort);
-  } else {
-    return null;
-  }
-};
-
-
+/**
+ *
+ * @returns {T}
+ * @private
+ */
 var _extend = function() {
   var args = Array.prototype.slice.call(arguments);
   var target = args[0];
@@ -63,71 +48,66 @@ var buildUrl = function buildUrl(url, parameters) {
 };
 
 /**
- * Fire of request
+ * send the request
  *
  * @param requestData
- * @param callback
+ * @param cb
  * @returns {null}
  */
-var send = function send(requestData, callback) {
-  var req = new XMLHttpRequest();
-
-  var promiseFunction = function promiseFunction(resolve, reject) {
-
-    function success(data) {
-      if (resolve) {
-        resolve(data);
-      }
-      if (callback) {
-        callback(null, data);
-      }
-    }
-
-    function failure() {
-      if (reject) {
-        reject(req);
-      }
-      if (callback) {
-        callback(req, null);
-      }
-    }
+var send = function send(requestData, cb) {
+    var req = new XMLHttpRequest();
 
     req.open(requestData.type, buildUrl(requestData.url, requestData.params));
     if (oauth_token) {
-      req.setRequestHeader('Authorization', 'Bearer ' + oauth_token);
+        req.setRequestHeader('Authorization', 'Bearer ' + oauth_token);
     }
 
-    req.onreadystatechange = function() {
-      if (req.readyState === 4) {
-        var data = null;
-        try {
-          data = req.responseText ? JSON.parse(req.responseText) : '';
-        } catch (e) {
-          console.error(e);
-        }
+    /**
+     * Attach listener for request state
+     */
+    req.onreadystatechange = function onreadystatechange() {
+        if (req.readyState === 4) {
+            var data = null;
 
-        if (req.status >= 200 && req.status < 300) {
-          success(data);
-        } else {
-          failure();
+            try {
+                data = req.responseText ? JSON.parse(req.responseText) : '';
+            } catch(e) {
+                console.error(e);
+            }
+
+            if (req.status >= 200 && req.status < 300) {
+                complete(data, cb, null, true)
+            } else {
+                complete(null, cb, req, false)
+            }
         }
-      }
     };
 
+    //send
     if (requestData.type === 'GET') {
-      req.send(null);
+        req.send(null);
     } else {
-      req.send(JSON.stringify(requestData.postData));
+        req.send(JSON.stringify(requestData.postData));
     }
-  };
+};
 
-  if (callback) {
-    promiseFunction();
-    return null;
-  } else {
-    return promiseProvider(promiseFunction, function() {
-      req.abort();
-    });
+/**
+ * Called once request has been completed
+ *
+ * @param data
+ * @param cb
+ * @param req
+ * @param success
+ */
+var complete = function complete(data, cb, req, success) {
+    console.log(data);
+    console.log(cb);
+    console.log(req);
+    console.log(success);
+  if (success) {
+    cb(null, data);
+  }else{
+    cb(req, null);
   }
 };
 
