@@ -136,6 +136,7 @@ var usersEnds = [
     }
 ];
 
+//TODO TEST all ends once auth is done
 module.exports = {
 
     /**

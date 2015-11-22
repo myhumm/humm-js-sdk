@@ -226,11 +226,12 @@ module.exports = {
         request.start(requestData, options, cb)
     },
 
+    //TODO: waiting more detail in docs as
     update: function update() {
 
 
     },
-
+    //TODO: waiting more detail in docs as
     order: function order() {
 
 
@@ -251,19 +252,75 @@ module.exports = {
         };
         request.start(requestData, options, cb)
     },
-    addSongs: function addSongs() {
 
 
+    /**
+     * Add a song to a playlist given their ids
+     *
+     * @param playlistId
+     * @param songId
+     * @param position
+     * @param cb
+     */
+    addSongs: function addSongs(playlistId, songId, position, cb) {
+        var requestData = {
+            url: baseURL + '/playlists/' + playlistId + '/songs',
+            type: 'POST',
+            params: {
+                sid: songId,
+                position: position
+            }
+        };
+        request.start(requestData, cb)
     },
-    removeSongs: function removeSongs() {
 
+    /**
+     * Remove a song from a playlist
+     *
+     * @param playlistId
+     * @param songId
+     * @param cb
+     */
+    removeSongs: function removeSongs(playlistId, songId, cb) {
+        var requestData = {
+            url: baseURL + '/playlists/' + playlistId + '/songs',
+            type: 'DELETE',
+            params: {
+                sid: songId
+            }
+        };
+        request.start(requestData, cb)
     },
-    addSubscribers: function addSubscribers() {
 
+
+    /**
+     * Add playlist to the list current user has subscriptions to
+     *
+     * @param playlistId
+     * @param cb
+     */
+    addSubscribers: function addSubscribers(playlistId, cb) {
+        var requestData = {
+            url: baseURL + '/playlists/' + playlistId + '/subscribers',
+            type: 'POST',
+            params: {}
+        };
+        request.start(requestData, cb)
     },
-    removeSubscribers: function removeSubscribers() {
 
-
+    /**
+     * Remove playlist to the list current user has subscriptions to
+     *
+     * @param playlistId
+     * @param cb
+     */
+    removeSubscribers: function removeSubscribers(playlistId, cb) {
+        var requestData = {
+            url: baseURL + '/playlists/' + playlistId + '/subscribers',
+            type: 'DELETE',
+            params: {}
+        };
+        request.start(requestData, cb)
     },
 
     /**
