@@ -217,7 +217,7 @@ module.exports = {
      * @param {Object} options A JSON object with options that can be passed
      * @param cb
      */
-    getPopular: function(cb, options) {
+    getPopular: function(options, cb) {
         var requestData = {
             url: baseURL + '/artists/popular',
             type: 'GET',
@@ -232,7 +232,7 @@ module.exports = {
      * @param {Object} options A JSON object with options that can be passed
      * @param cb
      */
-    getRecent: function(cb, options) {
+    getRecent: function(options, cb) {
         var requestData = {
             url: baseURL + '/artists/recent',
             type: 'GET',

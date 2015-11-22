@@ -65,6 +65,7 @@
 - humm.users.get()
 - humm.users.getFavourites()
 - humm.users.getFollowing()
+- humm.users.getPlaylists()
 - humm.users.getPlays()
 
 #### external

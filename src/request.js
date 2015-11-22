@@ -58,6 +58,7 @@ var send = function send(requestData, cb) {
     var req = new XMLHttpRequest();
 
     req.open(requestData.type, buildUrl(requestData.url, requestData.params));
+
     if (oauth_token) {
         req.setRequestHeader('Authorization', 'Bearer ' + oauth_token);
     }
@@ -66,6 +67,7 @@ var send = function send(requestData, cb) {
      * Attach listener for request state
      */
     req.onreadystatechange = function onreadystatechange() {
+        // request finished and response is ready
         if (req.readyState === 4) {
             var data = null;
 
@@ -75,10 +77,11 @@ var send = function send(requestData, cb) {
                 console.error(e);
             }
 
+            //if success
             if (req.status >= 200 && req.status < 300) {
-                complete(data, cb, null, true)
+                complete(data, cb, null, true);
             } else {
-                complete(null, cb, req, false)
+                complete(null, cb, req, false);
             }
         }
     };
@@ -126,6 +129,7 @@ module.exports = {
     //check params as we can pass in less than three params
     var opt = {},
         cb  = null;
+
     if (typeof options === 'object') {
       opt = options;
       cb = callback;
@@ -133,17 +137,18 @@ module.exports = {
       cb = options;
     }
 
-
     //TODO: Remove as it temp until auth is in place: attach auth as param
     requestData.params.auth = clientId;
 
     // options extend postData, if any. Otherwise they extend parameters sent in the url
     var type = requestData.type || 'GET';
+
     if (type !== 'GET' && requestData.postData) {
       requestData.postData = _extend(requestData.postData, opt);
     } else {
       requestData.params = _extend(requestData.params, opt);
     }
+
     return send(requestData, cb);
   }
 };
