@@ -1,31 +1,76 @@
 'use strict';
 
 var config      = require('./src/config'),
-    authorize   = require('./src/authorize'),
-    artists     = require('./src/components/artists'),
-    playlists   = require('./src/components/playlists'),
-    songs       = require('./src/components/songs'),
-    users       = require('./src/components/users'),
-    external    = require('./src/components/external'),
-    settings    = require('./src/components/settings'),
+    connect     = require('./src/connect'),
+    artists     = require('./src/endpoints/artists'),
+    playlists   = require('./src/endpoints/playlists'),
+    songs       = require('./src/endpoints/songs'),
+    users       = require('./src/endpoints/users'),
+    external    = require('./src/endpoints/external'),
+    settings    = require('./src/endpoints/settings'),
     request     = require('./src/request'),
     baseURL     = config.get('baseURL');
 
 module.exports = global.humm = {
-    initialize: function initialize(options) {
-        // options = options ? options : {};
-        // set tokens
-     //   config.set('oauth_token', options.oauth_token);
-          config.set('client_id', options.client_id);
-       // config.set('baseURL', options.baseURL);
+
+    /**
+     * initialise  humm
+     *
+     * @param options
+     */
+    init: function init(options) {
+        config.set('oauth_token', options.oauth_token);
+        config.set('client_id', options.client_id);
+        config.set('redirect_uri', options.redirect_uri);
+        config.set('baseURL', options.baseURL);
+        config.set('connectURL', options.connectURL);
     },
+
+    /**
+     * check if user is connected
+     *
+     * @returns {boolean}
+     */
+    isConnected: function isAuthorised(){
+        return config.get('oauth_token') !== undefined;
+    },
+
+
+    /**
+     * connect with humm
+     *
+     * @returns {*}
+     */
+    connect: function() {
+        var options = {
+            client_id: config.get('client_id'),
+            redirect_uri: config.get('redirect_uri'),
+            response_type: 'token'
+        };
+
+        // `client_id` and `redirect_uri` have to be passed
+        if (!options.client_id || !options.redirect_uri) {
+            throw new Error('Options client_id and redirect_uri must be passed');
+        }
+      return connect.start(options)
+    },
+
+
+    /**
+     * Called upon redirect, extracts oauth token from url and set's it for future requests
+     *
+     * @returns {token}
+     */
+    completeConnect: function(){
+       return connect.complete(this.location)
+    },
+
     artists: artists,
     playlists: playlists,
     songs: songs,
     users: users,
     settings: settings,
     external: external,
-    authorize: authorize,
 
     /**
      * TODO: waiting more docs

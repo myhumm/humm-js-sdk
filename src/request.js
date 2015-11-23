@@ -2,7 +2,8 @@
 
 var config      = require('./config'),
     oauth_token = config.get('oauth_token'),
-    clientId    = config.get('client_id');
+    clientId    = config.get('client_id'),
+    client
 
 /**
  *
@@ -59,8 +60,14 @@ var send = function send(requestData, cb) {
 
     req.open(requestData.type, buildUrl(requestData.url, requestData.params));
 
+    //attach headers
     if (oauth_token) {
         req.setRequestHeader('Authorization', 'Bearer ' + oauth_token);
+    }
+
+    //todo build auth temp solution
+    if(requestData.url === 'http://accounts.livingindietv.com/api/token') {
+        req.setRequestHeader('Authorization', 'Basic ' + clientId);
     }
 
     /**
@@ -70,13 +77,11 @@ var send = function send(requestData, cb) {
         // request finished and response is ready
         if (req.readyState === 4) {
             var data = null;
-
             try {
                 data = req.responseText ? JSON.parse(req.responseText) : '';
             } catch(e) {
                 console.error(e);
             }
-
             //if success
             if (req.status >= 200 && req.status < 300) {
                 complete(data, cb, null, true);
@@ -86,7 +91,7 @@ var send = function send(requestData, cb) {
         }
     };
 
-    //send
+    //if get send else, attach post data and send
     if (requestData.type === 'GET') {
         req.send(null);
     } else {
@@ -138,7 +143,7 @@ module.exports = {
     }
 
     //TODO: Remove as it temp until auth is in place: attach auth as param
-    requestData.params.auth = clientId;
+   // requestData.params.auth = clientId;
 
     // options extend postData, if any. Otherwise they extend parameters sent in the url
     var type = requestData.type || 'GET';

@@ -8,11 +8,11 @@
   <body>
     <script type="text/javascript">
      // console.log(humm);
-    //  humm.authorize({ client_id: '564dc328af59fc5215984f7a'});
-
-
-
-
+      humm.init({
+          client_id: '564dc328af59fc5215984f7a',
+          redirect_uri:'http://localhost:8080/webpack-dev-server'
+      });
+     humm.connect();
 
      //-------------------------------------- Start of Global -----------------------------------------
 
@@ -23,7 +23,7 @@
 
      //-------------------------------------- Start Artist group -----------------------------------------
 
-     humm.artists.get('55116991f9c816a0d639ea75', function(err, res){
+/*     humm.artists.get('55116991f9c816a0d639ea75', function(err, res){
          console.log('--------------------- artists.get()----------');
          console.log(res);
      });
@@ -66,11 +66,12 @@
      humm.artists.search('nujabes', function(err, res){
          console.log('--------------------- artists.search()----------');
          console.log(res);
-     });
+     });*/
      //-------------------------------------- End Artist group -----------------------------------------
 
 
      //-------------------------------------- start playlist group -----------------------------------------
+/*
 
      humm.playlists.getFeatured(function(err, res){
          console.log('--------------------- playlists.getFeatured()----------');
@@ -84,6 +85,7 @@
 
 
      //todo others routes
+*/
 
 
      //-------------------------------------- End playlist group -----------------------------------------
@@ -91,7 +93,7 @@
 
      //-------------------------------------- start songs group -----------------------------------------
 
-     humm.songs.getFeatured(function(err, res){
+ /*    humm.songs.getFeatured(function(err, res){
          console.log('--------------------- songs.getFeatured()----------');
          console.log(res);
      });
@@ -130,17 +132,19 @@
          console.log('--------------------- songs.getStaffPicks()----------');
          console.log(res);
      });
-
+*/
      //-------------------------------------- End songs group -----------------------------------------
 
 
 
      //-------------------------------------- start of users -----------------------------------------
+/*
      humm.users.me(function(err, res){
          console.log('--------------------- users.me()----------');
          console.log(res);
      });
 
+*/
 
 
 
