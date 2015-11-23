@@ -1,5 +1,8 @@
 # Humm JavaScript SDK
-//TODO: store token for implicit grant
+//TODO: 1. store token for implicit grant
+        2. complete others methods not yet docs
+        3. test
+
 
 
 

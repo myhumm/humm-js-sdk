@@ -1,7 +1,15 @@
 'use strict';
 
+
+/**
+ * Contains the three auth methods and helpers
+ *
+ * @type {exports}
+ */
+
+
 var qs      = require('query-string'),
-    config  = require('./config');
+    config  = require('./../config');
 
 /**
  * Build the humm connect url
@@ -33,16 +41,18 @@ module.exports = {
 
 
     /**
-     * Find and set token //todo
+     * Find and set token //todo rewrite
      *
      * @param location
      * @returns token else error
      */
-    complete:  function complete(location) {
+    completeUserAuth:  function completeUserAuth(location) {
         var searchParams = qs.parse(location.search),
             hashParams = qs.parse(location.hash),
             oauth_token = searchParams.access_token || hashParams.access_token,
             error       = searchParams.error || hashParams.error;
+
+        //todo refactor to support all three methods
         if (oauth_token){
             setOauthToken(oauth_token);
             return oauth_token
@@ -50,24 +60,24 @@ module.exports = {
         return error;
     },
 
-
     /**
-     * open pop up
+     * Used by Authorization Code & Implicit Grant Flow to open a pop the enables the user to
+     * auth using Humm
      *
      * @param options
      * @returns {*}
      */
-    start: function start(options) {
+    startUserAuth: function startUserAuth(options) {
         var width = 700,
             height = 600;
         var dialogOptions = {
+                location    : 1,
                 width       : width,
                 height      : height,
                 left        : window.screenX + (window.outerWidth - width) / 2,
                 top         : window.screenY + (window.outerHeight - height) / 2,
                 toolbar     : 'no',
-                menubar     : 'no',
-                location    : 'no'
+                scrollbars  : 'yes'
             },
             stringOptions,
             url = createURL(options);
@@ -76,5 +86,41 @@ module.exports = {
             return key + '=' + dialogOptions[key];
         }).join(', ');
         return window.open(url, 'PopUp', stringOptions);
+    },
+
+
+    /**
+     *
+     * @param code
+     * @param cb
+     */
+    authorizationCode: function authorizationCode(code, cb){
+
+
+
+    },
+
+
+    /**
+     *
+     * @param token
+     * @param cb
+     */
+    refreshAccessToken: function refreshAccessToken(token, cb) {
+
+
+
+    },
+
+    /**
+     * Authorization Code Flow //todo
+     *
+     * @param options
+     * @param cb
+     * @returns {*}
+     */
+    clientCredentials: function clientCredentials(options, cb) {
+
+
     }
 };

@@ -1,15 +1,15 @@
 'use strict';
 
-var config      = require('./src/config'),
-    connect     = require('./src/connect'),
-    artists     = require('./src/endpoints/artists'),
-    playlists   = require('./src/endpoints/playlists'),
-    songs       = require('./src/endpoints/songs'),
-    users       = require('./src/endpoints/users'),
-    external    = require('./src/endpoints/external'),
-    settings    = require('./src/endpoints/settings'),
-    request     = require('./src/request'),
-    baseURL     = config.get('baseURL');
+var config          = require('./src/config'),
+    authorization   = require('./src/authorization'),
+    artists         = require('./src/endpoints/artists'),
+    playlists       = require('./src/endpoints/playlists'),
+    songs           = require('./src/endpoints/songs'),
+    users           = require('./src/endpoints/users'),
+    external        = require('./src/endpoints/external'),
+    settings        = require('./src/endpoints/settings'),
+    request         = require('./src/request'),
+    baseURL         = config.get('baseURL');
 
 module.exports = global.humm = {
 
@@ -27,21 +27,21 @@ module.exports = global.humm = {
     },
 
     /**
-     * check if user is connected
+     * check if token has been set
      *
      * @returns {boolean}
      */
-    isConnected: function isAuthorised(){
+    isAuthorised: function isAuthorised(){
         return config.get('oauth_token') !== undefined;
     },
 
 
     /**
-     * connect with humm
+     * connect with humm via implicit grant
      *
      * @returns {*}
      */
-    connect: function() {
+    authViaImplicitGrant: function() {
         var options = {
             client_id: config.get('client_id'),
             redirect_uri: config.get('redirect_uri'),
@@ -52,19 +52,45 @@ module.exports = global.humm = {
         if (!options.client_id || !options.redirect_uri) {
             throw new Error('Options client_id and redirect_uri must be passed');
         }
-      return connect.start(options)
+      return authorization.startUserAuth(options)
     },
 
+    /**
+     * connect with humm via Authorization Code Flow
+     *
+     * @returns {*}
+     */
+    authViaAuthorizationCode: function() {
+        var options = {
+            client_id: config.get('client_id'),
+            redirect_uri: config.get('redirect_uri'),
+            response_type: 'code'
+        };
+
+        // `client_id` and `redirect_uri` have to be passed
+        if (!options.client_id || !options.redirect_uri) {
+            throw new Error('Options client_id and redirect_uri must be passed');
+        }
+        return authorization.startUserAuth(options)
+    },
 
     /**
      * Called upon redirect, extracts oauth token from url and set's it for future requests
-     *
+     * todo refactor
      * @returns {token}
      */
-    completeConnect: function(){
-       return connect.complete(this.location)
+    completeAuthViaImplicitGrant: function(){
+       return authorization.completeUserAuth(this.location)
     },
 
+
+    authViaClientCredentials: function() {
+
+
+
+    },
+
+    //----------------- Start of function ---------------
     artists: artists,
     playlists: playlists,
     songs: songs,
