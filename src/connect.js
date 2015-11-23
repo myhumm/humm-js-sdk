@@ -1,7 +1,7 @@
 'use strict';
 
 var qs      = require('query-string'),
-    config  = require('config');
+    config  = require('./config');
 
 /**
  * Build the humm connect url
