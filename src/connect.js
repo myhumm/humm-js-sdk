@@ -35,22 +35,24 @@ module.exports = {
      * Find and set token
      *
      * @param location
-     * @returns token else false
+     * @returns token else error
      */
     complete:  function complete(location) {
         var searchParams = qs.parse(location.search),
             hashParams = qs.parse(location.hash),
-            oauth_token = searchParams.access_token || hashParams.access_token;
+            oauth_token = searchParams.access_token || hashParams.access_token,
+            error       = searchParams.error || hashParams.error;
         if (oauth_token){
             setOauthToken(oauth_token);
             return oauth_token
         }
-        return false;
+        return error;
     },
 
 
     /**
      * open pop up
+     *
      * @param options
      * @returns {*}
      */
