@@ -7,6 +7,7 @@
   </head>
   <body>
     <button id="connect">Connect using Humm</button>
+    <button id="isConnect">is connected to humm ?</button>
 
     <script type="text/javascript">
       humm.init({
@@ -14,10 +15,21 @@
           redirect_uri:'http://localhost:8080/webpack-dev-server/connectComplete.html'
       });
 
-     var connect = function(){
+      var connect = function(){
          humm.connect();
-     };
-     document.getElementById('connect').addEventListener('click', connect);
+      };
+      document.getElementById('connect').addEventListener('click', connect);
+
+
+      var isConnect = function(){
+          console.log( humm.isConnected())
+      };
+      document.getElementById('isConnect').addEventListener('click', isConnect);
+
+
+
+
+
      //-------------------------------------- Start of Global -----------------------------------------
 
 

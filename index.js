@@ -19,11 +19,11 @@ module.exports = global.humm = {
      * @param options
      */
     init: function init(options) {
-        config.set('oauth_token', options.oauth_token);
+        //config.set('oauth_token', options.oauth_token);
         config.set('client_id', options.client_id);
         config.set('redirect_uri', options.redirect_uri);
-        config.set('baseURL', options.baseURL);
-        config.set('connectURL', options.connectURL);
+        //config.set('baseURL', options.baseURL);
+        //config.set('connectURL', options.connectURL);
     },
 
     /**
@@ -73,7 +73,7 @@ module.exports = global.humm = {
     external: external,
 
     /**
-     * TODO: waiting more docs
+     * Search all //TODO: extra params
      *
      * @param keyword
      * @param options
@@ -90,19 +90,39 @@ module.exports = global.humm = {
         request.start(requestData, options, cb)
     },
 
-    /**
-     * TODO: waiting more docs
-     */
-    groupSearch: function groupSearch() {
 
+    /**
+     * Search all grouped by type //TODO: extra params
+     *
+     * @param keyword
+     * @param options
+     * @param cb
+     */
+    groupSearch: function groupSearch(keyword, options, cb) {
+        var requestData = {
+            url: baseURL + '/grouped-search',
+            type: 'GET',
+            params: {
+                keyword: keyword
+            }
+        };
+        request.start(requestData, options, cb)
     },
 
+
     /**
-     * TODO: waiting more docs
+     * Get a list of songs for a radio
+     *
+     * @param options
+     * @param cb
      */
-    radio: function radio() {
-
-
+    radio: function radio(options, cb) {
+        var requestData = {
+            url: baseURL + '/radio',
+            type: 'GET',
+            params: {}
+        };
+        request.start(requestData, options, cb)
     }
 };
 

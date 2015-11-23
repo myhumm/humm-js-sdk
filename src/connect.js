@@ -14,6 +14,7 @@ var createURL = function createURL(options) {
 };
 
 /**
+ * //TODO: ses
  * Sets the oauth_token to the value that was provided by the callback
  *
  * @param  {Object} options The callback's parameters
@@ -32,7 +33,7 @@ module.exports = {
 
 
     /**
-     * Find and set token
+     * Find and set token //todo
      *
      * @param location
      * @returns token else error
@@ -57,15 +58,14 @@ module.exports = {
      * @returns {*}
      */
     start: function start(options) {
-        var width = 456,
-            height = 510;
+        var width = 700,
+            height = 600;
         var dialogOptions = {
                 width       : width,
                 height      : height,
                 left        : window.screenX + (window.outerWidth - width) / 2,
                 top         : window.screenY + (window.outerHeight - height) / 2,
                 toolbar     : 'no',
-                scrollbars  : 'yes',
                 menubar     : 'no',
                 location    : 'no'
             },
@@ -75,6 +75,6 @@ module.exports = {
         stringOptions = Object.keys(dialogOptions).map(function (key) {
             return key + '=' + dialogOptions[key];
         }).join(', ');
-        return window.open(url, '', stringOptions);
+        return window.open(url, 'PopUp', stringOptions);
     }
 };

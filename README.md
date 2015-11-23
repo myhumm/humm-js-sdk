@@ -1,7 +1,9 @@
 # Humm JavaScript SDK
+//TODO: store token for implicit grant
+
+
 
 ## Documentation
-
 //TODO: Params & description
 
 #### Artists
