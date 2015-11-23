@@ -65,11 +65,6 @@ var send = function send(requestData, cb) {
         req.setRequestHeader('Authorization', 'Bearer ' + oauth_token);
     }
 
-    //todo build auth temp solution
-    if(requestData.url === 'http://accounts.livingindietv.com/api/token') {
-        req.setRequestHeader('Authorization', 'Basic ' + clientId);
-    }
-
     /**
      * Attach listener for request state
      */

@@ -6,14 +6,18 @@
     <script type="text/javascript" src="../sdk.js"></script>
   </head>
   <body>
+    <button id="connect">Connect using Humm</button>
+
     <script type="text/javascript">
-     // console.log(humm);
       humm.init({
           client_id: '564dc328af59fc5215984f7a',
-          redirect_uri:'http://localhost:8080/webpack-dev-server'
+          redirect_uri:'http://localhost:8080/webpack-dev-server/connectComplete.html'
       });
-     humm.connect();
 
+     var connect = function(){
+         humm.connect();
+     };
+     document.getElementById('connect').addEventListener('click', connect);
      //-------------------------------------- Start of Global -----------------------------------------
 
 

@@ -75,6 +75,6 @@ module.exports = {
         stringOptions = Object.keys(dialogOptions).map(function (key) {
             return key + '=' + dialogOptions[key];
         }).join(', ');
-        return window.open(url, '_blank', stringOptions);
+        return window.open(url, '', stringOptions);
     }
 };
