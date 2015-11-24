@@ -1,7 +1,21 @@
 'use strict';
 
 var qs      = require('query-string'),
-    config  = require('./config');
+    config  = require('./config'),
+    scopes  = [
+        'playlist-read-private',
+        'playlist-read-collaborative',
+        'playlist-modify-public',
+        'playlist-modify-private',
+        'streaming',
+        'user-follow-modify',
+        'user-follow-read',
+        'user-library-read',
+        'user-library-modify',
+        'user-read-private',
+        'user-read-birthdate',
+        'user-read-email'
+    ];
 
 /**
  * Build the humm connect url
@@ -70,6 +84,9 @@ module.exports = {
         config.set('oauth_token', false);
         config.set('code', false);
 
+        //attach scope to params
+        options.scopes =  scopes.join(' ');
+
         var width = 700,
             height = 600;
         var dialogOptions = {
@@ -88,6 +105,7 @@ module.exports = {
             return key + '=' + dialogOptions[key];
         }).join(', ');
 
+        console.log(url);
         //check twice per second, if window is closed means auth is complete we can
         var authWindow  = window.open(url, '', stringOptions),
             timer       = setInterval(checkAuthWindow, 500);
@@ -97,6 +115,7 @@ module.exports = {
         function checkAuthWindow() {
             if (options.response_type === 'token') {
                 //check if token has been set
+                console.log(config.get('oauth_token'));
                 if(config.get('oauth_token')) {
                     cb(false, {
                         oauth_token :  config.get('oauth_token'),
@@ -111,7 +130,7 @@ module.exports = {
                     cb(false, {
                         code :  config.get('code')
                     });
-                    authWindow.close();
+                 //   authWindow.close();
                 }
             }
             clearInterval(timer);

@@ -14,7 +14,7 @@
     <script type="text/javascript">
       humm.init({
           client_id: '564dc328af59fc5215984f7a',
-          client_secret: ' mac998cuy498ryc49r7yh94hr974hrw846tndw86tbw',
+        //  client_secret: ' mac998cuy498ryc49r7yh94hr974hrw846tndw86tbw',
           redirect_uri:'http://localhost:8080/webpack-dev-server/connectComplete.html'
       });
 
@@ -23,6 +23,10 @@
              console.log('------------- authViaImplicitGrant complete -------------');
              console.log(error);
              console.log(response);
+             humm.users.me(function(err, res){
+                 console.log('--------------------- users.me()----------');
+                 console.log(res);
+             });
          });
       };
       document.getElementById('authViaImplicitGrant').addEventListener('click', authViaImplicitGrant);
@@ -33,11 +37,14 @@
              console.log('------------- authViaAuthorizationCode complete -------------');
              console.log(error);
              console.log(response);
-          /*   humm.accessViaCodeGrant(response.code, function(err, res) {
-                 console.log('------------- accessViaCodeGrant complete -------------');
-                 console.log(err);
-                 console.log(res);
-             });*/
+          /*
+              TODO: called from server side
+              humm.accessViaCodeGrant(response.code, function(err, res) {
+                     console.log('------------- accessViaCodeGrant complete -------------');
+                     console.log(err);
+                     console.log(res);
+              });
+         */
          });
       };
       document.getElementById('authViaAuthorizationCode').addEventListener('click', authViaAuthorizationCode);

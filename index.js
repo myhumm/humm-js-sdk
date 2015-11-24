@@ -174,7 +174,7 @@ module.exports = global.humm = {
                 type: 'POST',
                 postData: {
                     grant_type: 'refresh_token',
-                    refresh_token: token,
+                    refresh_token: token
                 },
                 clientCredentials: true
             };

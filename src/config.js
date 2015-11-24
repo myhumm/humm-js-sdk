@@ -2,12 +2,8 @@
 
 var lockr = require('lockr');
 
-/**
- *
- * @type {{oauth_token: undefined, client_id: string, connectURL: undefined, redirect_uri: undefined, baseURL: string}}
- */
 /*
-var config = {
+
   oauth_token   : undefined,
   client_id     : '564dc328af59fc5215984f7a',
   client_secret : undefined,
@@ -16,7 +12,7 @@ var config = {
   expires_in    : undefined,
   refresh_token : undefined,
   baseURL       : 'http://api.myhumm.com'
-};
+
 */
 
 /**
