@@ -107,10 +107,13 @@ var send = function send(requestData, cb) {
  * @param success
  */
 var complete = function complete(data, cb, req, success) {
-    console.log(data);
-    console.log(cb);
-    console.log(req);
-    console.log(success);
+    /*
+        console.log(data);
+        console.log(cb);
+        console.log(req);
+        console.log(success);
+
+    */
   if (success) {
     cb(null, data);
   }else{
@@ -142,7 +145,7 @@ module.exports = {
     }
 
     //TODO: Remove as it temp until auth is in place: attach auth as param
-   // requestData.params.auth = clientId;
+    requestData.params.auth = client_id;
 
     // options extend postData, if any. Otherwise they extend parameters sent in the url
     var type = requestData.type || 'GET';

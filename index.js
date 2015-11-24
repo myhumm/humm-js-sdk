@@ -123,14 +123,14 @@ module.exports = global.humm = {
     accessViaCodeGrant: function accessViaCodeGrant(code, cb) {
         if(typeof window === 'undefined') {
             var requestData = {
-                url: config.get('connectURL') + '/api/token',
-                type: 'POST',
-                postData: {
-                    grant_type: 'authorization_code',
-                    code: code,
-                    redirect_uri: config.get('redirect_uri')
-                },
-                clientCredentials: true
+                    url: config.get('connectURL') + '/api/token',
+                    type: 'POST',
+                    postData: {
+                        grant_type: 'authorization_code',
+                        code: code,
+                        redirect_uri: config.get('redirect_uri')
+                    },
+                    clientCredentials: true
             };
             request.start(requestData, cb);
         } else {
@@ -147,12 +147,12 @@ module.exports = global.humm = {
     authViaClientCredentials: function(cb) {
         if(typeof window === 'undefined') {
             var requestData = {
-                url: config.get('connectURL') + '/api/token',
-                type: 'POST',
-                postData: {
-                    grant_type: 'client_credentials'
-                },
-                clientCredentials: true
+                    url: config.get('connectURL') + '/api/token',
+                    type: 'POST',
+                    postData: {
+                        grant_type: 'client_credentials'
+                    },
+                    clientCredentials: true
             };
             request.start(requestData, cb);
         } else {
@@ -170,13 +170,13 @@ module.exports = global.humm = {
     refreshAccessToken: function refreshAccessToken(token, cb) {
         if(typeof window === 'undefined') {
             var requestData = {
-                url: config.get('connectURL') + '/api/token',
-                type: 'POST',
-                postData: {
-                    grant_type: 'refresh_token',
-                    refresh_token: token
+                    url: config.get('connectURL') + '/api/token',
+                    type: 'POST',
+                    postData: {
+                        grant_type: 'refresh_token',
+                        refresh_token: token
                 },
-                clientCredentials: true
+                    clientCredentials: true
             };
             request.start(requestData, cb);
         } else {
@@ -211,10 +211,10 @@ module.exports = global.humm = {
      */
     search: function search(keyword, options, cb) {
         var requestData = {
-            url: baseURL + '/search',
-            type: 'GET',
-            params: {
-                keyword: keyword
+                url: baseURL + '/search',
+                type: 'GET',
+                params: {
+                    keyword: keyword
             }
         };
         request.start(requestData, options, cb)
@@ -230,10 +230,10 @@ module.exports = global.humm = {
      */
     groupSearch: function groupSearch(keyword, options, cb) {
         var requestData = {
-            url: baseURL + '/grouped-search',
-            type: 'GET',
-            params: {
-                keyword: keyword
+                url: baseURL + '/grouped-search',
+                type: 'GET',
+                params: {
+                    keyword: keyword
             }
         };
         request.start(requestData, options, cb)
@@ -248,22 +248,15 @@ module.exports = global.humm = {
      */
     radio: function radio(options, cb) {
         var requestData = {
-            url: baseURL + '/radio',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/radio',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb)
     }
 };
 
-/*
-
-curl --get --include 'https://humm-api.p.mashape.com/artists/55116991f9c816a0d639ea75?auth=564dc328af59fc5215984f7a' \
--H 'X-Mashape-Key: V9BZDbxMrNmshvvlWRF6izQMMaCqp1L2sdXjsnjlypurv3PWJe'*/
-
 /**
-
-
  {
        "group": "Others",
        "name": "Search",

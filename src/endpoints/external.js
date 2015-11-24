@@ -42,11 +42,11 @@ module.exports = {
      */
     removeServices: function removeServices(service, sid, cb) {
         var requestData = {
-            url: baseURL + '/services',
-            type: 'DELETE',
-            params: {
-                service: service,
-                sid: sid
+                url: baseURL + '/services',
+                type: 'DELETE',
+                params: {
+                    service: service,
+                    sid: sid
             }
         };
         request.start(requestData, cb)

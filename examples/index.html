@@ -23,10 +23,6 @@
              console.log('------------- authViaImplicitGrant complete -------------');
              console.log(error);
              console.log(response);
-             humm.users.me(function(err, res){
-                 console.log('--------------------- users.me()----------');
-                 console.log(res);
-             });
          });
       };
       document.getElementById('authViaImplicitGrant').addEventListener('click', authViaImplicitGrant);
@@ -49,15 +45,19 @@
       };
       document.getElementById('authViaAuthorizationCode').addEventListener('click', authViaAuthorizationCode);
 
-/*
+
 
       var isConnect = function(){
-          console.log( humm.isConnected())
+          console.log(humm.isAuthorised())
       };
+
       document.getElementById('isConnect').addEventListener('click', isConnect);
-*/
 
 
+      humm.users.me(function(err, res){
+          console.log('--------------------- users.me()----------');
+          console.log(res);
+      });
 
 
 
@@ -70,7 +70,7 @@
 
      //-------------------------------------- Start Artist group -----------------------------------------
 
-/*     humm.artists.get('55116991f9c816a0d639ea75', function(err, res){
+     humm.artists.get('55116991f9c816a0d639ea75', function(err, res){
          console.log('--------------------- artists.get()----------');
          console.log(res);
      });
@@ -113,7 +113,7 @@
      humm.artists.search('nujabes', function(err, res){
          console.log('--------------------- artists.search()----------');
          console.log(res);
-     });*/
+     });
      //-------------------------------------- End Artist group -----------------------------------------
 
 
@@ -140,7 +140,7 @@
 
      //-------------------------------------- start songs group -----------------------------------------
 
- /*    humm.songs.getFeatured(function(err, res){
+     humm.songs.getFeatured(function(err, res){
          console.log('--------------------- songs.getFeatured()----------');
          console.log(res);
      });
@@ -179,7 +179,7 @@
          console.log('--------------------- songs.getStaffPicks()----------');
          console.log(res);
      });
-*/
+
      //-------------------------------------- End songs group -----------------------------------------
 
 

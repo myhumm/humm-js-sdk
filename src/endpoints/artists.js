@@ -106,9 +106,9 @@ module.exports = {
      */
     get: function get(artistId, cb) {
         var requestData = {
-            url: baseURL + '/artists/' + artistId,
-            type: 'GET',
-            params: {}
+                url: baseURL + '/artists/' + artistId,
+                type: 'GET',
+                params: {}
         };
         request.start(requestData,cb)
     },
@@ -141,9 +141,9 @@ module.exports = {
      */
     getPlaylists: function getPlaylists(artistId, options, cb) {
         var requestData = {
-            url: baseURL + '/artists/' + artistId + '/playlists',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/artists/' + artistId + '/playlists',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -156,9 +156,9 @@ module.exports = {
      */
     getRadio: function getRadio(artistId, cb) {
         var requestData = {
-            url: baseURL + '/artists/' + artistId + '/radio',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/artists/' + artistId + '/radio',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData,cb)
     },
@@ -172,9 +172,9 @@ module.exports = {
      */
     getSimilar: function getSimilar(artistId, cb) {
         var requestData = {
-            url: baseURL + '/artists/' + artistId + '/similar',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/artists/' + artistId + '/similar',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData,cb)
 
@@ -189,9 +189,9 @@ module.exports = {
      */
     getTopSongs: function similar(artistId, options, cb) {
         var requestData = {
-            url: baseURL + '/artists/' + artistId + '/topsongs',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/artists/' + artistId + '/topsongs',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb);
     },
@@ -205,9 +205,9 @@ module.exports = {
      */
     getFeatured: function(options, cb) {
         var requestData = {
-            url: baseURL + '/artists/featured',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/artists/featured',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -220,9 +220,9 @@ module.exports = {
      */
     getPopular: function(options, cb) {
         var requestData = {
-            url: baseURL + '/artists/popular',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/artists/popular',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -235,9 +235,9 @@ module.exports = {
      */
     getRecent: function(options, cb) {
         var requestData = {
-            url: baseURL + '/artists/recent',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/artists/recent',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -252,10 +252,10 @@ module.exports = {
      */
     search: function(keyword, options, cb) {
         var requestData = {
-            url: baseURL + '/artists',
-            type: 'GET',
-            params: {
-                keyword: keyword
+                url: baseURL + '/artists',
+                type: 'GET',
+                params: {
+                    keyword: keyword
             }
         };
         request.start(requestData, options, cb)

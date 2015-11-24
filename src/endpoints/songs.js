@@ -92,9 +92,9 @@ module.exports = {
      */
     getFeatured: function getFeatured(options, cb) {
         var requestData = {
-            url: baseURL + '/songs/featured',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/songs/featured',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -107,9 +107,9 @@ module.exports = {
      */
     getPopular: function getPopular(options, cb) {
         var requestData = {
-            url: baseURL + '/songs/popular',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/songs/popular',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -122,9 +122,9 @@ module.exports = {
      */
     getRecent: function getRecent(options, cb) {
         var requestData = {
-            url: baseURL + '/songs/recent',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/songs/recent',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -139,11 +139,11 @@ module.exports = {
      */
     search: function search(keyword, options, cb) {
         var requestData = {
-            url: baseURL + '/songs',
-            type: 'GET',
-            params: {
-                keyword: keyword
-            }
+                url: baseURL + '/songs',
+                type: 'GET',
+                params: {
+                    keyword: keyword
+                }
         };
         request.start(requestData, options, cb)
     },
@@ -157,9 +157,9 @@ module.exports = {
      */
     appearsIn: function appearsIn(songId, options, cb) {
         var requestData = {
-            url: baseURL + '/songs/'+ songId +'/appearsin',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/songs/'+ songId +'/appearsin',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -177,9 +177,9 @@ module.exports = {
      */
     get: function get(songId, cb){
         var requestData = {
-            url: baseURL + '/songs/'+ songId,
-            type: 'GET',
-            params: {}
+                url: baseURL + '/songs/'+ songId,
+                type: 'GET',
+                    params: {}
         };
         request.start(requestData, cb)
     },
@@ -193,9 +193,9 @@ module.exports = {
      */
     getSimilar: function getSimilar(songId, options, cb) {
         var requestData = {
-            url: baseURL + '/songs/'+ songId + '/similar',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/songs/'+ songId + '/similar',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -208,9 +208,9 @@ module.exports = {
      */
     getStaffPicks: function getStaffPicked(options, cb) {
         var requestData = {
-            url: baseURL + '/songs/staffpicks',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/songs/staffpicks',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb)
     }

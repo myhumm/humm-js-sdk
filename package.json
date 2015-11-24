@@ -12,7 +12,7 @@
     "start": "IS_NPM=1 webpack-dev-server",
     "serve": "node ./serve.js"
   },
-  "author": "Humm Ltd.",
+  "author": "Humm Ltd",
   "license": "MIT",
   "devDependencies": {
     "node-libs-browser": "^0.5.2",

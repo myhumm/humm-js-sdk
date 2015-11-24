@@ -146,9 +146,9 @@ module.exports = {
      */
     me: function me(cb) {
         var requestData = {
-            url: baseURL + '/users/me',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/users/me',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, cb)
     },
@@ -161,9 +161,9 @@ module.exports = {
      */
     discoverReleases: function discoverReleases(options, cb) {
         var requestData = {
-            url: baseURL + '/users/me/discover/releases',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/users/me/discover/releases',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -176,9 +176,9 @@ module.exports = {
      */
     discoverArtists: function discoverArtists(options, cb) {
         var requestData = {
-            url: baseURL + '/users/me/discover/artists',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/users/me/discover/artists',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -191,9 +191,9 @@ module.exports = {
      */
     discoverPlaylists: function discoverPlaylists(options, cb) {
         var requestData = {
-            url: baseURL + '/users/me/discover/playlists',
-            type: 'GET',
-            params: {}
+                url: baseURL + '/users/me/discover/playlists',
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -207,9 +207,9 @@ module.exports = {
      */
     addFavourites: function addFavourites(songId, cb) {
         var requestData = {
-            url: baseURL + '/songs/'+ songId +'/favourites',
-            type: 'POST',
-            params: {}
+                url: baseURL + '/songs/'+ songId +'/favourites',
+                type: 'POST',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -222,9 +222,9 @@ module.exports = {
      */
     addFollowing: function addFollowing(userId, cb) {
         var requestData = {
-            url: baseURL + '/users/'+ userId +'/following',
-            type: 'POST',
-            params: {}
+                url: baseURL + '/users/'+ userId +'/following',
+                type: 'POST',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -237,9 +237,9 @@ module.exports = {
      */
     removeFollowing: function removeFollowing(userId, cb) {
         var requestData = {
-            url: baseURL + '/users/'+ userId +'/following',
-            type: 'DELETE',
-            params: {}
+                url: baseURL + '/users/'+ userId +'/following',
+                type: 'DELETE',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -252,9 +252,9 @@ module.exports = {
      */
     addPlays: function addPlays(songId, cb) {
         var requestData = {
-            url: baseURL + '/songs/'+ songId +'/plays',
-            type: 'POST',
-            params: {}
+                url: baseURL + '/songs/'+ songId +'/plays',
+                type: 'POST',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -268,11 +268,11 @@ module.exports = {
      */
     search: function search(keyword, options, cb) {
         var requestData = {
-            url: baseURL + '/users',
-            type: 'GET',
-            params: {
-                keyword: keyword
-            }
+                url: baseURL + '/users',
+                type: 'GET',
+                params: {
+                    keyword: keyword
+                }
         };
         request.start(requestData, options, cb)
     },
@@ -285,9 +285,9 @@ module.exports = {
      */
     addSubscriptions: function addSubscriptions(playlistId, cb) {
         var requestData = {
-            url: baseURL + '/users/'+ playlistId +'/subscriptions',
-            type: 'POST',
-            params: {}
+                url: baseURL + '/users/'+ playlistId +'/subscriptions',
+                type: 'POST',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -300,9 +300,9 @@ module.exports = {
      */
     removeSubscriptions: function removeSubscriptions(playlistId, cb) {
         var requestData = {
-            url: baseURL + '/users/'+ playlistId +'/subscriptions',
-            type: 'DELETE',
-            params: {}
+                url: baseURL + '/users/'+ playlistId +'/subscriptions',
+                type: 'DELETE',
+                params: {}
         };
         request.start(requestData, options, cb)
     },
@@ -315,9 +315,9 @@ module.exports = {
      */
     get: function get(userId, cb) {
         var requestData = {
-            url: baseURL + '/users/'+ userId ,
-            type: 'GET',
-            params: {}
+                url: baseURL + '/users/'+ userId ,
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, cb);
     },
@@ -330,9 +330,9 @@ module.exports = {
      */
     getFavourites: function getFavourites(userId, cb) {
         var requestData = {
-            url: baseURL + '/users/'+ userId + '/favourites' ,
-            type: 'GET',
-            params: {}
+                url: baseURL + '/users/'+ userId + '/favourites' ,
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, cb);
     },
@@ -345,9 +345,9 @@ module.exports = {
      */
     getFollowing: function getFollowing(userId, cb) {
         var requestData = {
-            url: baseURL + '/users/'+ userId + '/following' ,
-            type: 'GET',
-            params: {}
+                url: baseURL + '/users/'+ userId + '/following' ,
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, cb);
     },
@@ -360,9 +360,9 @@ module.exports = {
      */
     getPlaylists: function getPlaylists(userId, cb) {
         var requestData = {
-            url: baseURL + '/users/'+ userId + '/playlists' ,
-            type: 'GET',
-            params: {}
+                url: baseURL + '/users/'+ userId + '/playlists' ,
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, cb);
     },
@@ -375,9 +375,9 @@ module.exports = {
      */
     getPlays: function getPlays(userId, cb) {
         var requestData = {
-            url: baseURL + '/users/'+ userId + '/plays' ,
-            type: 'GET',
-            params: {}
+                url: baseURL + '/users/'+ userId + '/plays' ,
+                type: 'GET',
+                params: {}
         };
         request.start(requestData, cb);
     }
