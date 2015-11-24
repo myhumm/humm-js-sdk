@@ -1,10 +1,5 @@
 'use strict';
 
-/**
- * Contains the three auth methods and helpers
- *
- * @type {exports}
- */
 var qs      = require('query-string'),
     config  = require('./config');
 
@@ -121,29 +116,5 @@ module.exports = {
             }
             clearInterval(timer);
         }
-    },
-
-
-    /**
-     * Set Access token for future requests
-     *
-     * @param accessToken
-     */
-    setAccessToken: function setAccessToken(accessToken){
-
-
-    },
-
-
-    /**
-     * Refresh the access token given that it hasn't expired.
-     *
-     * @param token
-     * @param cb
-     */
-    refreshAccessToken: function refreshAccessToken(token, cb) {
-
-
-
     }
 };

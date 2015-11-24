@@ -5,6 +5,7 @@ var config  = require('../config'),
     baseURL = config.get('baseURL');
 
 
+//todo remove
 module.exports = {
 
     /**

@@ -4,7 +4,7 @@ var config  = require('../config'),
     request = require('../request'),
     baseURL = config.get('baseURL');
 
-//todo all
+//todo remove
 var playlistEnds = [
     {
         "group": "Playlists / Albums",

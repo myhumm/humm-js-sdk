@@ -4,6 +4,7 @@ var config  = require('../config'),
     request = require('../request'),
     baseURL = config.get('baseURL');
 
+//todo remove
 var artistEndPoints = [
     {
         "group": "Artists",
