@@ -59,17 +59,22 @@ module.exports = global.humm = {
      * @returns {*}
      */
     authViaImplicitGrant: function authViaImplicitGrant(cb) {
-        var options = {
-            client_id: config.get('client_id'),
-            redirect_uri: config.get('redirect_uri'),
-            response_type: 'token'
-        };
+        if(typeof window !== 'undefined') {
+            var options = {
+                client_id: config.get('client_id'),
+                redirect_uri: config.get('redirect_uri'),
+                response_type: 'token'
+            };
 
-        // `client_id` and `redirect_uri` have to be passed
-        if (!options.client_id || !options.redirect_uri) {
-            throw new Error('Options client_id and redirect_uri must be passed');
+            // `client_id` and `redirect_uri` have to be passed
+            if (!options.client_id || !options.redirect_uri) {
+                throw new Error('Options client_id and redirect_uri must be passed');
+            }
+            authorization.startUserAuth(options, cb)
+
+        } else {
+            throw new Error('This function is only accessible on client side');
         }
-        authorization.startUserAuth(options, cb)
     },
 
 
@@ -82,17 +87,21 @@ module.exports = global.humm = {
      * @returns {*}
      */
     authViaCodeGrant: function authViaCodeGrant(cb) {
-        var options = {
-            client_id: config.get('client_id'),
-            redirect_uri: config.get('redirect_uri'),
-            response_type: 'code'
-        };
+        if(typeof window !== 'undefined') {
+            var options = {
+                client_id: config.get('client_id'),
+                redirect_uri: config.get('redirect_uri'),
+                response_type: 'code'
+            };
 
-        // `client_id` and `redirect_uri` have to be passed
-        if (!options.client_id || !options.redirect_uri) {
-            throw new Error('Options client_id and redirect_uri must be passed');
+            // `client_id` and `redirect_uri` have to be passed
+            if (!options.client_id || !options.redirect_uri) {
+                throw new Error('Options client_id and redirect_uri must be passed');
+            }
+            authorization.startUserAuth(options, cb)
+        } else {
+            throw new Error('This function is only accessible on client side');
         }
-        authorization.startUserAuth(options, cb)
     },
 
     /**
@@ -177,6 +186,7 @@ module.exports = global.humm = {
 
     /**
      * Set Access token for future requests
+     *
      * @param token
      */
     setAccessToken: function refreshAccessToken(token) {
