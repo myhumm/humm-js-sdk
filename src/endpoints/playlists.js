@@ -149,7 +149,7 @@ module.exports = {
                 type: 'POST',
                 params: {
                     title: title,
-                    description: description,
+                description: description,
                 isPrivate: isPrivate
             }
         };
@@ -217,7 +217,7 @@ module.exports = {
      * @param options
      * @param cb
      */
-    get: function update(playlistId, options, cb) {
+    get: function get(playlistId, options, cb) {
         var requestData = {
                 url: baseURL + '/playlists/' + playlistId,
                 type: 'GET',

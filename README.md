@@ -8,6 +8,10 @@
 
 ## Documentation
 
+#### Authentication
+
+
+
 #### Artists
 ```javascript
 
@@ -36,54 +40,101 @@ humm.artists.search(keyword, options, cb);
 ```
 #### Playlists
 
-- humm.playlists.create()
-- humm.playlists.getFeatured()
-- humm.playlists.addContributors()
-- humm.playlists.removeContributors()
-- humm.playlists.get()
-- humm.playlists.update()
-- humm.playlists.order()
-- humm.playlists.getSongs()
-- humm.playlists.addSongs()
-- humm.playlists.removeSongs()
-- humm.playlists.addSubscribers()
-- humm.playlists.removeSubscribers()
-- humm.playlists.getPopular()
-- humm.playlists.getRecent()
-- humm.playlists.search()
-- humm.playlists.getStaffPicks()
+```javascript
 
+humm.playlists.create(title, description, isPrivate, cb );
+
+humm.playlists.getFeatured(options, cb);
+
+humm.playlists.addContributors(playlistId, ContributorId, cb)
+
+humm.playlists.removeContributors(playlistId, ContributorId, cb);
+
+humm.playlists.get(playlistId, options, cb)
+
+humm.playlists.update()
+
+humm.playlists.order()
+
+humm.playlists.getSongs(playlistId, options, cb);
+
+humm.playlists.addSongs(playlistId, songId, position, cb);
+
+humm.playlists.removeSongs(playlistId, songId, cb);
+
+humm.playlists.addSubscribers(playlistId, cb);
+
+humm.playlists.removeSubscribers(playlistId, cb);
+
+humm.playlists.getPopular(options, cb);
+
+humm.playlists.getRecent(options, cb);
+
+humm.playlists.search(keyword, options, cb);
+
+humm.playlists.getStaffPicks(options, cb);
+
+```
 #### Songs
 
-- humm.songs.getFeatured()
-- humm.songs.getPopular()
-- humm.songs.getRecent()
-- humm.songs.search()
-- humm.songs.appearsIn()
-- humm.songs.route()
-- humm.songs.get()
-- humm.songs.getSimilar()
-- humm.songs.getStaffPicks
+```javascript
 
+humm.songs.getFeatured(options, cb);
+
+humm.songs.getPopular(options, cb);
+
+humm.songs.getRecent(options, cb);
+
+humm.songs.search(keyword, options, cb);
+
+humm.songs.appearsIn(songId, options, cb);
+
+humm.songs.route();
+
+humm.songs.get(songId, cb);
+
+humm.songs.getSimilar(songId, options, cb)
+
+humm.songs.getStaffPicked(options, cb);
+
+```
 #### Users
 
-- humm.users.me()
-- humm.users.discoverReleases()
-- humm.users.discoverArtists()
-- humm.users.discoverPlaylists()
-- humm.users.addFavourites()
-- humm.users.addFollowing()
-- humm.users.removeFollowing()
-- humm.users.addPlays()
-- humm.users.search()
-- humm.users.addSubscriptions()
-- humm.users.removeSubscriptions()
-- humm.users.get()
-- humm.users.getFavourites()
-- humm.users.getFollowing()
-- humm.users.getPlaylists()
-- humm.users.getPlays()
+```javascript
 
+humm.users.me(cb);
+
+humm.users.discoverReleases(options, cb);
+
+humm.users.discoverArtists(options, cb);
+
+humm.users.discoverPlaylists(options, cb);
+
+humm.users.addFavourites(songId, cb);
+
+humm.users.addFollowing(userId, cb);
+
+humm.users.removeFollowing(userId, cb);
+
+humm.users.addPlays(songId, cb);
+
+humm.users.search(keyword, options, cb);
+
+humm.users.addSubscriptions(playlistId, cb);
+
+humm.users.removeSubscriptions(playlistId, cb);
+
+humm.users.get(userId, cb);
+
+humm.users.getFavourites(userId, cb);
+
+humm.users.getFollowing(userId, cb);
+
+humm.users.getPlaylists(userId, cb);
+
+humm.users.getPlays(userId, cb);
+
+```
 #### external
 - humm.external.addServices(service, sid, uname, token, secret, cb)
 - humm.external.removeServices(service, sid, cb)
@@ -96,6 +147,8 @@ humm.artists.search(keyword, options, cb);
 - humm.search()
 - humm.groupSearch()
 - humm.radio()
+
+
 
 
 
