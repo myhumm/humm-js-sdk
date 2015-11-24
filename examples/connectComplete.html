@@ -3,10 +3,14 @@
 <head>
     <meta charset="utf-8">
     <title>Callback</title>
+    <script type="text/javascript" src="../sdk.js"></script>
 </head>
-<body onload="window.setTimeout(opener.humm.completeConnect, 1);">
+<body>
+    <script type="text/javascript">
+        humm.completeAuthorization(window);
+    </script>
     <p>
-        close page after few seconds
+        This will close automatically
     </p>
 </body>
 </html>

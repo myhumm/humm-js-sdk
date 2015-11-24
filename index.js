@@ -19,11 +19,30 @@ module.exports = global.humm = {
      * @param options
      */
     init: function init(options) {
-        //config.set('oauth_token', options.oauth_token);
+        config.set('oauth_token', options.oauth_token);
+
         config.set('client_id', options.client_id);
+        config.set('client_secret', options.client_secret);
+
+
         config.set('redirect_uri', options.redirect_uri);
-        //config.set('baseURL', options.baseURL);
-        //config.set('connectURL', options.connectURL);
+        config.set('baseURL', options.baseURL || 'http://api.myhumm.com');
+        config.set('connectURL', options.connectURL || 'http://accounts.livingindietv.com/authorize?');
+
+
+ /*       config.set('refresh_token', options.refresh_token);
+        config.set('expires_in', options.expires_in);
+        config.set('code', options.code);*/
+
+       /* oauth_token   : undefined,
+            client_id     : '564dc328af59fc5215984f7a',
+            client_secret : undefined,
+            connectURL    : 'http://accounts.livingindietv.com/authorize?',
+            redirect_uri  : undefined,
+            expires_in    : undefined,
+            refresh_token : undefined,
+            baseURL       : 'http://api.myhumm.com'
+*/
     },
 
     /**
@@ -37,11 +56,14 @@ module.exports = global.humm = {
 
 
     /**
-     * connect with humm via implicit grant
+     * connect with humm via implicit grant and return
+     *
+     * @param cb called with two params (error, response) upon auth complete (window.close()) ,
+     * response is an object with { oauth_token, token_type, expires_in state}
      *
      * @returns {*}
      */
-    authViaImplicitGrant: function() {
+    authViaImplicitGrant: function(cb) {
         var options = {
             client_id: config.get('client_id'),
             redirect_uri: config.get('redirect_uri'),
@@ -52,15 +74,19 @@ module.exports = global.humm = {
         if (!options.client_id || !options.redirect_uri) {
             throw new Error('Options client_id and redirect_uri must be passed');
         }
-      return authorization.startUserAuth(options)
+        authorization.startUserAuth(options, cb)
     },
+
 
     /**
      * connect with humm via Authorization Code Flow
      *
+     * @param cb called with two params (error, response) upon auth complete (window.close()) ,
+     * response is an object with { code, state }
+     *
      * @returns {*}
      */
-    authViaAuthorizationCode: function() {
+    authViaAuthorizationCode: function(cb) {
         var options = {
             client_id: config.get('client_id'),
             redirect_uri: config.get('redirect_uri'),
@@ -71,21 +97,19 @@ module.exports = global.humm = {
         if (!options.client_id || !options.redirect_uri) {
             throw new Error('Options client_id and redirect_uri must be passed');
         }
-        return authorization.startUserAuth(options)
+        authorization.startUserAuth(options, cb)
     },
 
     /**
-     * Called upon redirect, extracts oauth token from url and set's it for future requests
-     * todo refactor
-     * @returns {token}
+     *
+     * @param location
      */
-    completeAuthViaImplicitGrant: function(){
-       return authorization.completeUserAuth(this.location)
+    completeAuthorization:  function completeAuthorization(location){
+        authorization.completeUserAuth(location);
     },
 
 
     authViaClientCredentials: function() {
-
 
 
     },

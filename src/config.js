@@ -1,9 +1,12 @@
 'use strict';
 
+var lockr = require('lockr');
+
 /**
  *
  * @type {{oauth_token: undefined, client_id: string, connectURL: undefined, redirect_uri: undefined, baseURL: string}}
  */
+/*
 var config = {
   oauth_token   : undefined,
   client_id     : '564dc328af59fc5215984f7a',
@@ -14,6 +17,7 @@ var config = {
   refresh_token : undefined,
   baseURL       : 'http://api.myhumm.com'
 };
+*/
 
 /**
  *
@@ -21,12 +25,12 @@ var config = {
  */
 module.exports = {
   get: function get(key) {
-    return config[key];
+    return lockr.get(key);
   },
 
   set: function set(key, value) {
     if (value) {
-      config[key] = value;
+      lockr.set(key, value);
     }
   }
 };

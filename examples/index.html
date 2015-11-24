@@ -6,7 +6,9 @@
     <script type="text/javascript" src="../sdk.js"></script>
   </head>
   <body>
-    <button id="connect">Connect using Humm</button>
+    <button id="authViaAuthorizationCode">Connect via AuthorizationCode</button>
+    <button id="authViaImplicitGrant">Connect via ImplicitGrant</button>
+
     <button id="isConnect">is connected to humm ?</button>
 
     <script type="text/javascript">
@@ -15,16 +17,32 @@
           redirect_uri:'http://localhost:8080/webpack-dev-server/connectComplete.html'
       });
 
-      var connect = function(){
-         humm.connect();
+      var authViaImplicitGrant = function(){
+         humm.authViaImplicitGrant(function(error, response) {
+             console.log('------------- authViaImplicitGrant complete -------------');
+             console.log(error);
+             console.log(response);
+         });
       };
-      document.getElementById('connect').addEventListener('click', connect);
+      document.getElementById('authViaImplicitGrant').addEventListener('click', authViaImplicitGrant);
 
+
+      var authViaAuthorizationCode = function(){
+         humm.authViaAuthorizationCode(function(error, response) {
+             console.log('------------- authViaAuthorizationCode complete -------------');
+             console.log(error);
+             console.log(response);
+         });
+      };
+      document.getElementById('authViaAuthorizationCode').addEventListener('click', authViaAuthorizationCode);
+
+/*
 
       var isConnect = function(){
           console.log( humm.isConnected())
       };
       document.getElementById('isConnect').addEventListener('click', isConnect);
+*/
 
 
 

@@ -1,10 +1,7 @@
 'use strict';
 
 var config      = require('./config'),
-    oauth_token = config.get('oauth_token'),
-    clientId    = config.get('client_id'),
-    client
-
+    oauth_token = config.get('oauth_token');
 /**
  *
  * @returns {T}
