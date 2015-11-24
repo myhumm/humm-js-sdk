@@ -7,22 +7,33 @@
 
 
 ## Documentation
-//TODO: Params & description
 
 #### Artists
+```javascript
 
-- humm.artists.get()
-- humm.artists.addFollowers()
-- humm.artists.removeFollowers()
-- humm.artists.getPlaylists()
-- humm.artists.getRadio()
-- humm.artists.getSimilar()
-- humm.artists.getTopSongs()
-- humm.artists.getFeatured()
-- humm.artists.getPopular()
-- humm.artists.getRecent()
-- humm.artists.search()
+humm.get(artistId, cb);
 
+humm.artists.addFollowers(artistId, cb);
+
+humm.artists.removeFollowers(artistId, cb);
+
+humm.artists.getPlaylists(artistId, options, cb);
+
+humm.artists.getRadio(artistId, cb);
+
+humm.artists.getSimilar(artistId, cb);
+
+humm.artists.getTopSongs(artistId, options, cb);
+
+humm.artists.getFeatured(options, cb);
+
+humm.artists.getPopular(options, cb);
+
+humm.artists.getRecent(options, cb);
+
+humm.artists.search(keyword, options, cb);
+
+```
 #### Playlists
 
 - humm.playlists.create()
@@ -74,8 +85,8 @@
 - humm.users.getPlays()
 
 #### external
-- humm.external.addServices()
-- humm.external.removeServices()
+- humm.external.addServices(service, sid, uname, token, secret, cb)
+- humm.external.removeServices(service, sid, cb)
 
 #### settings
 - humm.settings.get()

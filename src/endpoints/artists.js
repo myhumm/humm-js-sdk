@@ -187,7 +187,7 @@ module.exports = {
      * @param {Object} options A JSON object with options that can be passed
      * @param cb
      */
-    getTopSongs: function similar(artistId, options, cb) {
+    getTopSongs: function getTopSongs(artistId, options, cb) {
         var requestData = {
                 url: baseURL + '/artists/' + artistId + '/topsongs',
                 type: 'GET',
@@ -203,7 +203,7 @@ module.exports = {
      * @param {Object} options A JSON object with options that can be passed
      * @param cb
      */
-    getFeatured: function(options, cb) {
+    getFeatured: function getFeatured(options, cb) {
         var requestData = {
                 url: baseURL + '/artists/featured',
                 type: 'GET',
@@ -218,7 +218,7 @@ module.exports = {
      * @param {Object} options A JSON object with options that can be passed
      * @param cb
      */
-    getPopular: function(options, cb) {
+    getPopular: function getPopular(options, cb) {
         var requestData = {
                 url: baseURL + '/artists/popular',
                 type: 'GET',
@@ -233,7 +233,7 @@ module.exports = {
      * @param {Object} options A JSON object with options that can be passed
      * @param cb
      */
-    getRecent: function(options, cb) {
+    getRecent: function getRecent(options, cb) {
         var requestData = {
                 url: baseURL + '/artists/recent',
                 type: 'GET',
@@ -250,7 +250,7 @@ module.exports = {
      * @param {Object} options A JSON object with options that can be passed
      * @param cb
      */
-    search: function(keyword, options, cb) {
+    search: function search(keyword, options, cb) {
         var requestData = {
                 url: baseURL + '/artists',
                 type: 'GET',
