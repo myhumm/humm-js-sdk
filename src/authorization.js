@@ -1,6 +1,5 @@
 'use strict';
 
-
 /**
  * Contains the three auth methods and helpers
  *
@@ -9,8 +8,6 @@
 var qs      = require('query-string'),
     config  = require('./config');
 
-var lockr = require('lockr');
-
 /**
  * Build the humm connect url
  *
@@ -18,7 +15,7 @@ var lockr = require('lockr');
  * @return {String}         The constructed URL
  */
 var createURL = function createURL(options) {
-    return config.get('connectURL') + qs.stringify(options);
+    return config.get('connectURL') + '/authorize?' + qs.stringify(options);
 };
 
 
@@ -36,7 +33,7 @@ module.exports = {
      * @param location
      * @returns token else error
      */
-    completeUserAuth:  function completeUserAuth(window) {
+    completeUserAuth:  function completeUserAuth(location) {
         /**
          *  TODO: issue with inconsistent response
          *
@@ -44,8 +41,8 @@ module.exports = {
          *
          *  http://localhost:8080/webpack-dev-server/connectComplete.html?code=fawH8KlfOjqMJzPvj/IIUJHtrfFwgblBZZCFQisbRng=&expires=1448368840&expires_in=3600
          */
-        var params =  qs.parse(window.location.hash),
-            search =  qs.parse(window.location.search);
+        var params =  qs.parse(location.hash),
+            search =  qs.parse(location.search);
 
        // console.log(params);
        // console.log(location);
@@ -77,7 +74,6 @@ module.exports = {
         //set undefined and poll later to find out when to close auth window
         config.set('oauth_token', false);
         config.set('code', false);
-
 
         var width = 700,
             height = 600;
@@ -129,36 +125,24 @@ module.exports = {
 
 
     /**
+     * Set Access token for future requests
      *
-     * @param code
-     * @param cb
+     * @param accessToken
      */
-    authorizationCode: function authorizationCode(code, cb){
-
+    setAccessToken: function setAccessToken(accessToken){
 
 
     },
 
 
     /**
+     * Refresh the access token given that it hasn't expired.
      *
      * @param token
      * @param cb
      */
     refreshAccessToken: function refreshAccessToken(token, cb) {
 
-
-
-    },
-
-    /**
-     * Authorization Code Flow //todo
-     *
-     * @param options
-     * @param cb
-     * @returns {*}
-     */
-    clientCredentials: function clientCredentials(options, cb) {
 
 
     }

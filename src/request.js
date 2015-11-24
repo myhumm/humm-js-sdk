@@ -1,7 +1,9 @@
 'use strict';
 
-var config      = require('./config'),
-    oauth_token = config.get('oauth_token');
+var config          = require('./config'),
+    oauth_token     = config.get('oauth_token'),
+    client_id       = config.get('client_id'),
+    client_secret   = config.get('client_secret');
 /**
  *
  * @returns {T}
@@ -54,13 +56,18 @@ var buildUrl = function buildUrl(url, parameters) {
  */
 var send = function send(requestData, cb) {
     var req = new XMLHttpRequest();
-
     req.open(requestData.type, buildUrl(requestData.url, requestData.params));
 
-    //attach headers
+    // if oauth_token then attach to head
     if (oauth_token) {
         req.setRequestHeader('Authorization', 'Bearer ' + oauth_token);
     }
+
+    // if this request is part of the auth process via code grant or Client Credentials Flow then attach client and secret to header
+   if (requestData.clientCredentials) {
+       console.log('------attaching header for Auth -------');
+       req.setRequestHeader('Authorization', 'Basic ' + client_id + ':' + client_secret);
+   }
 
     /**
      * Attach listener for request state

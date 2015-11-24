@@ -24,17 +24,12 @@ module.exports = global.humm = {
         config.set('client_id', options.client_id);
         config.set('client_secret', options.client_secret);
 
-
         config.set('redirect_uri', options.redirect_uri);
         config.set('baseURL', options.baseURL || 'http://api.myhumm.com');
-        config.set('connectURL', options.connectURL || 'http://accounts.livingindietv.com/authorize?');
+        config.set('connectURL', options.connectURL || 'http://accounts.livingindietv.com');
 
-
- /*       config.set('refresh_token', options.refresh_token);
-        config.set('expires_in', options.expires_in);
-        config.set('code', options.code);*/
-
-       /* oauth_token   : undefined,
+       /*
+            oauth_token   : undefined,
             client_id     : '564dc328af59fc5215984f7a',
             client_secret : undefined,
             connectURL    : 'http://accounts.livingindietv.com/authorize?',
@@ -42,7 +37,7 @@ module.exports = global.humm = {
             expires_in    : undefined,
             refresh_token : undefined,
             baseURL       : 'http://api.myhumm.com'
-*/
+       */
     },
 
     /**
@@ -63,7 +58,7 @@ module.exports = global.humm = {
      *
      * @returns {*}
      */
-    authViaImplicitGrant: function(cb) {
+    authViaImplicitGrant: function authViaImplicitGrant(cb) {
         var options = {
             client_id: config.get('client_id'),
             redirect_uri: config.get('redirect_uri'),
@@ -82,11 +77,11 @@ module.exports = global.humm = {
      * connect with humm via Authorization Code Flow
      *
      * @param cb called with two params (error, response) upon auth complete (window.close()) ,
-     * response is an object with { code, state }
+     * response is an object with { code }
      *
      * @returns {*}
      */
-    authViaAuthorizationCode: function(cb) {
+    authViaCodeGrant: function authViaCodeGrant(cb) {
         var options = {
             client_id: config.get('client_id'),
             redirect_uri: config.get('redirect_uri'),
@@ -101,6 +96,7 @@ module.exports = global.humm = {
     },
 
     /**
+     * Called upon loading the redirect uri page
      *
      * @param location
      */
@@ -108,13 +104,87 @@ module.exports = global.humm = {
         authorization.completeUserAuth(location);
     },
 
-
-    authViaClientCredentials: function() {
-
-
+    /**
+     * //TODO test on server env
+     * Request an access token using the Authorization Code flow.
+     *
+     * @param code
+     * @param cb
+     */
+    accessViaCodeGrant: function accessViaCodeGrant(code, cb) {
+        if(typeof window === 'undefined') {
+            var requestData = {
+                url: config.get('connectURL') + '/api/token',
+                type: 'POST',
+                postData: {
+                    grant_type: 'authorization_code',
+                    code: code,
+                    redirect_uri: config.get('redirect_uri')
+                },
+                clientCredentials: true
+            };
+            request.start(requestData, cb);
+        } else {
+            throw new Error('This function is only accessible on server side');
+        }
     },
 
-    //----------------- Start of function ---------------
+    /**
+     * //TODO test on server env
+     * Auth via Client Credentials Flow
+     *
+     * @param cb
+     */
+    authViaClientCredentials: function(cb) {
+        if(typeof window === 'undefined') {
+            var requestData = {
+                url: config.get('connectURL') + '/api/token',
+                type: 'POST',
+                postData: {
+                    grant_type: 'client_credentials'
+                },
+                clientCredentials: true
+            };
+            request.start(requestData, cb);
+        } else {
+            throw new Error('This function is only accessible on server side');
+        }
+    },
+
+    /**
+     * //TODO test on server env
+     * Refresh the access token given that it hasn't expired.
+     *
+     * @param token
+     * @param cb
+     */
+    refreshAccessToken: function refreshAccessToken(token, cb) {
+        if(typeof window === 'undefined') {
+            var requestData = {
+                url: config.get('connectURL') + '/api/token',
+                type: 'POST',
+                postData: {
+                    grant_type: 'refresh_token',
+                    refresh_token: token,
+                },
+                clientCredentials: true
+            };
+            request.start(requestData, cb);
+        } else {
+            throw new Error('This function is only accessible on server side');
+        }
+    },
+
+    /**
+     * Set Access token for future requests
+     * @param token
+     */
+    setAccessToken: function refreshAccessToken(token) {
+        config.set('oauth_token', token);
+    },
+
+
+    //----------------- Start of endpoints functionality  ---------------
     artists: artists,
     playlists: playlists,
     songs: songs,
