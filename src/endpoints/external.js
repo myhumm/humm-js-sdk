@@ -30,7 +30,7 @@ module.exports = {
                 secret: secret
             }
         };
-        request.start(requestData, cb)
+        request.start(requestData, cb);
     },
 
     /**
@@ -49,6 +49,6 @@ module.exports = {
                     sid: sid
             }
         };
-        request.start(requestData, cb)
+        request.start(requestData, cb);
     }
 };

@@ -4,90 +4,12 @@ var config  = require('../config'),
     request = require('../request'),
     baseURL = config.get('baseURL');
 
-
-//todo ends
-var songsEnds = [
-    {
-        "group": "Songs",
-        "name": "Featured Songs",
-        "method": "humm.songs.getFeatured()",
-        "endpoint": "/songs/featured",
-        "usage": "Get a llist of songs featured by Humm",
-        "returns": "songs"
-    },
-    {
-        "group": "Songs",
-        "name": "Popular Songs",
-        "method": "humm.songs.getPopular()",
-        "endpoint": "/songs/popular",
-        "usage": "Get a list of songs popular on Humm",
-        "returns": "songs"
-    },
-    {
-        "group": "Songs",
-        "name": "Recent Songs",
-        "method": "humm.songs.getRecent()",
-        "endpoint": "/songs/recent",
-        "usage": "Get a list of songs recently added on Humm",
-        "returns": "songs"
-    },
-    {
-        "group": "Songs",
-        "name": "Search Songs",
-        "method": "humm.songs.search()",
-        "endpoint": "/songs",
-        "usage": "Search for a song",
-        "returns": "songs"
-    },
-    {
-        "group": "Songs",
-        "name": "Song: Appears In",
-        "method": "humm.songs.appearsIn()",
-        "endpoint": "/songs/{id}/appearsin",
-        "usage": "Get a list of playlists a song appears in",
-        "returns": "playlists"
-    },
-    {
-        "group": "Songs",
-        "name": "Song: Route",
-        "method": "humm.songs.route()",
-        "endpoint": "/songs/{id}/route",
-        "usage": "?",
-        "returns": "?"
-    },
-    {
-        "group": "Songs",
-        "name": "Song: Details",
-        "method": "humm.songs.get()",
-        "endpoint": "/songs/{id}",
-        "usage": "Get a song",
-        "returns": "song"
-    },
-    {
-        "group": "Songs",
-        "name": "Song: Similar",
-        "method": "humm.songs.getSimilar()",
-        "endpoint": "/songs/{id}/similar",
-        "usage": "Get a list of similar songs",
-        "returns": "songs"
-    },
-    {
-        "group": "Songs",
-        "name": "Staff-picked Songs",
-        "method": "humm.songs.getStaffPicked()",
-        "endpoint": "/songs/staffpicks",
-        "usage": "Get a list of songs picked by staff at Humm",
-        "returns": "songs"
-    }
-];
-
 module.exports = {
 
     /**
-     * TODO: server error
      * Get a list of songs featured by Humm
      *
-     * @param options
+     * @param options { limit, offset, genre }
      * @param cb
      */
     getFeatured: function getFeatured(options, cb) {
@@ -102,7 +24,7 @@ module.exports = {
     /**
      * Get a list of songs popular on Humm"
      *
-     * @param options
+     * @param options { limit, offset, genre }
      * @param cb
      */
     getPopular: function getPopular(options, cb) {
@@ -117,7 +39,7 @@ module.exports = {
     /**
      * Get a list of songs recently added on Humm
      *
-     * @param options
+     * @param options { limit, offset, genre }
      * @param cb
      */
     getRecent: function getRecent(options, cb) {
@@ -130,11 +52,10 @@ module.exports = {
     },
 
     /**
-     * TODO: spin v2
      * Search for a song
      *
      * @param keyword
-     * @param options
+     * @param options { limit, offset, songtype }
      * @param cb
      */
     search: function search(keyword, options, cb) {
@@ -152,7 +73,7 @@ module.exports = {
      * Get a list of playlists a song appears in
      *
      * @param songId
-     * @param options
+     * @param options { limit }
      * @param cb
      */
     appearsIn: function appearsIn(songId, options, cb) {
@@ -188,7 +109,7 @@ module.exports = {
      * Get a list of similar songs
      *
      * @param songId
-     * @param options
+     * @param options { limit, offset }
      * @param cb
      */
     getSimilar: function getSimilar(songId, options, cb) {
@@ -203,10 +124,10 @@ module.exports = {
     /**
      * Get a list of songs picked by staff at Humm
      *
-     * @param options
+     * @param options { limit, offset, genre }
      * @param cb
      */
-    getStaffPicks: function getStaffPicked(options, cb) {
+    getStaffPicks: function getStaffPicks(options, cb) {
         var requestData = {
                 url: baseURL + '/songs/staffpicks',
                 type: 'GET',

@@ -15,17 +15,17 @@ humm.isAuthorised();
 
 humm.authViaImplicitGrant(cb);
 
-humm.authViaCodeGrant(cb)
+humm.authViaCodeGrant(cb);
 
-humm.completeAuthorization(location)
+humm.completeAuthorization(location);
 
-humm.accessViaCodeGrant(code, cb)
+humm.accessViaCodeGrant(code, cb);
 
-humm.authViaClientCredentials(cb)
+humm.authViaClientCredentials(cb);
 
-humm.refreshAccessToken(token, cb)
+humm.refreshAccessToken(token, cb);
 
-humm.setAccessToken(token)
+humm.setAccessToken(token);
 
 ```
 

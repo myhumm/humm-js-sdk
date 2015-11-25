@@ -130,7 +130,7 @@ module.exports = {
                     cb(false, {
                         code :  config.get('code')
                     });
-                 //   authWindow.close();
+                   authWindow.close();
                 }
             }
             clearInterval(timer);

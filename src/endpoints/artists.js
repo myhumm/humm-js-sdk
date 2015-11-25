@@ -4,139 +4,58 @@ var config  = require('../config'),
     request = require('../request'),
     baseURL = config.get('baseURL');
 
-//todo remove
-var artistEndPoints = [
-    {
-        "group": "Artists",
-        "name": "Artist: Details",
-        "method": "humm.artists.get()",
-        "endpoint": "/artists/{id}",
-        "usage": "Get an artist",
-        "returns": "artist"
-    },
-    {
-        "group": "Artists",
-        "name": "Artist: Follower (Add)",
-        "method": "humm.artists.addFollowers()",
-        "endpoint": "/artists/{id}/followers",
-        "usage": "Add current user to artist's list of followers",
-        "returns": "artist"
-    },
-    {
-        "group": "Artists",
-        "name": "Artist: Follower (Remove)",
-        "method": "humm.artists.removeFollowers()",
-        "endpoint": "/artists/{id}/followers",
-        "usage": "Remove current user from artist's list of followers",
-        "returns": "artist"
-    },
-    {
-        "group": "Artists",
-        "name": "Artist: Playlists / Albums",
-        "method": "humm.artists.getPlaylists()",
-        "endpoint": "/artists/{id}/playlists",
-        "usage": "Get playlists / albums associated with an artist",
-        "returns": "playlists / albums"
-    },
-    {
-        "group": "Artists",
-        "name": "Artist: Radio",
-        "method": "humm.artists.getRadio()",
-        "endpoint": "/artists/{id}/radio",
-        "usage": "Get a curated list of artists songs",
-        "returns": "songs"
-    },
-    {
-        "group": "Artists",
-        "name": "Artist: Similar",
-        "method": "humm.artists.getSimilar()",
-        "endpoint": "/artists/{id}/similar",
-        "usage": "Get a list of musically similar artists",
-        "returns": "artists"
-    },
-    {
-        "group": "Artists",
-        "name": "Artist: Top Songs",
-        "method": "humm.artists.getTopSongs()",
-        "endpoint": "/artists/{id}/topsongs",
-        "usage": "Get a list of an artist's top songs",
-        "returns": "songs"
-    },
-    {
-        "group": "Artists",
-        "name": "Featured Artists",
-        "method": "humm.artists.getFeatured()",
-        "endpoint": "/artists/featured",
-        "usage": "Get a list of artists featured by Humm",
-        "returns": "artists"
-    },
-    {
-        "group": "Artists",
-        "name": "Popular Artists",
-        "method": "humm.artists.getPopular()",
-        "endpoint": "/artists/popular",
-        "usage": "Get a list of artists popular on Humm",
-        "returns": "artists"
-    },
-    {
-        "group": "Artists",
-        "name": "Recent Artists",
-        "method": "humm.artists.getRecent()",
-        "endpoint": "/artists/recent",
-        "usage": "Get a list of artists recently added on Humm",
-        "returns": "artists"
-    },
-    {
-        "group": "Artists",
-        "name": "Search Artists",
-        "method": "humm.artists.search()",
-        "endpoint": "/artists",
-        "usage": "Search for an artist",
-        "returns": "artists"
-    }
-];
-
 module.exports = {
-
     /**
      * Find an artist
      *
      * @param artistId
+     * @param options { limit, offset }
      * @param cb
      */
-    get: function get(artistId, cb) {
+    get: function get(artistId, options, cb) {
         var requestData = {
                 url: baseURL + '/artists/' + artistId,
                 type: 'GET',
                 params: {}
         };
-        request.start(requestData,cb)
+        request.start(requestData, options, cb)
     },
 
     /**
-     * TODO: user auth
+     * Add current user to artist's list of followers
+     *
      * @param artistId
      * @param cb
      */
     addFollowers: function addFollowers(artistId, cb) {
-
+        var requestData = {
+                url: baseURL + '/artists/' + artistId + '/followers',
+                type: 'POST',
+                params: {}
+        };
+        request.start(requestData, cb)
     },
 
     /**
-     * TODO: user auth
+     * Remove current user from artist's list of followers
      *
      * @param artistId
      * @param cb
      */
     removeFollowers: function removeFollowers(artistId, cb) {
-
+        var requestData = {
+                url: baseURL + '/artists/' + artistId + '/followers',
+                type: 'DELETE',
+                params: {}
+        };
+        request.start(requestData, cb)
     },
 
     /**
      * Get playlists / albums associated with an artist
      *
      * @param artistId
-     * @param {Object} options A JSON object with options that can be passed
+     * @param options { limit, offset }
      * @param cb
      */
     getPlaylists: function getPlaylists(artistId, options, cb) {
@@ -152,15 +71,16 @@ module.exports = {
      * Get a curated list of artists songs
      *
      * @param artistId
+     * @param options { limit, offset }
      * @param cb
      */
-    getRadio: function getRadio(artistId, cb) {
+    getRadio: function getRadio(artistId, options, cb) {
         var requestData = {
                 url: baseURL + '/artists/' + artistId + '/radio',
                 type: 'GET',
                 params: {}
         };
-        request.start(requestData,cb)
+        request.start(requestData, options, cb)
     },
 
 
@@ -168,15 +88,16 @@ module.exports = {
      * Get a list of musically similar artists
      *
      * @param artistId
+     * @param options { limit, offset }
      * @param cb
      */
-    getSimilar: function getSimilar(artistId, cb) {
+    getSimilar: function getSimilar(artistId, options, cb) {
         var requestData = {
                 url: baseURL + '/artists/' + artistId + '/similar',
                 type: 'GET',
                 params: {}
         };
-        request.start(requestData,cb)
+        request.start(requestData, options, cb)
 
     },
 
@@ -184,7 +105,7 @@ module.exports = {
      * Get a list of an artist's top songs
      *
      * @param artistId
-     * @param {Object} options A JSON object with options that can be passed
+     * @param options { limit, offset, songtype }
      * @param cb
      */
     getTopSongs: function getTopSongs(artistId, options, cb) {
@@ -197,10 +118,9 @@ module.exports = {
     },
 
     /**
-     * //TODO: no response
      * Get a list of artists featured by Humm"
      *
-     * @param {Object} options A JSON object with options that can be passed
+     * @param options { limit, offset, genre }
      * @param cb
      */
     getFeatured: function getFeatured(options, cb) {
@@ -215,7 +135,7 @@ module.exports = {
     /**
      * Get a list of artists popular on Humm
      *
-     * @param {Object} options A JSON object with options that can be passed
+     * @param options { limit, offset }
      * @param cb
      */
     getPopular: function getPopular(options, cb) {
@@ -230,7 +150,7 @@ module.exports = {
     /**
      * Get a list of artists recently added on Humm
      *
-     * @param {Object} options A JSON object with options that can be passed
+     * @param options { limit, offset }
      * @param cb
      */
     getRecent: function getRecent(options, cb) {
@@ -243,11 +163,10 @@ module.exports = {
     },
 
     /**
-     * TODO: test once v2 is spinning
      * Search for an artist using keyword
      *
      * @param keyword
-     * @param {Object} options A JSON object with options that can be passed
+     * @param options { limit, offset }
      * @param cb
      */
     search: function search(keyword, options, cb) {

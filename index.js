@@ -27,17 +27,6 @@ module.exports = global.humm = {
         config.set('redirect_uri', options.redirect_uri);
         config.set('baseURL', options.baseURL || 'http://api.myhumm.com');
         config.set('connectURL', options.connectURL || 'http://accounts.livingindietv.com');
-
-       /*
-            oauth_token   : undefined,
-            client_id     : '564dc328af59fc5215984f7a',
-            client_secret : undefined,
-            connectURL    : 'http://accounts.livingindietv.com/authorize?',
-            redirect_uri  : undefined,
-            expires_in    : undefined,
-            refresh_token : undefined,
-            baseURL       : 'http://api.myhumm.com'
-       */
     },
 
     /**
@@ -54,7 +43,7 @@ module.exports = global.humm = {
      * connect with humm via implicit grant and return
      *
      * @param cb called with two params (error, response) upon auth complete (window.close()) ,
-     * response is an object with { oauth_token, token_type, expires_in state}
+     * response is an object with { TODO }
      *
      * @returns {*}
      */
@@ -70,8 +59,7 @@ module.exports = global.humm = {
             if (!options.client_id || !options.redirect_uri) {
                 throw new Error('Options client_id and redirect_uri must be passed');
             }
-            authorization.startUserAuth(options, cb)
-
+            authorization.startUserAuth(options, cb);
         } else {
             throw new Error('This function is only accessible on client side');
         }
@@ -98,7 +86,7 @@ module.exports = global.humm = {
             if (!options.client_id || !options.redirect_uri) {
                 throw new Error('Options client_id and redirect_uri must be passed');
             }
-            authorization.startUserAuth(options, cb)
+            authorization.startUserAuth(options, cb);
         } else {
             throw new Error('This function is only accessible on client side');
         }
@@ -193,20 +181,12 @@ module.exports = global.humm = {
         config.set('oauth_token', token);
     },
 
-
-    //----------------- Start of endpoints functionality  ---------------
-    artists: artists,
-    playlists: playlists,
-    songs: songs,
-    users: users,
-    settings: settings,
-    external: external,
-
     /**
-     * Search all //TODO: extra params
+     * TODO: Notes: params for search and group search are the same
+     * Search all
      *
      * @param keyword
-     * @param options
+     * @param options { limit, offset }
      * @param cb
      */
     search: function search(keyword, options, cb) {
@@ -217,15 +197,15 @@ module.exports = global.humm = {
                     keyword: keyword
             }
         };
-        request.start(requestData, options, cb)
+        request.start(requestData, options, cb);
     },
 
 
     /**
-     * Search all grouped by type //TODO: extra params
+     * Search all grouped by type
      *
      * @param keyword
-     * @param options
+     * @param options { limit, offset }
      * @param cb
      */
     groupSearch: function groupSearch(keyword, options, cb) {
@@ -236,14 +216,14 @@ module.exports = global.humm = {
                     keyword: keyword
             }
         };
-        request.start(requestData, options, cb)
+        request.start(requestData, options, cb);
     },
 
 
     /**
      * Get a list of songs for a radio
      *
-     * @param options
+     * @param options { limit, genres (string / list of strings), moods (string / list of strings), discovery (bool), own (bool) }
      * @param cb
      */
     radio: function radio(options, cb) {
@@ -252,33 +232,13 @@ module.exports = global.humm = {
                 type: 'GET',
                 params: {}
         };
-        request.start(requestData, options, cb)
-    }
-};
+        request.start(requestData, options, cb);
+    },
 
-/**
- {
-       "group": "Others",
-       "name": "Search",
-       "method": "humm.others.search()",
-       "endpoint": "/search",
-       "usage": "Search all",
-       "returns": "*multiple"
-   },
- {
-     "group": "Others",
-     "name": "Radio",
-     "method": "humm.others.radio()",
-     "endpoint": "/radio",
-     "usage": "Get a list of songs for a radio",
-     "returns": "songs"
- },
- {
-     "group": "Others",
-     "name": "Grouped-search",
-     "method": "humm.others.groupSearch()",
-     "endpoint": "/grouped-search",
-     "usage": "Search all grouped by type",
-     "returns": "*multiple"
- },
- */
+    artists: artists,
+    playlists: playlists,
+    songs: songs,
+    users: users,
+    settings: settings,
+    external: external
+};
