@@ -11,7 +11,7 @@
 
 #### Installation
 
-  $ npm install yumm --save
+  `npm install yumm --save`
 
   or
 
@@ -269,7 +269,7 @@ humm.authViaImplicitGrant(function(error, response) {
        */
 
 });
-
+```
 
 Once the user is logged in to humm, the window opened for authentication will automatically close and your ready to go.
 
@@ -280,7 +280,6 @@ if the user was successfully authenticated all future requests will be made usin
 ###authentication
 
 ```javascript
-
 /**
  * check if token has been set
  *
@@ -340,7 +339,6 @@ humm.refreshAccessToken(token, cb);
  * @param token
  */
 humm.setAccessToken(token);
-
 ```
 
 #### Artists
