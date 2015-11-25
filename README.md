@@ -6,7 +6,21 @@
 
 
 
-## Documentation
+#### Documentation
+
+  $ npm install yumm --save
+
+  or
+
+  download the  yumm.js file from here {{link}}
+  
+#### Installation
+
+
+
+
+#### Node.js Usage
+
 
 #### Authentication
 ```javascript

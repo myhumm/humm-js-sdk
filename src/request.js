@@ -60,7 +60,7 @@ var send = function send(requestData, cb) {
 
     // if oauth_token then attach to head
     if (oauth_token) {
-        req.setRequestHeader('Authorization', 'Bearer ' + oauth_token);
+  //      req.setRequestHeader('Authorization', 'Bearer ' + oauth_token);
     }
 
     // if this request is part of the auth process via code grant or Client Credentials Flow then attach client and secret to header
@@ -145,7 +145,7 @@ module.exports = {
     }
 
     //TODO: Remove as it temp until auth is in place: attach auth as param
-    requestData.params.auth = client_id;
+   //  requestData.params.auth = client_id;
 
     // options extend postData, if any. Otherwise they extend parameters sent in the url
     var type = requestData.type || 'GET';

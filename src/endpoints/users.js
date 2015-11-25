@@ -77,7 +77,7 @@ module.exports = {
                 type: 'POST',
                 params: {}
         };
-        request.start(requestData, options, cb)
+        request.start(requestData, cb)
     },
 
     /**
@@ -92,7 +92,7 @@ module.exports = {
                 type: 'POST',
                 params: {}
         };
-        request.start(requestData, options, cb)
+        request.start(requestData, cb)
     },
 
     /**
@@ -107,7 +107,7 @@ module.exports = {
                 type: 'DELETE',
                 params: {}
         };
-        request.start(requestData, options, cb)
+        request.start(requestData, cb)
     },
 
     /**
@@ -122,7 +122,7 @@ module.exports = {
                 type: 'POST',
                 params: {}
         };
-        request.start(requestData, options, cb)
+        request.start(requestData, cb)
     },
 
     /**
@@ -155,7 +155,7 @@ module.exports = {
                 type: 'POST',
                 params: {}
         };
-        request.start(requestData, options, cb)
+        request.start(requestData, cb)
     },
 
     /**
@@ -170,7 +170,7 @@ module.exports = {
                 type: 'DELETE',
                 params: {}
         };
-        request.start(requestData, options, cb)
+        request.start(requestData, cb)
     },
 
     /**

@@ -1,7 +1,5 @@
 'use strict';
-
 var lockr = require('lockr');
-
 /*
 
   oauth_token   : undefined,

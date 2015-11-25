@@ -25,7 +25,8 @@ module.exports = global.humm = {
         config.set('client_secret', options.client_secret);
 
         config.set('redirect_uri', options.redirect_uri);
-        config.set('baseURL', options.baseURL || 'http://api.myhumm.com');
+        config.set('baseURL', options.baseURL || 'http://134.213.62.164:8080');
+      //  config.set('baseURL', options.baseURL || 'http://api.myhumm.com');
         config.set('connectURL', options.connectURL || 'http://accounts.livingindietv.com');
     },
 
@@ -180,45 +181,6 @@ module.exports = global.humm = {
     setAccessToken: function setAccessToken(token) {
         config.set('oauth_token', token);
     },
-
-    /**
-     * TODO: Notes: params for search and group search are the same
-     * Search all
-     *
-     * @param keyword
-     * @param options { limit, offset }
-     * @param cb
-     */
-    search: function search(keyword, options, cb) {
-        var requestData = {
-                url: baseURL + '/search',
-                type: 'GET',
-                params: {
-                    keyword: keyword
-            }
-        };
-        request.start(requestData, options, cb);
-    },
-
-
-    /**
-     * Search all grouped by type
-     *
-     * @param keyword
-     * @param options { limit, offset }
-     * @param cb
-     */
-    groupSearch: function groupSearch(keyword, options, cb) {
-        var requestData = {
-                url: baseURL + '/grouped-search',
-                type: 'GET',
-                params: {
-                    keyword: keyword
-            }
-        };
-        request.start(requestData, options, cb);
-    },
-
 
     /**
      * Get a list of songs for a radio
