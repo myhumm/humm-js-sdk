@@ -58,7 +58,7 @@ You should NOT initialise with client secret in the browser environment.
 #### Authentication
 
 
-### Authorization code example
+### Authorization Code Flow
 
 
 Step 1 - redirect uri (browser):
@@ -126,7 +126,6 @@ humm.accessViaCodeGrant(function(error, response) {
    */
 
 
-
 });
 
 ```
@@ -134,44 +133,212 @@ humm.accessViaCodeGrant(function(error, response) {
 Step 4 - set access token before requests  (server):
 
 ```javascript
+
 humm.setAccessToken(token);
+
 ```
 
 You can refresh the access token using:
 
+```javascript
 
+humm.refreshAccessToken('xxxxxxxxxxxxxxxxxx',function(error, response) {
+    console.log('------------- accessViaCodeGrant complete -------------');
+    console.log(error);
+    console.log(response);
 
+    /* response example:
+         {
+            "status_response": "ok",
+            "data_response": {
+            "access_token": "56559f693a5csdfa0bd5737a",
+                "expires_in": 2592000,
+                "token_type": "bearer",
+                "refresh_token": "5c740898a3339c80dc48c53a598684e25c325898a3339c80dc48c53a598684e2",
+                "scope": null
+        }
+   */
 
+});
 
+```
 
+### Client Credentials Grant Flow
 
+The method makes it possible to authenticate your requests to the Humm API.
+Note, however that this flow does not include authorization and therefore cannot be used to access or manage a user’s private data.
 
-
-
-
-
-
-### Implicit grant
-
-
-###Client Credentials
+Step 1 - You must initialise humm with `client_id` & `client_secret` (server):
 
 ```javascript
 
+  humm.init({
+        client_id: '',
+        client_secret: '',
+        redirect_uri: ''
+    });
+
+```
+
+Step 2 - request access token (server):
+
+```javascript
+
+humm.authViaClientCredentials(function(error, response) {
+    console.log('------------- authViaClientCredentials complete -------------');
+    console.log(error);
+    console.log(response);
+
+    /* response example:
+         {
+            "status_response": "ok",
+            "data_response": {
+            "access_token": "56559f693a5csdfa0bd5737a",
+                "expires_in": 2592000,
+                "token_type": "bearer",
+                "refresh_token": "5c740898a3339c80dc48c53a598684e25c325898a3339c80dc48c53a598684e2",
+                "scope": null
+        }
+   */
+
+});
+
+```
+
+Step 3 - set access token before requests  (server):
+
+```javascript
+
+humm.setAccessToken(token);
+
+```
+
+###Implicit Grant Flow
+The implicit grant type is used to obtain access tokens (it does not support the issuance of refresh tokens) and is optimized for public clients known to operate a particular redirection URI.
+
+Step 1 - redirect uri (browser):
+
+To use the authentication you have to host a callback.html file on your server
+and set it as the redirect_uri in your app settings and when initializing the SDK.
+
+This callback.html file needs to contain just a few lines:
+
+
+```html
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Callback</title>
+        <script type="text/javascript" src="../humm-sdk-1.0.0.js"></script>
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            humm.completeAuthorization(window.location);
+        </script>
+        <p>
+            his will close automatically
+        </p>
+    </body>
+</html>
+
+```
+
+
+Step 2 - pop that allows users to login to Humm  (browser):
+
+```javascript
+
+humm.authViaImplicitGrant(function(error, response) {
+    console.log('------------- authViaAuthorizationCode complete -------------');
+    console.log(error);
+    console.log(response);
+
+    /* response example:
+       {
+            "status_response": "ok",
+            "data_response": {
+                "access_token": "56559f693a5csdfa0bd5737a",
+                "expires_in": 2592000,
+                "token_type": "bearer",
+                "refresh_token": "5c740898a3339c80dc48c53a598684e25c325898a3339c80dc48c53a598684e2",
+                "scope": null
+        }
+       */
+
+});
+
+
+Once the user is logged in to humm, the window opened for authentication will automatically close and your ready to go.
+
+if the user was successfully authenticated all future requests will be made using those credentials.
+
+
+
+###authentication
+
+```javascript
+
+/**
+ * check if token has been set
+ *
+ * @returns {boolean}
+ */
 humm.isAuthorised();
 
+/**
+ * connect with humm via implicit grant and return
+ *
+ * @param cb called with two params (error, response) upon auth complete
+*/
 humm.authViaImplicitGrant(cb);
 
+/**
+ * connect with humm via Authorization Code Flow
+ *
+ * @param cb called with two params (error, response) upon auth complete
+ *
+ * @returns {*}
+ */
 humm.authViaCodeGrant(cb);
 
+/**
+ * Called upon loading the redirect uri page
+ *
+ * @param location
+ */
 humm.completeAuthorization(location);
 
+/**
+ * Request an access token using the Authorization Code flow.
+ *
+ * @param code
+ * @param cb
+ */
 humm.accessViaCodeGrant(code, cb);
 
+/**
+ * Auth via Client Credentials Flow
+ *
+ * @param cb
+ */
 humm.authViaClientCredentials(cb);
 
+/**
+ * Refresh the access token given that it hasn't expired.
+ *
+ * @param token
+ * @param cb
+ */
 humm.refreshAccessToken(token, cb);
 
+/**
+ * Set Access token for future requests
+ *
+ * @param token
+ */
 humm.setAccessToken(token);
 
 ```

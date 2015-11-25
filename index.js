@@ -43,8 +43,7 @@ module.exports = global.humm = {
     /**
      * connect with humm via implicit grant and return
      *
-     * @param cb called with two params (error, response) upon auth complete (window.close()) ,
-     * response is an object with { TODO }
+     * @param cb called with two params (error, response) upon auth complete
      *
      * @returns {*}
      */
@@ -70,8 +69,7 @@ module.exports = global.humm = {
     /**
      * connect with humm via Authorization Code Flow
      *
-     * @param cb called with two params (error, response) upon auth complete (window.close()) ,
-     * response is an object with { code }
+     * @param cb called with two params (error, response) upon auth complete
      *
      * @returns {*}
      */
@@ -103,7 +101,6 @@ module.exports = global.humm = {
     },
 
     /**
-     * //TODO test on server env
      * Request an access token using the Authorization Code flow.
      *
      * @param code
@@ -128,7 +125,6 @@ module.exports = global.humm = {
     },
 
     /**
-     * //TODO test on server env
      * Auth via Client Credentials Flow
      *
      * @param cb
@@ -150,7 +146,6 @@ module.exports = global.humm = {
     },
 
     /**
-     * //TODO test on server env
      * Refresh the access token given that it hasn't expired.
      *
      * @param token
