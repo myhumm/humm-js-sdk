@@ -122,7 +122,7 @@ module.exports = {
      * @param playlistId
      * @param body
      */
-    order: function order(playlistId, body) {
+    order: function order(playlistId, body, cb) {
         var requestData = {
             url: baseURL + '/playlists/' + playlistId,
             type: 'PUT',

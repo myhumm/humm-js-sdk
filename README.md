@@ -8,21 +8,99 @@
 
 #### Documentation
 
+
+#### Installation
+
   $ npm install yumm --save
 
   or
 
   download the  yumm.js file from here {{link}}
-  
-#### Installation
-
-
-
 
 #### Node.js Usage
 
+  `humm.init()` valid params:
+
+   1.  oauth_token
+   2.  client_id
+   3.  client_secret
+   4.  redirect_uri
+   5.  baseURL
+   6.  baseURL
+   7.  connectURL
+
+
+  Browser:
+
+  humm.init({
+        client_id: '',
+        redirect_uri:''
+    });
+
+
+
+  Server:
+
+  humm.init({
+        client_id: '',
+        client_secret: '',
+        redirect_uri: ''
+    });
+
+  You should not initialise with client secret in the browser environment
 
 #### Authentication
+
+
+### Authorization code example
+
+    Step 1 - pop that allows users to login to Humm  (browser):
+    ```javascript
+
+          humm.authViaCodeGrant(function(error, response) {
+                 console.log('------------- authViaAuthorizationCode complete -------------');
+                 console.log(error);
+                 console.log(response);
+
+                 // example of response
+                 { code :  'xxxxx' }
+
+          });
+
+    ```
+    Step 2 - redirect uri should contain js that calls `humm.completeAuthorization(window.location);` (browser):
+
+    ```html
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Callback</title>
+            <script type="text/javascript" src="../humm-sdk-1.0.0.js"></script>
+        </head>
+        <body>
+            <script type="text/javascript">
+                humm.completeAuthorization(window.location);
+            </script>
+            <p>
+                This will close automatically
+            </p>
+        </body>
+        </html>
+   ```
+
+
+
+
+
+
+
+### Implicit grant
+
+
+###Client Credentials
+
 ```javascript
 
 humm.isAuthorised();
@@ -198,3 +276,6 @@ By default, the SDK is built into `build/sdk/sdk-VERSION.js`. Take a look at `we
 This will run webpack with a watcher. The sdk will be rebuilt when you save changes in `src`.
 
 In addition, webpack will start a development server on `http://localhost:8080/`. This serves the files in the `examples/` folder.
+
+
+
