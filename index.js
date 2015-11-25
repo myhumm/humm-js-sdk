@@ -144,7 +144,7 @@ module.exports = global.humm = {
      *
      * @param cb
      */
-    authViaClientCredentials: function(cb) {
+    authViaClientCredentials: function authViaClientCredentials(cb) {
         if(typeof window === 'undefined') {
             var requestData = {
                     url: config.get('connectURL') + '/api/token',
@@ -189,7 +189,7 @@ module.exports = global.humm = {
      *
      * @param token
      */
-    setAccessToken: function refreshAccessToken(token) {
+    setAccessToken: function setAccessToken(token) {
         config.set('oauth_token', token);
     },
 

@@ -1,7 +1,7 @@
 # Humm JavaScript SDK
-//TODO: 1. store token for implicit grant
-        2. complete others methods not yet docs
-        3. test
+//TODO:
+   1. complete others methods not yet docs
+   2. test
 
 
 
@@ -9,8 +9,25 @@
 ## Documentation
 
 #### Authentication
+```javascript
 
+humm.isAuthorised();
 
+humm.authViaImplicitGrant(cb);
+
+humm.authViaCodeGrant(cb)
+
+humm.completeAuthorization(location)
+
+humm.accessViaCodeGrant(code, cb)
+
+humm.authViaClientCredentials(cb)
+
+humm.refreshAccessToken(token, cb)
+
+humm.setAccessToken(token)
+
+```
 
 #### Artists
 ```javascript
