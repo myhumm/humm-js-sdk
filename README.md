@@ -32,14 +32,18 @@
 
   Browser:
 
+```javascript
+
   humm.init({
         client_id: '',
         redirect_uri:''
     });
 
-
+```
 
   Server:
+
+```javascript
 
   humm.init({
         client_id: '',
@@ -47,26 +51,23 @@
         redirect_uri: ''
     });
 
-  You should not initialise with client secret in the browser environment
+```
+
+You should NOT initialise with client secret in the browser environment.
 
 #### Authentication
 
 
 ### Authorization code example
 
-Step 1 - pop that allows users to login to Humm  (browser):
 
-```javascript
+Step 1 - redirect uri (browser):
 
-humm.authViaCodeGrant(function(error, response) {
-    console.log('------------- authViaAuthorizationCode complete -------------');
-    console.log(error);
-    console.log(response); // { code :  'xxxxx' }
-    });
+To use the authentication you have to host a callback.html file on your server
+and set it as the redirect_uri in your app settings and when initializing the SDK.
 
-```
+This callback.html file needs to contain just a few lines:
 
-Step 2 - redirect uri should contain js that calls `humm.completeAuthorization(window.location);` (browser):
 
 ```html
 
@@ -87,7 +88,62 @@ Step 2 - redirect uri should contain js that calls `humm.completeAuthorization(w
         </p>
     </body>
 </html>
+
 ```
+
+
+Step 2 - pop that allows users to login to Humm  (browser):
+
+```javascript
+
+humm.authViaCodeGrant(function(error, response) {
+    console.log('------------- authViaAuthorizationCode complete -------------');
+    console.log(error);
+    console.log(response); // { code :  'xxxxx' }
+});
+
+```
+
+Step 3 - get access token using the code (server):
+
+```javascript
+
+humm.accessViaCodeGrant(function(error, response) {
+    console.log('------------- accessViaCodeGrant complete -------------');
+    console.log(error);
+    console.log(response);
+
+    /* response example:
+         {
+            "status_response": "ok",
+            "data_response": {
+            "access_token": "56559f693a5csdfa0bd5737a",
+                "expires_in": 2592000,
+                "token_type": "bearer",
+                "refresh_token": "5c740898a3339c80dc48c53a598684e25c325898a3339c80dc48c53a598684e2",
+                "scope": null
+        }
+   */
+
+
+
+});
+
+```
+
+Step 4 - set access token before requests  (server):
+
+```javascript
+humm.setAccessToken(token);
+```
+
+You can refresh the access token using:
+
+
+
+
+
+
 
 
 
