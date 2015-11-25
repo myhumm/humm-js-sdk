@@ -8,6 +8,26 @@ window.onload = function() {
         redirect_uri:'http://localhost:8080/webpack-dev-server/connectComplete.html'
     });
 
+    humm.search('heros', function(error, response) {
+        console.log('------------- humm.search() -------------');
+        console.log(error);
+        console.log(response);
+    });
+
+    humm.groupSearch('heros', function(error, response) {
+        console.log('------------- humm.groupSearch() -------------');
+        console.log(error);
+        console.log(response);
+    });
+
+    humm.radio(function(error, response) {
+        console.log('------------- humm.radio() -------------');
+        console.log(error);
+        console.log(response);
+    });
+
+
+    //Auth examples
     var authViaImplicitGrant = function(){
         humm.authViaImplicitGrant(function(error, response) {
             console.log('------------- authViaImplicitGrant complete -------------');
