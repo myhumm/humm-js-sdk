@@ -107,13 +107,6 @@ var send = function send(requestData, cb) {
  * @param success
  */
 var complete = function complete(data, cb, req, success) {
-    /*
-        console.log(data);
-        console.log(cb);
-        console.log(req);
-        console.log(success);
-
-    */
   if (success) {
     cb(null, data);
   }else{

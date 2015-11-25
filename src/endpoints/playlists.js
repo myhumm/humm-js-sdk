@@ -246,7 +246,7 @@ module.exports = {
                 type: 'GET',
                 params: {}
         };
-        request.start(requestData, options, cb)
+        request.start(requestData, options, cb);
     },
 
     /**
@@ -264,7 +264,7 @@ module.exports = {
                     keyword: keyword
                 }
         };
-        request.start(requestData, options, cb)
+        request.start(requestData, options, cb);
     },
 
     /**
@@ -279,6 +279,6 @@ module.exports = {
                 type: 'GET',
                 params: {}
         };
-        request.start(requestData, options, cb)
+        request.start(requestData, options, cb);
     }
 };
