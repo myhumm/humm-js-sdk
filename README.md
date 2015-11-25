@@ -54,41 +54,40 @@
 
 ### Authorization code example
 
-    Step 1 - pop that allows users to login to Humm  (browser):
-    ```javascript
+Step 1 - pop that allows users to login to Humm  (browser):
 
-          humm.authViaCodeGrant(function(error, response) {
-                 console.log('------------- authViaAuthorizationCode complete -------------');
-                 console.log(error);
-                 console.log(response);
+```javascript
 
-                 // example of response
-                 { code :  'xxxxx' }
+humm.authViaCodeGrant(function(error, response) {
+    console.log('------------- authViaAuthorizationCode complete -------------');
+    console.log(error);
+    console.log(response); // { code :  'xxxxx' }
+    });
 
-          });
+```
 
-    ```
-    Step 2 - redirect uri should contain js that calls `humm.completeAuthorization(window.location);` (browser):
+Step 2 - redirect uri should contain js that calls `humm.completeAuthorization(window.location);` (browser):
 
-    ```html
+```html
 
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="utf-8">
-            <title>Callback</title>
-            <script type="text/javascript" src="../humm-sdk-1.0.0.js"></script>
-        </head>
-        <body>
-            <script type="text/javascript">
-                humm.completeAuthorization(window.location);
-            </script>
-            <p>
-                This will close automatically
-            </p>
-        </body>
-        </html>
-   ```
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Callback</title>
+        <script type="text/javascript" src="../humm-sdk-1.0.0.js"></script>
+    </head>
+
+    <body>
+        <script type="text/javascript">
+            humm.completeAuthorization(window.location);
+        </script>
+        <p>
+            his will close automatically
+        </p>
+    </body>
+</html>
+```
 
 
 
