@@ -1,5 +1,5 @@
 'use strict';
-var lockr = require('lockr');
+//var lockr = require('lockr');
 /*
 
   oauth_token   : undefined,
@@ -13,18 +13,28 @@ var lockr = require('lockr');
 
 */
 
+var config = {};
 /**
  *
  * @type {{get: Function, set: Function}}
  */
 module.exports = {
   get: function get(key) {
-    return lockr.get(key);
+  //  return localStorage.getItem(key);
+    if(typeof window !== 'undefined')  {
+      return localStorage.getItem(key);
+    } else {
+      return config[key];
+    }
   },
 
   set: function set(key, value) {
     if (value) {
-      lockr.set(key, value);
+      if(typeof window !== 'undefined') {
+        localStorage.setItem(key, value);
+      } else {
+        config[key] = value;
+      }
     }
   }
 };

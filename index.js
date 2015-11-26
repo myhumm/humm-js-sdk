@@ -53,13 +53,12 @@ module.exports = global.humm = {
         if(typeof window !== 'undefined') {
             var options = {
                 client_id: config.get('client_id'),
-                redirect_uri: config.get('redirect_uri'),
                 response_type: 'token'
             };
 
             // `client_id` and `redirect_uri` have to be passed
-            if (!options.client_id || !options.redirect_uri) {
-                throw new Error('Options client_id and redirect_uri must be passed');
+            if (!options.client_id) {
+                throw new Error('client_id is not set');
             }
             authorization.startUserAuth(options, cb);
         } else {
@@ -79,13 +78,12 @@ module.exports = global.humm = {
         if(typeof window !== 'undefined') {
             var options = {
                 client_id: config.get('client_id'),
-                redirect_uri: config.get('redirect_uri'),
                 response_type: 'code'
             };
 
             // `client_id` and `redirect_uri` have to be passed
-            if (!options.client_id || !options.redirect_uri) {
-                throw new Error('Options client_id and redirect_uri must be passed');
+            if (!options.client_id) {
+                throw new Error('client_id is not set');
             }
             authorization.startUserAuth(options, cb);
         } else {
@@ -115,8 +113,7 @@ module.exports = global.humm = {
                     type: 'POST',
                     postData: {
                         grant_type: 'authorization_code',
-                        code: code,
-                        redirect_uri: config.get('redirect_uri')
+                        code: code
                     },
                     clientCredentials: true
             };

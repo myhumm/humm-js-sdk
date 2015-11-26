@@ -53,8 +53,9 @@ module.exports = {
         var params =  qs.parse(location.hash),
             search =  qs.parse(location.search);
 
-       // console.log(params);
-       // console.log(location);
+        console.log('------------User auth ---------');
+        console.log(params);
+        console.log(location);
 
         //if authViaImplicitGrant than get token and set, else save code
         if(params.token_type === 'Bearer') {

@@ -24,6 +24,6 @@
     "form-urlencoded": "^0.1.4",
     "node-static": "^0.7.7",
     "query-string": "^2.3.0",
-    "lockr": "^0.8.3"
+    "node-localstorage":"^0.6.0"
   }
 }
