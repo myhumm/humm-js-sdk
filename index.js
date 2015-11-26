@@ -137,6 +137,7 @@ module.exports = global.humm = {
                     postData: {
                         grant_type: 'client_credentials'
                     },
+                    params: {},
                     clientCredentials: true
             };
             request.start(requestData, cb);
@@ -160,7 +161,8 @@ module.exports = global.humm = {
                         grant_type: 'refresh_token',
                         refresh_token: token
                 },
-                    clientCredentials: true
+                params: {},
+                clientCredentials: true
             };
             request.start(requestData, cb);
         } else {

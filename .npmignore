@@ -1,7 +1,5 @@
 .git
 examples
 node_modules
-src
-vendor
 .tmp
 build
