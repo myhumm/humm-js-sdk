@@ -336,27 +336,109 @@ humm.setAccessToken(token);
 #### Artists
 ```javascript
 
-humm.get(artistId, cb);
+  /**
+    * Find an artist
+    *
+    * @param artistId
+    * @param options { limit, offset }
+    * @param cb
+    */
+   humm.get(artistId, options, cb);
 
-humm.artists.addFollowers(artistId, cb);
 
-humm.artists.removeFollowers(artistId, cb);
+  /**
+    * Add current user to artist's list of followers
+    *
+    * @param artistId
+    * @param cb
+    */
+   humm.artists.addFollowers(artistId, cb);
 
-humm.artists.getPlaylists(artistId, options, cb);
 
-humm.artists.getRadio(artistId, cb);
+  /**
+    * Remove current user from artist's list of followers
+    *
+    * @param artistId
+    * @param cb
+    */
+   humm.artists.removeFollowers(artistId, cb);
 
-humm.artists.getSimilar(artistId, cb);
 
-humm.artists.getTopSongs(artistId, options, cb);
+  /**
+    * Get playlists / albums associated with an artist
+    *
+    * @param artistId
+    * @param options { limit, offset }
+    * @param cb
+    */
+   humm.artists.getPlaylists(artistId, options, cb);
 
-humm.artists.getFeatured(options, cb);
 
-humm.artists.getPopular(options, cb);
+  /**
+    * Get a curated list of artists songs
+    *
+    * @param artistId
+    * @param options { limit, offset }
+    * @param cb
+    */
+   humm.artists.getRadio(artistId, options, cb);
 
-humm.artists.getRecent(options, cb);
 
-humm.artists.search(keyword, options, cb);
+   /**
+    * Get a list of musically similar artists
+    *
+    * @param artistId
+    * @param options { limit, offset }
+    * @param cb
+    */
+   humm.artists.getSimilar(artistId, options, cb);
+
+
+  /**
+    * Get a list of an artist's top songs
+    *
+    * @param artistId
+    * @param options { limit, offset, songtype }
+    * @param cb
+    */
+  humm.artists.getTopSongs(artistId, options, cb);
+
+
+   /**
+    * Get a list of artists featured by Humm
+    *
+    * @param options { limit, offset, genre }
+    * @param cb
+    */
+  humm.artists.getFeatured(options, cb);
+
+
+   /**
+    * Get a list of artists popular on Humm
+    *
+    * @param options { limit, offset }
+    * @param cb
+    */
+  humm.artists.getPopular(options, cb);
+
+
+   /**
+    * Get a list of artists recently added on Humm
+    *
+    * @param options { limit, offset }
+    * @param cb
+    */
+  humm.artists.getRecent(options, cb);
+
+
+   /**
+    * Search for an artist using keyword
+    *
+    * @param keyword
+    * @param options { limit, offset }
+    * @param cb
+    */
+  humm.artists.search(keyword, options, cb);
 
 ```
 #### Playlists
@@ -473,12 +555,12 @@ humm.users.getPlays(userId, cb);
     humm.external.addServices(service, sid, uname, token, secret, cb)
 
   /**
-     * Remove external service such as Twitter of Facebook
-     *
-     * @param service
-     * @param sid
-     * @param cb
-     */
+    * Remove external service such as Twitter of Facebook
+    *
+    * @param service
+    * @param sid
+    * @param cb
+    */
     humm.external.removeServices(service, sid, cb)
 ```
 

@@ -118,7 +118,7 @@ module.exports = {
     },
 
     /**
-     * Get a list of artists featured by Humm"
+     * Get a list of artists featured by Humm
      *
      * @param options { limit, offset, genre }
      * @param cb
