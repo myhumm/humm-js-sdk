@@ -101,7 +101,13 @@ humm.authViaCodeGrant(function(error, response) {
 
 ```javascript
 
-humm.accessViaCodeGrant(function(error, response) {
+//init with client_id & client_secret
+humm.init({
+    client_id: '',
+    client_secret: ''
+});
+
+humm.accessViaCodeGrant('CODE', function(error, response) {
     console.log('------------- accessViaCodeGrant complete -------------');
     console.log(error);
     console.log(response);
@@ -167,8 +173,7 @@ Note, however that this flow does not include authorization and therefore cannot
 
   humm.init({
         client_id: '',
-        client_secret: '',
-        redirect_uri: ''
+        client_secret: ''
     });
 
 ```
