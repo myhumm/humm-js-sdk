@@ -1,6 +1,9 @@
 'use strict';
 
-var config          = require('./config'),
+ //XMLHttpRequest  = require('xmlhttprequest').XMLHttpRequest,
+var https           = require('https'),
+    xhr2            = require('xhr2'),
+    config          = require('./config'),
     oauth_token     = config.get('oauth_token'),
     client_id       = config.get('client_id'),
     client_secret   = config.get('client_secret');
@@ -55,7 +58,7 @@ var buildUrl = function buildUrl(url, parameters) {
  * @returns {null}
  */
 var send = function send(requestData, cb) {
-    var req = new XMLHttpRequest();
+    var req = new xhr2();
     req.open(requestData.type, buildUrl(requestData.url, requestData.params));
 
     // if oauth_token then attach to head
@@ -126,6 +129,9 @@ module.exports = {
    * @returns {null}
    */
   start: function start(requestData, options, callback) {
+     // console.log(requestData);
+     // console.log(client_id);
+
     //check params as we can pass in less than three params
     var opt = {},
         cb  = null;

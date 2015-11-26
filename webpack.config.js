@@ -4,16 +4,16 @@ var VERSION  = require('./package.json').version,
     filename = IS_NPM ? 'sdk.js' : 'sdk-' + VERSION + '.js';
 
 module.exports = {
-  entry: './index.js',
-  output: {
-    path: path,
-    filename: filename,
-    libraryTarget: 'umd'
-  },
-  module: {
-    loaders: []
-  },
-  devServer: {
-    contentBase: './examples'
-  }
+    entry: './index.js',
+    output: {
+        path: path,
+        filename: filename,
+        libraryTarget: 'umd'
+    }, module: {
+        loaders: []
+    },
+
+    devServer: {
+        contentBase: './examples'
+    }
 };

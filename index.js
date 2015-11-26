@@ -115,6 +115,7 @@ module.exports = global.humm = {
                         grant_type: 'authorization_code',
                         code: code
                     },
+                    params: {},
                     clientCredentials: true
             };
             request.start(requestData, cb);
