@@ -1,13 +1,6 @@
 # Humm JavaScript SDK
-//TODO:
-   1. complete others methods not yet docs
-   2. test
-
-
-
 
 #### Documentation
-
 
 #### Installation
 
@@ -17,39 +10,38 @@
 
   download the  yumm.js file from here {{link}}
 
-#### Node.js Usage
+#### Usage
 
   `humm.init()` valid params:
 
-   1.  oauth_token
-   2.  client_id
-   3.  client_secret
-   4.  redirect_uri
-   5.  baseURL
-   6.  baseURL
-   7.  connectURL
+   1.  client_id
+   1.  client_secret
 
 
-  Browser:
+**Browser:**
 
 ```javascript
 
-  humm.init({
+<script src="xxxxxxxxxxxxxxxxxx/sdk/sdk-1.0.0.js"></script>
+<script>
+   humm.init({
         client_id: '',
         redirect_uri:''
-    });
+   });
+</script>
 
 ```
 
-  Server:
+**Node.js:**
 
 ```javascript
 
+  var SC = require('soundcloud');
+
   humm.init({
         client_id: '',
-        client_secret: '',
-        redirect_uri: ''
-    });
+        client_secret: ''
+  });
 
 ```
 
@@ -64,7 +56,7 @@ You should NOT initialise with client secret in the browser environment.
 **Step 1 - redirect uri (browser):**
 
 To use the authentication you have to host a callback.html file on your server
-and set it as the redirect_uri in your app settings and when initializing the SDK.
+and set it as the redirect_uri in your app.
 
 This callback.html file needs to contain just a few lines:
 
@@ -219,7 +211,7 @@ The implicit grant type is used to obtain access tokens (it does not support the
 **Step 1 - redirect uri (browser):**
 
 To use the authentication you have to host a callback.html file on your server
-and set it as the redirect_uri in your app settings and when initializing the SDK.
+and set it as the redirect_uri in your app.
 
 This callback.html file needs to contain just a few lines:
 
@@ -465,16 +457,12 @@ humm.users.getPlays(userId, cb);
 
 ```
 #### external
+
 - humm.external.addServices(service, sid, uname, token, secret, cb)
 - humm.external.removeServices(service, sid, cb)
 
-#### settings
-- humm.settings.get()
-- humm.settings.update()
-
 #### others
-- humm.search()
-- humm.groupSearch()
+
 - humm.radio()
 
 
