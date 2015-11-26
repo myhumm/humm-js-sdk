@@ -827,7 +827,7 @@ if the user was successfully authenticated all future requests will be made usin
      * @param secret
      * @param cb
      */
-    humm.external.addServices(service, sid, uname, token, secret, cb)
+    humm.external.addServices(service, sid, uname, token, secret, cb);
 
   /**
     * Remove external service such as Twitter of Facebook
@@ -836,10 +836,12 @@ if the user was successfully authenticated all future requests will be made usin
     * @param sid
     * @param cb
     */
-    humm.external.removeServices(service, sid, cb)
+    humm.external.removeServices(service, sid, cb);
 ```
 
 #### others
+
+```javascript
 
    /**
      * Get a list of songs for a radio
@@ -848,7 +850,8 @@ if the user was successfully authenticated all future requests will be made usin
      * @param cb
      */
      humm.radio()
-
+     
+```
 
 
 
