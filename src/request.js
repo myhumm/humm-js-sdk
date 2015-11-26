@@ -154,7 +154,6 @@ module.exports = {
     } else {
       requestData.params = _extend(requestData.params, opt);
     }
-
-    return send(requestData, cb);
+      send(requestData, cb);
   }
 };
