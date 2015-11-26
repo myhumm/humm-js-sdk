@@ -4,8 +4,9 @@
 
 #### Installation
 
+```
   `npm install humm --save`
-
+```
   or
 
   download the  humm.js file from here {{link}}
@@ -850,10 +851,8 @@ if the user was successfully authenticated all future requests will be made usin
      * @param cb
      */
      humm.radio()
-     
+
 ```
-
-
 
 
 ## Building source
