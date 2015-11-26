@@ -272,65 +272,65 @@ if the user was successfully authenticated all future requests will be made usin
 ###authentication
 
 ```javascript
-/**
- * check if token has been set
- *
- * @returns {boolean}
- */
-humm.isAuthorised();
+    /**
+     * check if token has been set
+     *
+     * @returns {boolean}
+     */
+    humm.isAuthorised();
 
-/**
- * connect with humm via implicit grant and return
- *
- * @param cb called with two params (error, response) upon auth complete
-*/
-humm.authViaImplicitGrant(cb);
+    /**
+     * connect with humm via implicit grant and return
+     *
+     * @param cb called with two params (error, response) upon auth complete
+     */
+    humm.authViaImplicitGrant(cb);
 
-/**
- * connect with humm via Authorization Code Flow
- *
- * @param cb called with two params (error, response) upon auth complete
- *
- * @returns {*}
- */
-humm.authViaCodeGrant(cb);
+    /**
+     * connect with humm via Authorization Code Flow
+     *
+     * @param cb called with two params (error, response) upon auth complete
+     *
+     * @returns {*}
+     */
+    humm.authViaCodeGrant(cb);
 
-/**
- * Called upon loading the redirect uri page
- *
- * @param location
- */
-humm.completeAuthorization(location);
+    /**
+     * Called upon loading the redirect uri page
+     *
+     * @param location
+     */
+    humm.completeAuthorization(location);
 
-/**
- * Request an access token using the Authorization Code flow.
- *
- * @param code
- * @param cb
- */
-humm.accessViaCodeGrant(code, cb);
+    /**
+     * Request an access token using the Authorization Code flow.
+     *
+     * @param code
+     * @param cb
+     */
+    humm.accessViaCodeGrant(code, cb);
 
-/**
- * Auth via Client Credentials Flow
- *
- * @param cb
- */
-humm.authViaClientCredentials(cb);
+    /**
+     * Auth via Client Credentials Flow
+     *
+     * @param cb
+     */
+    humm.authViaClientCredentials(cb);
 
-/**
- * Refresh the access token given that it hasn't expired.
- *
- * @param token
- * @param cb
- */
-humm.refreshAccessToken(token, cb);
+    /**
+     * Refresh the access token given that it hasn't expired.
+     *
+     * @param token
+     * @param cb
+     */
+    humm.refreshAccessToken(token, cb);
 
-/**
- * Set Access token for future requests
- *
- * @param token
- */
-humm.setAccessToken(token);
+    /**
+     * Set Access token for future requests
+     *
+     * @param token
+     */
+    humm.setAccessToken(token);
 ```
 
 #### Artists
@@ -445,97 +445,372 @@ humm.setAccessToken(token);
 
 ```javascript
 
-humm.playlists.create(title, description, isPrivate, cb );
+    /**
+     * Add a playlist for the current user
+     *
+     * @param title
+     * @param description
+     * @param options { private }
+     * @param cb
+     */
+    humm.playlists.create(title, description, options, cb );
 
-humm.playlists.getFeatured(options, cb);
+    /**
+     * Get a list of playlists featured by Humm
+     *
+     * @param options { limit, offset }
+     * @param cb
+     */
+    humm.playlists.getFeatured(options, cb);
 
-humm.playlists.addContributors(playlistId, ContributorId, cb)
+    /**
+     * Add a user to a playlist's list of contributorss
+     *
+     * @param playlistId
+     * @param contributorId
+     * @param cb
+     */
+    humm.playlists.addContributors(playlistId, ContributorId, cb)
 
-humm.playlists.removeContributors(playlistId, ContributorId, cb);
+   /**
+    * Remove a user from a playlist's list of contributors
+    *
+    * @param playlistId
+    * @param contributorId
+    * @param cb
+    */
+    humm.playlists.removeContributors(playlistId, ContributorId, cb);
 
-humm.playlists.get(playlistId, options, cb)
+    /**
+     * Get a playlist by id
+     *
+     * @param playlistId
+     * @param cb
+     */
+    humm.playlists.get(playlistId, cb)
 
-humm.playlists.update()
+    /**
+     * Edit a playlist
+     *
+     * @param playlistId
+     * @param title
+     * @param description
+     * @param isPrivate
+     * @param cb
+     */
+    humm.playlists.update(playlistId, title, description, isPrivate, cb);
 
-humm.playlists.order()
+    /**
+     * Order the songs in a playlist
+     *
+     * @param playlistId
+     * @param body
+     * @param cb
+     */
+    humm.playlists.order(playlistId, body, cb)
 
-humm.playlists.getSongs(playlistId, options, cb);
+    /**
+     * Get a list of playlist songs
+     *
+     * @param playlistId
+     * @param options { limit, offset }
+     * @param cb
+     */
+    humm.playlists.getSongs(playlistId, options, cb);
 
-humm.playlists.addSongs(playlistId, songId, position, cb);
+   /**
+    * Add a song to a playlist given their ids
+    *
+    * @param playlistId
+    * @param songId
+    * @param position
+    * @param cb
+    */
+    humm.playlists.addSongs(playlistId, songId, position, cb);
 
-humm.playlists.removeSongs(playlistId, songId, cb);
+    /**
+     * Remove a song from a playlist
+     *
+     * @param playlistId
+     * @param songId
+     * @param cb
+     */
+    humm.playlists.removeSongs(playlistId, songId, cb);
 
-humm.playlists.addSubscribers(playlistId, cb);
 
-humm.playlists.removeSubscribers(playlistId, cb);
+    /**
+     * Add playlist to the list current user has subscriptions to
+     *
+     * @param playlistId
+     * @param cb
+     */
+    humm.playlists.addSubscribers(playlistId, cb);
 
-humm.playlists.getPopular(options, cb);
+   /**
+    * Remove playlist to the list current user has subscriptions to
+    *
+    * @param playlistId
+    * @param cb
+    */
+    humm.playlists.removeSubscribers(playlistId, cb);
 
-humm.playlists.getRecent(options, cb);
+    /**
+     * Get a list of playlists popular on Humm
+     *
+     * @param options { limit, offset, section, uid }
+     * @param cb
+     */
+    humm.playlists.getPopular(options, cb);
 
-humm.playlists.search(keyword, options, cb);
 
-humm.playlists.getStaffPicks(options, cb);
+   /**
+    * Get a list of playlists recently added on Humm
+    *
+    * @param options { limit, offset }
+    * @param cb
+    */
+   humm.playlists.getRecent(options, cb);
+
+    /**
+     * search for albums or playlists
+     *
+     * @param keyword
+     * @param options { limit, offset, offset, album (bool) }
+     * @param cb
+     */
+    humm.playlists.search(keyword, options, cb);
+
+   /**
+    * Get a list of playlists picked by staff at Humm
+    *
+    * @param options { limit, offset }
+    * @param cb
+    */
+   humm.playlists.getStaffPicks(options, cb);
 
 ```
 #### Songs
 
 ```javascript
 
-humm.songs.getFeatured(options, cb);
+    /**
+     * Get a list of songs featured by Humm
+     *
+     * @param options { limit, offset, genre }
+     * @param cb
+     */
+    humm.songs.getFeatured(options, cb);
 
-humm.songs.getPopular(options, cb);
+   /**
+    * Get a list of songs popular on Humm"
+    *
+    * @param options { limit, offset, genre }
+    * @param cb
+    */
+   humm.songs.getPopular(options, cb);
 
-humm.songs.getRecent(options, cb);
+  /**
+   * Get a list of songs recently added on Humm
+   *
+   * @param options { limit, offset, genre }
+   * @param cb
+   */
+  humm.songs.getRecent(options, cb);
 
-humm.songs.search(keyword, options, cb);
+  /**
+   * Search for a song
+   *
+   * @param keyword
+   * @param options { limit, offset, songtype }
+   * @param cb
+   */
+  humm.songs.search(keyword, options, cb);
 
-humm.songs.appearsIn(songId, options, cb);
 
-humm.songs.route();
+   /**
+     * Get a list of playlists a song appears in
+     *
+     * @param songId
+     * @param options { limit }
+     * @param cb
+     */
+  humm.songs.appearsIn(songId, options, cb);
 
-humm.songs.get(songId, cb);
 
-humm.songs.getSimilar(songId, options, cb)
+    /**
+     * Get a song by id
+     *
+     * @param songId
+     * @param cb
+     */
+  humm.songs.get(songId, cb);
 
-humm.songs.getStaffPicked(options, cb);
+
+  /**
+   * Get a list of similar songs
+   *
+   * @param songId
+   * @param options { limit, offset }
+   * @param cb
+   */
+  humm.songs.getSimilar(songId, options, cb)
+
+
+   /**
+    * Get a list of songs picked by staff at Humm
+    *
+    * @param options { limit, offset, genre }
+    * @param cb
+    */
+  humm.songs.getStaffPicked(options, cb);
 
 ```
 #### Users
 
 ```javascript
 
-humm.users.me(cb);
+     /**
+      * Get the current user
+      *
+      * @param cb
+      */
+     humm.users.me(cb);
 
-humm.users.discoverReleases(options, cb);
 
-humm.users.discoverArtists(options, cb);
+    /**
+     * Get a list of recommended albums
+     *
+     * @param options { limit, offset }
+     * @param cb
+     */
+    humm.users.discoverReleases(options, cb);
 
-humm.users.discoverPlaylists(options, cb);
 
-humm.users.addFavourites(songId, cb);
+   /**
+    * Get a list of recommended artists
+    *
+    * @param options { limit, offset }
+    * @param cb
+    */
+   humm.users.discoverArtists(options, cb);
 
-humm.users.addFollowing(userId, cb);
 
-humm.users.removeFollowing(userId, cb);
+  /**
+   * Get a list of recommended playlists / albums
+   *
+   * @param options { limit, offset }
+   * @param cb
+   */
+  humm.users.discoverPlaylists(options, cb);
 
-humm.users.addPlays(songId, cb);
 
-humm.users.search(keyword, options, cb);
+   /**
+    * Add song to current user favourites
+    *
+    * @param songId
+    * @param cb
+    */
+  humm.users.addFavourites(songId, cb);
 
-humm.users.addSubscriptions(playlistId, cb);
 
-humm.users.removeSubscriptions(playlistId, cb);
+   /**
+    * Add user to the list current user is following
+    *
+    * @param userId
+    * @param cb
+    */
+  humm.users.addFollowing(userId, cb);
 
-humm.users.get(userId, cb);
 
-humm.users.getFavourites(userId, cb);
+  /**
+   * Remove user from the list current user is following
+   *
+   * @param userId
+   * @param cb
+   */
+ humm.users.removeFollowing(userId, cb);
 
-humm.users.getFollowing(userId, cb);
 
-humm.users.getPlaylists(userId, cb);
+  /**
+   * Add song to the list of the current user's plays
+   *
+   * @param songId
+   * @param cb
+   */
+ humm.users.addPlays(songId, cb);
 
-humm.users.getPlays(userId, cb);
+
+   /**
+    * Search for a user
+    *
+    * @param keyword
+    * @param options { limit, offset }
+    * @param cb
+    */
+ humm.users.search(keyword, options, cb);
+
+  /**
+   * Add user to the list current user has subscriptions to
+   *
+   * @param playlistId
+   * @param cb
+   */
+ humm.users.addSubscriptions(playlistId, cb);
+
+ /**
+  * Remove user from the list current user has subscriptions to
+  *
+  * @param playlistId
+  * @param cb
+  */
+ humm.users.removeSubscriptions(playlistId, cb);
+
+
+
+ /**
+  * Get a user; returns a user object for a given id
+  *
+  * @param userId
+  * @param cb
+  */
+ humm.users.get(userId, cb);
+
+ /**
+  * Get a user's favourite songs; returns a list of song objects
+  *
+  * @param userId
+  * @param options { limit, offset }
+  * @param cb
+  */
+ humm.users.getFavourites(userId, options, cb)
+
+ /**
+   * Get a list of the users a user is following; returns a list of user objects for a given id
+   *
+   * @param userId
+   * @param options
+   * @param cb
+   */
+ humm.users.getFollowing(userId, options, cb);
+
+ /**
+   * Get a list of user owned playlists
+   *
+   * @param userId
+   * @param options
+   * @param cb
+   */
+ humm.users.getPlaylists(userId, options, cb);
+
+
+ /**
+   * Get a list of a user's plays
+   *
+   * @param userId
+   * @param options
+   * @param cb
+   */
+ humm.users.getPlays(userId, options, cb);
 
 ```
 #### external

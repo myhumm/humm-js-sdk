@@ -126,10 +126,10 @@ module.exports = {
     },
 
     /**
-     * TODO: Search for a user
+     * Search for a user
      *
      * @param keyword
-     * @param options
+     * @param options { limit, offset }
      * @param cb
      */
     search: function search(keyword, options, cb) {

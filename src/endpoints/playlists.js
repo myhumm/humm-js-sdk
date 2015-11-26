@@ -78,10 +78,9 @@ module.exports = {
     },
 
     /**
-     * Get a playlist
+     * Get a playlist by id
      *
      * @param playlistId
-     * @param options
      * @param cb
      */
     get: function get(playlistId, cb) {
@@ -121,6 +120,7 @@ module.exports = {
      *
      * @param playlistId
      * @param body
+     * @param cb
      */
     order: function order(playlistId, body, cb) {
         var requestData = {
