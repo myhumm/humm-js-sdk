@@ -4,11 +4,11 @@
 
 #### Installation
 
-  `npm install yumm --save`
+  `npm install humm --save`
 
   or
 
-  download the  yumm.js file from here {{link}}
+  download the  humm.js file from here {{link}}
 
 #### Usage
 
@@ -36,7 +36,7 @@
 
 ```javascript
 
-  var SC = require('soundcloud');
+  var humm = require('humm');
 
   humm.init({
         client_id: '',
@@ -458,12 +458,39 @@ humm.users.getPlays(userId, cb);
 ```
 #### external
 
-- humm.external.addServices(service, sid, uname, token, secret, cb)
-- humm.external.removeServices(service, sid, cb)
+```javascript
+
+   /**
+     * Add external service such as Twitter or Facebook
+     *
+     * @param service
+     * @param sid
+     * @param uname
+     * @param token
+     * @param secret
+     * @param cb
+     */
+    humm.external.addServices(service, sid, uname, token, secret, cb)
+
+  /**
+     * Remove external service such as Twitter of Facebook
+     *
+     * @param service
+     * @param sid
+     * @param cb
+     */
+    humm.external.removeServices(service, sid, cb)
+```
 
 #### others
 
-- humm.radio()
+   /**
+     * Get a list of songs for a radio
+     *
+     * @param options { limit, genres (string / list of strings), moods (string / list of strings), discovery (bool), own (bool) }
+     * @param cb
+     */
+     humm.radio()
 
 
 
