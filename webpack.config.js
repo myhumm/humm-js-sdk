@@ -12,8 +12,11 @@ module.exports = {
     }, module: {
         loaders: []
     },
-
     devServer: {
         contentBase: './examples'
+    },
+    node: {
+        fs: "empty",
+        child_process: "empty"
     }
 };

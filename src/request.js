@@ -1,12 +1,8 @@
 'use strict';
 
- //XMLHttpRequest  = require('xmlhttprequest').XMLHttpRequest,
 var https           = require('https'),
     xhr2            = require('xhr2'),
-    config          = require('./config'),
-    oauth_token     = config.get('oauth_token'),
-    client_id       = config.get('client_id'),
-    client_secret   = config.get('client_secret');
+    config          = require('./config');
 /**
  *
  * @returns {T}
@@ -58,25 +54,27 @@ var buildUrl = function buildUrl(url, parameters) {
  * @returns {null}
  */
 var send = function send(requestData, cb) {
-    var req = new xhr2();
+    var req             = new xhr2(),
+        access_token    = config.get('access_token'),
+        client_id       = config.get('client_id'),
+        client_secret   = config.get('client_secret');
+
     req.open(requestData.type, buildUrl(requestData.url, requestData.params));
 
-    // if oauth_token then attach to head
-    if (oauth_token) {
-        req.setRequestHeader('Authorization', 'Bearer ' + oauth_token);
+    // if oauth_token then attach to head //todo
+    if (access_token) {
+      //  req.setRequestHeader('Authorization', 'Bearer ' + access_token);
     }
-
-    // if this request is part of the auth process via code grant or Client Credentials Flow then attach client and secret to header
-   if (requestData.clientCredentials) {
-       console.log('------attaching header for Auth -------');
-       req.setRequestHeader('Authorization', 'Basic ' + client_id + ':' + client_secret);
-   }
 
     /**
      * Attach listener for request state
      */
     req.onreadystatechange = function onreadystatechange() {
         // request finished and response is ready
+
+      //  console.log('------ req Finished -------');
+      //  console.log(req);
+
         if (req.readyState === 4) {
             var data = null;
             try {
@@ -88,7 +86,7 @@ var send = function send(requestData, cb) {
             if (req.status >= 200 && req.status < 300) {
                 complete(data, cb, null, true);
             } else {
-                complete(null, cb, req, false);
+                complete(data, cb, req, false);
             }
         }
     };
@@ -110,10 +108,15 @@ var send = function send(requestData, cb) {
  * @param success
  */
 var complete = function complete(data, cb, req, success) {
+
+    console.log('--------------- Request complete -------------');
+    console.log(data);
+    console.log(req);
+
   if (success) {
     cb(null, data);
   }else{
-    cb(req, null);
+    cb(data, null);
   }
 };
 
@@ -144,7 +147,7 @@ module.exports = {
     }
 
     //TODO: Remove as it temp until auth is in place: attach auth as param
-     requestData.params.auth = client_id;
+   //  requestData.params.auth = config.get('client_id');
 
     // options extend postData, if any. Otherwise they extend parameters sent in the url
     var type = requestData.type || 'GET';

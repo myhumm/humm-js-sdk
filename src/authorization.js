@@ -24,7 +24,7 @@ var qs      = require('query-string'),
  * @return {String}         The constructed URL
  */
 var createURL = function createURL(options) {
-    return config.get('connectURL') + '/authorize?' + qs.stringify(options);
+    return config.get('accountURL') + '/authorize?' + qs.stringify(options);
 };
 
 
@@ -62,7 +62,7 @@ module.exports = {
            // console.log(params.access_token);
            // console.log(params.expires);
            // console.log(params.expires_in);
-            config.set('oauth_token', params.access_token);
+            config.set('access_token', params.access_token);
             config.set('expires', params.expires);
             config.set('expires_in', params.expires_in);
         } else {
@@ -82,9 +82,13 @@ module.exports = {
     startUserAuth: function startUserAuth(options, cb) {
 
         //set undefined and poll later to find out when to close auth window
-        config.set('oauth_token', false);
+        config.set('access_token', false);
         config.set('code', false);
 
+     /* console.log('----------------Resetting Cred -----------');
+        console.log(config.get('oauth_token'));
+        console.log(config.get('code'));
+*/
         //attach scope to params
         options.scopes =  scopes.join(' ');
 
@@ -116,12 +120,12 @@ module.exports = {
         function checkAuthWindow() {
             if (options.response_type === 'token') {
                 //check if token has been set
-                console.log(config.get('oauth_token'));
-                if(config.get('oauth_token')) {
+                console.log(config.get('access_token'));
+                if(config.get('access_token')) {
                     cb(false, {
-                        oauth_token :  config.get('oauth_token'),
-                        expires     :  config.get('expires'),
-                        expires_in  :  config.get('expires_in')
+                        access_token :  config.get('access_token'),
+                        expires      :  config.get('expires'),
+                        expires_in   :  config.get('expires_in')
                     });
                     authWindow.close();
                 }

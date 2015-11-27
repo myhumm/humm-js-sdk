@@ -19,17 +19,8 @@ module.exports = global.humm = {
      * @param options
      */
     init: function init(options) {
-
         config.set('client_id', options.client_id);
         config.set('client_secret', options.client_secret);
-
-
-       // config.set('oauth_token', options.oauth_token);
-       // config.set('redirect_uri', options.redirect_uri);
-
-        //TODO change once in production -> http://api.myhumm.com
-        config.set('baseURL', 'api.myhumm.com/v2');
-        config.set('connectURL', 'accounts.myhumm.com');
     },
 
     /**
@@ -38,7 +29,7 @@ module.exports = global.humm = {
      * @returns {boolean}
      */
     isAuthorised: function isAuthorised(){
-        return config.get('oauth_token') !== undefined;
+        return config.get('access_token') !== undefined;
     },
 
 
@@ -100,7 +91,8 @@ module.exports = global.humm = {
         authorization.completeUserAuth(location);
     },
 
-    /**
+
+/**
      * Request an access token using the Authorization Code flow.
      *
      * @param code
@@ -109,14 +101,15 @@ module.exports = global.humm = {
     accessViaCodeGrant: function accessViaCodeGrant(code, cb) {
         if(typeof window === 'undefined') {
             var requestData = {
-                    url: config.get('connectURL') + '/api/token',
+                    url: config.get('accountURL') + '/token',
                     type: 'POST',
                     postData: {
+                        client_id: config.get('client_id'),
+                        client_secret: config.get('client_secret'),
                         grant_type: 'authorization_code',
                         code: code
                     },
-                    params: {},
-                    clientCredentials: true
+                    params: {}
             };
             request.start(requestData, cb);
         } else {
@@ -132,13 +125,14 @@ module.exports = global.humm = {
     authViaClientCredentials: function authViaClientCredentials(cb) {
         if(typeof window === 'undefined') {
             var requestData = {
-                    url: config.get('connectURL') + '/api/token',
+                    url: config.get('accountURL') + '/token',
                     type: 'POST',
                     postData: {
+                        client_id: config.get('client_id'),
+                        client_secret: config.get('client_secret'),
                         grant_type: 'client_credentials'
                     },
-                    params: {},
-                    clientCredentials: true
+                    params: {}
             };
             request.start(requestData, cb);
         } else {
@@ -155,14 +149,15 @@ module.exports = global.humm = {
     refreshAccessToken: function refreshAccessToken(token, cb) {
         if(typeof window === 'undefined') {
             var requestData = {
-                    url: config.get('connectURL') + '/api/token',
+                    url: config.get('accountURL') + '/token',
                     type: 'POST',
                     postData: {
                         grant_type: 'refresh_token',
-                        refresh_token: token
-                },
-                params: {},
-                clientCredentials: true
+                        client_id: config.get('client_id'),
+                        client_secret: config.get('client_secret')
+                    },
+                    params: {},
+                    clientCredentials: true
             };
             request.start(requestData, cb);
         } else {
@@ -176,7 +171,7 @@ module.exports = global.humm = {
      * @param token
      */
     setAccessToken: function setAccessToken(token) {
-        config.set('oauth_token', token);
+        config.set('access_token', token);
     },
 
     /**

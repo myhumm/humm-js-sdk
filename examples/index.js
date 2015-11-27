@@ -3,9 +3,7 @@
 window.onload = function() {
 
     humm.init({
-        client_id: '564dc328af59fc5215984f7a',
-        //  client_secret: ' mac998cuy498ryc49r7yh94hr974hrw846tndw86tbw',
-        redirect_uri:'http://localhost:8080/webpack-dev-server/connectComplete.html'
+        client_id: '56570bacae8c5087411778a3',
     });
 
     humm.radio(function(error, response) {
