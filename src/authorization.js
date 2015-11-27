@@ -44,7 +44,7 @@ module.exports = {
      */
     completeUserAuth:  function completeUserAuth(location) {
         /**
-         *  TODO: issue with inconsistent response
+         *  TODO: issue with inconsistent response issue #1
          *
          *  http://localhost:8080/webpack-dev-server/connectComplete.html#access_token=56544ca8ae8c50b9731778a4&token_type=Bearer&expires=1450957224&expires_in=2592000
          *
@@ -66,8 +66,8 @@ module.exports = {
             config.set('expires', params.expires);
             config.set('expires_in', params.expires_in);
         } else {
-            //authorization_code
-            config.set('code', search.code);
+            //authorization_code //fix in case issue #1 is resolved
+            config.set('code', search.code || params.code);
         }
     },
 
