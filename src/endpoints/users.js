@@ -110,12 +110,15 @@ module.exports = {
         request.start(requestData, cb);
     },
 
-    /**
+/*
+    */
+/**
      * Add song to the list of the current user's plays
      *
      * @param songId
      * @param cb
-     */
+     *//*
+
     addPlays: function addPlays(songId, cb) {
         var requestData = {
                 url: baseURL + '/songs/'+ songId +'/plays',
@@ -124,6 +127,7 @@ module.exports = {
         };
         request.start(requestData, cb);
     },
+*/
 
     /**
      * Search for a user
@@ -234,15 +238,15 @@ module.exports = {
                 params: {}
         };
         request.start(requestData, options, cb);
-    },
+    }
 
-    /**
+/*    *//**
      * Get a list of a user's plays
      *
      * @param userId
      * @param options
      * @param cb
-     */
+     *//*
     getPlays: function getPlays(userId, options, cb) {
         var requestData = {
                 url: baseURL + '/users/'+ userId + '/plays' ,
@@ -250,5 +254,5 @@ module.exports = {
                 params: {}
         };
         request.start(requestData, options, cb);
-    }
+    }*/
 };

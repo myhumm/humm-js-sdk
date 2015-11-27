@@ -28,8 +28,8 @@ module.exports = global.humm = {
        // config.set('redirect_uri', options.redirect_uri);
 
         //TODO change once in production -> http://api.myhumm.com
-        config.set('baseURL', 'http://134.213.62.164:8080');
-        config.set('connectURL', 'http://accounts.livingindietv.com');
+        config.set('baseURL', 'api.myhumm.com/v2');
+        config.set('connectURL', 'accounts.myhumm.com');
     },
 
     /**

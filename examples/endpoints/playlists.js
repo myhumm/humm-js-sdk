@@ -24,7 +24,7 @@ window.onload = function() {
         console.log(res);
     });
 
-    humm.playlists.addContributors(playlistId, contributorId, function(err, res){
+/*    humm.playlists.addContributors(playlistId, contributorId, function(err, res){
         console.log('--------------------- playlists.addContributors()----------');
         console.log(res);
     });
@@ -32,7 +32,7 @@ window.onload = function() {
     humm.playlists.removeContributors(playlistId, contributorId, function(err, res){
         console.log('--------------------- playlists.removeContributors()----------');
         console.log(res);
-    });
+    });*/
 
     humm.playlists.get(playlistId, function(err, res){
         console.log('--------------------- playlists.get()----------');
@@ -90,8 +90,8 @@ window.onload = function() {
         console.log(res);
     });
 
-    humm.playlists.getStaffPicks(function(err, res){
+ /*   humm.playlists.getStaffPicks(function(err, res){
         console.log('--------------------- playlists.getStaffPicks()----------');
         console.log(res);
-    });
+    });*/
 };

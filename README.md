@@ -470,24 +470,6 @@ if the user was successfully authenticated all future requests will be made usin
     humm.playlists.getFeatured(options, cb);
 
     /**
-     * Add a user to a playlist's list of contributorss
-     *
-     * @param playlistId
-     * @param contributorId
-     * @param cb
-     */
-    humm.playlists.addContributors(playlistId, ContributorId, cb)
-
-   /**
-    * Remove a user from a playlist's list of contributors
-    *
-    * @param playlistId
-    * @param contributorId
-    * @param cb
-    */
-    humm.playlists.removeContributors(playlistId, ContributorId, cb);
-
-    /**
      * Get a playlist by id
      *
      * @param playlistId
@@ -586,14 +568,6 @@ if the user was successfully authenticated all future requests will be made usin
      */
     humm.playlists.search(keyword, options, cb);
 
-   /**
-    * Get a list of playlists picked by staff at Humm
-    *
-    * @param options { limit, offset }
-    * @param cb
-    */
-   humm.playlists.getStaffPicks(options, cb);
-
 ```
 #### Songs
 
@@ -661,14 +635,6 @@ if the user was successfully authenticated all future requests will be made usin
    */
   humm.songs.getSimilar(songId, options, cb)
 
-
-   /**
-    * Get a list of songs picked by staff at Humm
-    *
-    * @param options { limit, offset, genre }
-    * @param cb
-    */
-  humm.songs.getStaffPicked(options, cb);
 
 ```
 #### Users
@@ -809,14 +775,6 @@ if the user was successfully authenticated all future requests will be made usin
  humm.users.getPlaylists(userId, options, cb);
 
 
- /**
-   * Get a list of a user's plays
-   *
-   * @param userId
-   * @param options
-   * @param cb
-   */
- humm.users.getPlays(userId, options, cb);
 
 ```
 #### external

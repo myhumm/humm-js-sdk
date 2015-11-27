@@ -39,8 +39,8 @@ window.onload = function() {
         console.log(res);
     });
 
-    humm.songs.getStaffPicks(function(err, res){
+/*    humm.songs.getStaffPicks(function(err, res){
         console.log('--------------------- songs.getStaffPicks()----------');
         console.log(res);
-    });
+    });*/
 };

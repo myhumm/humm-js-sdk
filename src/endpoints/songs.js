@@ -85,10 +85,6 @@ module.exports = {
         request.start(requestData, options, cb);
     },
 
-    //TODO: no idea what this end is
-    route: function route(songId, cb) {
-
-    },
 
     /**
      * Get a song by id
@@ -119,14 +115,14 @@ module.exports = {
                 params: {}
         };
         request.start(requestData, options, cb);
-    },
+    }
 
-    /**
+/*    *//**
      * Get a list of songs picked by staff at Humm
      *
      * @param options { limit, offset, genre }
      * @param cb
-     */
+     *//*
     getStaffPicks: function getStaffPicks(options, cb) {
         var requestData = {
                 url: baseURL + '/songs/staffpicks',
@@ -134,5 +130,5 @@ module.exports = {
                 params: {}
         };
         request.start(requestData, options, cb);
-    }
+    }*/
 };

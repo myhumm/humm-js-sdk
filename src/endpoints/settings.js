@@ -5,6 +5,6 @@ var config  = require('../config'),
     baseURL = config.get('baseURL');
 
 module.exports = {
-    get: function get() {},
-    update: function update() {}
+/*    get: function get() {},
+    update: function update() {}*/
 };
