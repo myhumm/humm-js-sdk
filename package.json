@@ -1,7 +1,7 @@
 {
   "name": "humm",
   "version": "0.0.4",
-  "description": "",
+  "description": "Use our API to build your own innovative -- and 100% legal -- music solutions or build music into your services.",
   "main": "sdk.js",
   "repository": {
     "type": "git",
