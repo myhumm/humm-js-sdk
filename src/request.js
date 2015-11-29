@@ -4,7 +4,7 @@ var config  = require('./config'),
     req;
 
 // if in node env require req during init
-if (typeof window === undefined) {
+if (typeof window === 'undefined') {
     req = require('request');
 }
 
@@ -89,9 +89,9 @@ var send = function send(requestData, cb) {
                 }
                 //if success
                 if (req.status >= 200 && req.status < 300) {
-                    complete(data, cb, null, true);
+                    complete(data, cb, true);
                 } else {
-                    complete(data, cb, req, false);
+                    complete(data, cb, false);
                 }
             }
         };
@@ -118,15 +118,15 @@ var send = function send(requestData, cb) {
 
         // on server side request complete
         var onRequestComplete = function(error, response, body){
-            console.log('error: ' + error);
-            console.log('response.statusCode: ' + response.statusCode);
-            console.log('body: ' + body);
-            console.log(response.body);
+          //  console.log('error: ' + error);
+          //  console.log('response.statusCode: ' + response.statusCode);
+          //  console.log('body: ' + body);
+          //  console.log(response.body);
 
-            if(!error && response.statusCode  >= 200 && req.status < 300){
-                complete(response, cb, null, true);
+            if(response.statusCode  >= 200 && response.statusCode < 300){
+                complete(body, cb, true);
             }else {
-                complete(response, cb, error, false);
+                complete(body, cb, false);
             }
         };
 
@@ -156,15 +156,11 @@ var send = function send(requestData, cb) {
  *
  * @param data
  * @param cb
- * @param req || error
  * @param success
  */
-var complete = function complete(data, cb, error, success) {
-
-    console.log('--------------- Request complete -------------');
-    console.log(data);
-    console.log(error);
-
+var complete = function complete(data, cb, success) {
+  //  console.log('--------------- Request complete -------------');
+  //  console.log(data);
   if (success) {
     cb(null, data);
   }else{
