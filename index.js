@@ -156,8 +156,7 @@ module.exports = global.humm = {
                         client_id: config.get('client_id'),
                         client_secret: config.get('client_secret')
                     },
-                    params: {},
-                    clientCredentials: true
+                    params: {}
             };
             request.start(requestData, cb);
         } else {

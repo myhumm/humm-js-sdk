@@ -129,7 +129,7 @@ var send = function send(requestData, cb) {
                 complete(body, cb, false);
             }
         };
-
+        // todo: rewrite
         switch(requestData.type) {
             case 'GET':
                     req.get(baseOptions, onRequestComplete);
@@ -184,9 +184,9 @@ module.exports = {
      // console.log(client_id);
 
     //check params as we can pass in less than three params
-    var opt = {},
-        cb  = null,
-        type = requestData.type || 'GET';
+    var opt     = {},
+        cb      = null,
+        type    = requestData.type || 'GET';
 
     if (typeof options === 'object') {
       opt = options;
@@ -194,7 +194,6 @@ module.exports = {
     } else if (typeof options === 'function') {
       cb = options;
     }
-
     //TODO: Remove as it temp until auth is in place: attach auth as param
      requestData.params.auth = config.get('client_id');
 

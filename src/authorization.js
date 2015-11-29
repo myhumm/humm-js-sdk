@@ -82,8 +82,8 @@ module.exports = {
     startUserAuth: function startUserAuth(options, cb) {
 
         //set undefined and poll later to find out when to close auth window
-        config.set('access_token', false);
-        config.set('code', false);
+        config.set('access_token', '');
+        config.set('code', '');
 
      /* console.log('----------------Resetting Cred -----------');
         console.log(config.get('oauth_token'));
@@ -121,24 +121,27 @@ module.exports = {
             if (options.response_type === 'token') {
                 //check if token has been set
                 console.log(config.get('access_token'));
-                if(config.get('access_token')) {
+                var access_token = config.get('access_token');
+                if(access_token !== '') {
                     cb(false, {
-                        access_token :  config.get('access_token'),
+                        access_token :  access_token,
                         expires      :  config.get('expires'),
                         expires_in   :  config.get('expires_in')
                     });
+                    clearInterval(timer);
                     authWindow.close();
                 }
             }else{
                 //check if code has been set
-                if(config.get('code')) {
+                var code = config.get('code');
+                if(code !== '') {
                     cb(false, {
-                        code :  config.get('code')
+                        code :  code
                     });
-                   authWindow.close();
+                    clearInterval(timer);
+                    authWindow.close();
                 }
             }
-            clearInterval(timer);
         }
     }
 };

@@ -28,13 +28,11 @@ module.exports = {
     }
   },
 
-  set: function set(key, value) {
-    if (value) {
-      if(typeof window !== 'undefined') {
-        localStorage.setItem(key, value);
-      } else {
-        return  config[key] = value;
-      }
+  set: function set(key, value){
+    if(typeof window !== 'undefined'){
+      localStorage.setItem(key, value);
+    }else{
+      return config[key] = value;
     }
   }
 };
