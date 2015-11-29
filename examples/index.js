@@ -3,7 +3,7 @@
 window.onload = function() {
 
     humm.init({
-        client_id: '56570bacae8c5087411778a3',
+        client_id: '56570bacae8c5087411778a3'
     });
 
     humm.radio(function(error, response) {

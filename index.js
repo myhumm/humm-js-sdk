@@ -101,7 +101,7 @@ module.exports = global.humm = {
     accessViaCodeGrant: function accessViaCodeGrant(code, cb) {
         if(typeof window === 'undefined') {
             var requestData = {
-                    url: config.get('accountURL') + '/token',
+                    url: 'http://api.myhumm.com/token',
                     type: 'POST',
                     postData: {
                         client_id: config.get('client_id'),
@@ -125,7 +125,7 @@ module.exports = global.humm = {
     authViaClientCredentials: function authViaClientCredentials(cb) {
         if(typeof window === 'undefined') {
             var requestData = {
-                    url: config.get('accountURL') + '/token',
+                    url: 'http://api.myhumm.com/token',
                     type: 'POST',
                     postData: {
                         client_id: config.get('client_id'),
@@ -149,7 +149,7 @@ module.exports = global.humm = {
     refreshAccessToken: function refreshAccessToken(token, cb) {
         if(typeof window === 'undefined') {
             var requestData = {
-                    url: config.get('accountURL') + '/token',
+                    url: 'http://api.myhumm.com/token',
                     type: 'POST',
                     postData: {
                         grant_type: 'refresh_token',

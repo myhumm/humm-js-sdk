@@ -1,8 +1,13 @@
 'use strict';
 
-var https           = require('https'),
-    xhr2            = require('xhr2'),
-    config          = require('./config');
+var config  = require('./config'),
+    req;
+
+// if in node env require req during init
+if (typeof window === undefined) {
+    req = require('request');
+}
+
 /**
  *
  * @returns {T}
@@ -54,49 +59,96 @@ var buildUrl = function buildUrl(url, parameters) {
  * @returns {null}
  */
 var send = function send(requestData, cb) {
-    var req             = new xhr2(),
-        access_token    = config.get('access_token'),
+    var access_token    = config.get('access_token'),
         client_id       = config.get('client_id'),
-        client_secret   = config.get('client_secret');
+        client_secret   = config.get('client_secret'),
+        url             = buildUrl(requestData.url, requestData.params);
 
-    req.open(requestData.type, buildUrl(requestData.url, requestData.params));
 
-    // if oauth_token then attach to head //todo
-    if (access_token) {
-      //  req.setRequestHeader('Authorization', 'Bearer ' + access_token);
-    }
+    // if browser env use XMLHttpRequest()
+    if(typeof window !== 'undefined') {
+        req = new XMLHttpRequest();
+        req.open(requestData.type, url);
 
-    /**
-     * Attach listener for request state
-     */
-    req.onreadystatechange = function onreadystatechange() {
-        // request finished and response is ready
-
-      //  console.log('------ req Finished -------');
-      //  console.log(req);
-
-        if (req.readyState === 4) {
-            var data = null;
-            try {
-                data = req.responseText ? JSON.parse(req.responseText) : '';
-            } catch(e) {
-                console.error(e);
-            }
-            //if success
-            if (req.status >= 200 && req.status < 300) {
-                complete(data, cb, null, true);
-            } else {
-                complete(data, cb, req, false);
-            }
+        // if oauth_token then attach to head //todo
+        if (access_token) {
+            req.setRequestHeader('Authorization', 'Bearer ' + access_token);
         }
-    };
 
-    //if get send else, attach post data and send
-    if (requestData.type === 'GET') {
-        req.send(null);
+        req.onreadystatechange = function onreadystatechange() {
+            //  console.log('------ req Finished -------');
+            //  console.log(req);
+
+            // request finished and response is ready
+            if (req.readyState === 4) {
+                var data = null;
+                try {
+                    data = req.responseText ? JSON.parse(req.responseText) : '';
+                } catch(e) {
+                    console.error(e);
+                }
+                //if success
+                if (req.status >= 200 && req.status < 300) {
+                    complete(data, cb, null, true);
+                } else {
+                    complete(data, cb, req, false);
+                }
+            }
+        };
+
+        //if get send else, attach post data and send
+        if (requestData.type === 'GET') {
+            req.send(null);
+        } else {
+            req.send(JSON.stringify(requestData.postData));
+        }
     } else {
-        req.send(JSON.stringify(requestData.postData));
+        //if node env use request
+        var baseOptions = {
+            url: url,
+            json: true
+        };
+
+        //if token attach
+        if (access_token) {
+            baseOptions.headers =  {
+                Authorization: 'Bearer ' + (new Buffer(access_token).toString('base64'))
+            };
+        }
+
+        // on server side request complete
+        var onRequestComplete = function(error, response, body){
+            console.log('error: ' + error);
+            console.log('response.statusCode: ' + response.statusCode);
+            console.log('body: ' + body);
+            console.log(response.body);
+
+            if(!error && response.statusCode  >= 200 && req.status < 300){
+                complete(response, cb, null, true);
+            }else {
+                complete(response, cb, error, false);
+            }
+        };
+
+        switch(requestData.type) {
+            case 'GET':
+                    req.get(baseOptions, onRequestComplete);
+                break;
+            case 'POST':
+                    if (requestData.postData) {
+                        baseOptions.form = requestData.postData;
+                    }
+                    req.post(baseOptions, onRequestComplete);
+                break;
+            case 'PUT':
+                    req.put(baseOptions, onRequestComplete);
+                break;
+            case 'DELETE':
+                    req.delete(baseOptions, onRequestComplete);
+                break;
+        }
     }
+
 };
 
 /**
@@ -104,14 +156,14 @@ var send = function send(requestData, cb) {
  *
  * @param data
  * @param cb
- * @param req
+ * @param req || error
  * @param success
  */
-var complete = function complete(data, cb, req, success) {
+var complete = function complete(data, cb, error, success) {
 
     console.log('--------------- Request complete -------------');
     console.log(data);
-    console.log(req);
+    console.log(error);
 
   if (success) {
     cb(null, data);
@@ -137,7 +189,8 @@ module.exports = {
 
     //check params as we can pass in less than three params
     var opt = {},
-        cb  = null;
+        cb  = null,
+        type = requestData.type || 'GET';
 
     if (typeof options === 'object') {
       opt = options;
@@ -147,10 +200,7 @@ module.exports = {
     }
 
     //TODO: Remove as it temp until auth is in place: attach auth as param
-   //  requestData.params.auth = config.get('client_id');
-
-    // options extend postData, if any. Otherwise they extend parameters sent in the url
-    var type = requestData.type || 'GET';
+     requestData.params.auth = config.get('client_id');
 
     if (type !== 'GET' && requestData.postData) {
       requestData.postData = _extend(requestData.postData, opt);

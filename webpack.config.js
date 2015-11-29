@@ -9,14 +9,19 @@ module.exports = {
         path: path,
         filename: filename,
         libraryTarget: 'umd'
-    }, module: {
-        loaders: []
+    },
+    module: {
+        loaders: [
+            { test: /\.json$/, loader: 'json-loader' }
+        ]
     },
     devServer: {
         contentBase: './examples'
     },
     node: {
-        fs: "empty",
-        child_process: "empty"
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty'
     }
+
 };
