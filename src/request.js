@@ -72,7 +72,7 @@ var send = function send(requestData, cb) {
 
         // if oauth_token then attach to head //todo
         if (access_token) {
-            req.setRequestHeader('Authorization', 'Bearer ' + access_token);
+            req.setRequestHeader('Authorization', 'Bearer ' + (new Buffer(access_token).toString('base64')));
         }
 
         req.onreadystatechange = function onreadystatechange() {

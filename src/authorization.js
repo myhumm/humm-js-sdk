@@ -88,7 +88,7 @@ module.exports = {
      /* console.log('----------------Resetting Cred -----------');
         console.log(config.get('oauth_token'));
         console.log(config.get('code'));
-*/
+    */
         //attach scope to params
         options.scopes =  scopes.join(' ');
 
@@ -120,7 +120,6 @@ module.exports = {
         function checkAuthWindow() {
             if (options.response_type === 'token') {
                 //check if token has been set
-                console.log(config.get('access_token'));
                 var access_token = config.get('access_token');
                 if(access_token !== '') {
                     cb(false, {
