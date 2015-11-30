@@ -13,12 +13,6 @@
 
 #### Usage
 
-  `humm.init()` valid params:
-
-   1.  client_id
-   1.  client_secret
-
-
 **Browser:**
 
 ```javascript
@@ -26,8 +20,7 @@
 <script src="xxxxxxxxxxxxxxxxxx/sdk/sdk-1.0.0.js"></script>
 <script>
    humm.init({
-        client_id: '',
-        redirect_uri:''
+        client_id: ''
    });
 </script>
 
@@ -61,9 +54,7 @@ and set it as the redirect_uri in your app.
 
 This callback.html file needs to contain just a few lines:
 
-
 ```html
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -77,11 +68,10 @@ This callback.html file needs to contain just a few lines:
             humm.completeAuthorization(window.location);
         </script>
         <p>
-            his will close automatically
+            this will close automatically
         </p>
     </body>
 </html>
-
 ```
 
 
@@ -124,7 +114,6 @@ humm.accessViaCodeGrant('CODE', function(error, response) {
         }
    */
 
-
 });
 
 ```
@@ -137,10 +126,23 @@ humm.setAccessToken(token);
 
 ```
 
-You can refresh the access token using:
+
+**Step 5 - request logged in user (server):**
 
 ```javascript
 
+//get current user
+humm.users.me(function(err, res){
+  console.log('--------------------- users.me()----------');
+  console.log(err);
+  console.log(res);
+});
+
+```
+
+**Step 6 - get new token using refresh_token (server):**
+
+```javascript
 humm.refreshAccessToken('xxxxxxxxxxxxxxxxxx',function(error, response) {
     console.log('------------- accessViaCodeGrant complete -------------');
     console.log(error);
@@ -206,7 +208,7 @@ humm.authViaClientCredentials(function(error, response) {
 **Step 3 - set access token before requests  (server):**
 
 ```javascript
-
+// once you set the access token you can start making requests 
 humm.setAccessToken(token);
 
 ```
