@@ -70,7 +70,6 @@ var send = function send(requestData, cb) {
         req = new XMLHttpRequest();
         req.open(requestData.type, url);
 
-        // if oauth_token then attach to head //todo
         if (access_token) {
             req.setRequestHeader('Authorization', 'Bearer ' + (new Buffer(access_token).toString('base64')));
         }
@@ -106,7 +105,8 @@ var send = function send(requestData, cb) {
         //if node env use request
         var baseOptions = {
             url: url,
-            json: true
+            json: true,
+            method: requestData.type
         };
 
         //if token attach
@@ -116,37 +116,23 @@ var send = function send(requestData, cb) {
             };
         }
 
-        // on server side request complete
-        var onRequestComplete = function(error, response, body){
-          //  console.log('error: ' + error);
-          //  console.log('response.statusCode: ' + response.statusCode);
-          //  console.log('body: ' + body);
-          //  console.log(response.body);
+        //if request is not get and has postData
+        if (requestData.type !== 'GET' && requestData.postData) {
+            baseOptions.form = requestData.postData;
+        }
 
+        //send request
+        req(baseOptions, function(error, response, body){
+            //  console.log('error: ' + error);
+            //  console.log('response.statusCode: ' + response.statusCode);
+            //  console.log('body: ' + body);
+            //  console.log(response.body);
             if(response.statusCode  >= 200 && response.statusCode < 300){
                 complete(body, cb, true);
             }else {
                 complete(body, cb, false);
             }
-        };
-        // todo: rewrite
-        switch(requestData.type) {
-            case 'GET':
-                    req.get(baseOptions, onRequestComplete);
-                break;
-            case 'POST':
-                    if (requestData.postData) {
-                        baseOptions.form = requestData.postData;
-                    }
-                    req.post(baseOptions, onRequestComplete);
-                break;
-            case 'PUT':
-                    req.put(baseOptions, onRequestComplete);
-                break;
-            case 'DELETE':
-                    req.delete(baseOptions, onRequestComplete);
-                break;
-        }
+        });
     }
 
 };

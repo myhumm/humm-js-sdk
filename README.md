@@ -337,6 +337,12 @@ if the user was successfully authenticated all future requests will be made usin
      * @param token
      */
     humm.setAccessToken(token);
+
+    /**
+     * Get access token
+     * @returns {*}
+     */
+    humm.getAccessToken() {
 ```
 
 #### Artists

@@ -17,6 +17,18 @@ var qs      = require('query-string'),
         'user-read-email'
     ];
 
+
+/**
+ * TODO:
+ * Generates an id for the auth pop, id used as a state upon redirect we can verify we sent the request using the id
+ * @return {String} id
+ */
+
+var generateId = function generateId() {
+    return ['humm', Math.ceil(Math.random() * 1000000).toString(16)].join('_');
+};
+
+
 /**
  * Build the humm connect url
  *
@@ -110,7 +122,7 @@ module.exports = {
             return key + '=' + dialogOptions[key];
         }).join(', ');
 
-        console.log(url);
+        //console.log(url);
         //check twice per second, if window is closed means auth is complete we can
         var authWindow  = window.open(url, '', stringOptions),
             timer       = setInterval(checkAuthWindow, 500);

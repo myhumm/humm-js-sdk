@@ -21,6 +21,7 @@ module.exports = global.humm = {
     init: function init(options) {
         config.set('client_id', options.client_id);
         config.set('client_secret', options.client_secret);
+        config.set('client_secret', options.client_secret);
     },
 
     /**
@@ -171,6 +172,14 @@ module.exports = global.humm = {
      */
     setAccessToken: function setAccessToken(token) {
         config.set('access_token', token);
+    },
+
+    /**
+     * Get access token
+     * @returns {*}
+     */
+    getAccessToken: function getAccessToken() {
+        return config.get('access_token');
     },
 
     /**
