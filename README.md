@@ -75,7 +75,7 @@ This callback.html file needs to contain just a few lines:
 ```
 
 
-**Step 2 - pop that allows users to login to Humm  (browser):**
+**Step 2 - popup that allows users to login to Humm  (browser):**
 
 ```javascript
 
@@ -247,7 +247,7 @@ This callback.html file needs to contain just a few lines:
 ```
 
 
-**Step 2 - pop that allows users to login to Humm  (browser):**
+**Step 2 - popup that allows users to login to Humm  (browser):**
 
 ```javascript
 
@@ -276,8 +276,7 @@ Once the user is logged in to humm, the window opened for authentication will au
 if the user was successfully authenticated all future requests will be made using those credentials.
 
 
-
-###authentication
+###Authentication Methods 
 
 ```javascript
     /**
@@ -347,7 +346,7 @@ if the user was successfully authenticated all future requests will be made usin
     humm.getAccessToken() {
 ```
 
-#### Artists
+#### Artists Methods
 ```javascript
 
   /**
@@ -455,7 +454,7 @@ if the user was successfully authenticated all future requests will be made usin
   humm.artists.search(keyword, options, cb);
 
 ```
-#### Playlists
+#### Playlists Methods
 
 ```javascript
 
@@ -577,7 +576,7 @@ if the user was successfully authenticated all future requests will be made usin
     humm.playlists.search(keyword, options, cb);
 
 ```
-#### Songs
+#### Songs Methods
 
 ```javascript
 
@@ -645,7 +644,7 @@ if the user was successfully authenticated all future requests will be made usin
 
 
 ```
-#### Users
+#### Users Methods
 
 ```javascript
 
@@ -785,7 +784,7 @@ if the user was successfully authenticated all future requests will be made usin
 
 
 ```
-#### external
+#### external Methods
 
 ```javascript
 
@@ -811,7 +810,7 @@ if the user was successfully authenticated all future requests will be made usin
     humm.external.removeServices(service, sid, cb);
 ```
 
-#### others
+#### others Methods
 
 ```javascript
 
