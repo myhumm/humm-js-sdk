@@ -1,7 +1,5 @@
 # Humm JavaScript SDK
 
-#### Documentation
-
 #### Installation
 
 ```
