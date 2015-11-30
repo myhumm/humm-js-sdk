@@ -41,20 +41,6 @@ window.onload = function() {
         console.log(res);
     });
 
-  /*  humm.users.addPlays(songId, function(err, res){
-        console.log('--------------------- users.addPlays()----------');
-        console.log(res);
-    });*/
-
-    /*
-
-        TODO
-        humm.users.search('', function(err, res){
-            console.log('--------------------- users.addPlays()----------');
-            console.log(res);
-        });
-
-    */
 
     humm.users.addSubscriptions(playlistId, function(err, res){
         console.log('--------------------- users.addSubscriptions()----------');
