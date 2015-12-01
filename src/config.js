@@ -19,7 +19,7 @@ if(typeof window !== 'undefined')  {
  * @type {{get: Function, set: Function}}
  */
 module.exports = {
-  get: function get(key) {
+  'get': function get(key) {
     //  return localStorage.getItem(key);
     if(typeof window !== 'undefined')  {
       return localStorage.getItem(key);
@@ -28,7 +28,7 @@ module.exports = {
     }
   },
 
-  set: function set(key, value){
+  'set': function set(key, value){
     if(typeof window !== 'undefined'){
       localStorage.setItem(key, value);
     }else{

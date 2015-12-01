@@ -92,7 +92,7 @@ module.exports = {
      * @param songId
      * @param cb
      */
-    get: function get(songId, cb){
+    'get': function get(songId, cb){
         var requestData = {
                 url: baseURL + '/songs/'+ songId,
                 type: 'GET',
@@ -117,18 +117,4 @@ module.exports = {
         request.start(requestData, options, cb);
     }
 
-/*    *//**
-     * Get a list of songs picked by staff at Humm
-     *
-     * @param options { limit, offset, genre }
-     * @param cb
-     *//*
-    getStaffPicks: function getStaffPicks(options, cb) {
-        var requestData = {
-                url: baseURL + '/songs/staffpicks',
-                type: 'GET',
-                params: {}
-        };
-        request.start(requestData, options, cb);
-    }*/
 };

@@ -183,7 +183,7 @@ module.exports = {
      * @param userId
      * @param cb
      */
-    get: function get(userId, cb) {
+    'get': function get(userId, cb) {
         var requestData = {
                 url: baseURL + '/users/'+ userId ,
                 type: 'GET',
@@ -240,19 +240,5 @@ module.exports = {
         request.start(requestData, options, cb);
     }
 
-/*    *//**
-     * Get a list of a user's plays
-     *
-     * @param userId
-     * @param options
-     * @param cb
-     *//*
-    getPlays: function getPlays(userId, options, cb) {
-        var requestData = {
-                url: baseURL + '/users/'+ userId + '/plays' ,
-                type: 'GET',
-                params: {}
-        };
-        request.start(requestData, options, cb);
-    }*/
+
 };

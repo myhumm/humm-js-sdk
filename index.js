@@ -7,7 +7,6 @@ var config          = require('./src/config'),
     songs           = require('./src/endpoints/songs'),
     users           = require('./src/endpoints/users'),
     external        = require('./src/endpoints/external'),
-    settings        = require('./src/endpoints/settings'),
     request         = require('./src/request'),
     baseURL         = config.get('baseURL');
 
@@ -201,6 +200,5 @@ module.exports = global.humm = {
     playlists: playlists,
     songs: songs,
     users: users,
-    settings: settings,
     external: external
 };

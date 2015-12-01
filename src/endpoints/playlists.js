@@ -41,48 +41,6 @@ module.exports = {
         request.start(requestData, options, cb);
     },
 
-/*
-    */
-/**
-     * Add a user to a playlist's list of contributorss
-     *
-     * @param playlistId
-     * @param contributorId
-     * @param cb
-     *//*
-
-    addContributors: function addContributors(playlistId, contributorId, cb) {
-        var requestData = {
-                url: baseURL + '/'+ playlistId +'/contributors',
-                type: 'POST',
-                params: {
-                    contid: contributorId
-            }
-        };
-        request.start(requestData, cb);
-    },
-
-    */
-/**
-     * Remove a user from a playlist's list of contributors
-     *
-     * @param playlistId
-     * @param contributorId
-     * @param cb
-     *//*
-
-    removeContributors: function removeContributors(playlistId, contributorId, cb) {
-        var requestData = {
-                url: baseURL + '/'+ playlistId +'/contributors',
-                type: 'DELETE',
-                params: {
-                    contid: contributorId
-            }
-        };
-        request.start(requestData, cb);
-    },
-*/
-
     /**
      * Get a playlist by id
      *
@@ -272,21 +230,4 @@ module.exports = {
         };
         request.start(requestData, options, cb);
     }
-
- /*
- *
- * *//**
-     * Get a list of playlists picked by staff at Humm
-     *
-     * @param options { limit, offset }
-     * @param cb
-     *//*
-    getStaffPicks: function getStaffPicks(options, cb) {
-        var requestData = {
-                url: baseURL + '/staffpicks',
-                type: 'GET',
-                params: {}
-        };
-        request.start(requestData, options, cb);
-    }*/
 };

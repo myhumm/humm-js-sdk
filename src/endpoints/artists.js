@@ -12,7 +12,7 @@ module.exports = {
      * @param options { limit, offset }
      * @param cb
      */
-    get: function get(artistId, options, cb) {
+    'get': function get(artistId, options, cb) {
         var requestData = {
                 url: baseURL + '/artists/' + artistId,
                 type: 'GET',
