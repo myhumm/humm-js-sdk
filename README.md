@@ -4,7 +4,7 @@ Use our API to build your own innovative -- and 100% legal -- music solutions or
 #### Installation
 
 ```
-  `npm install humm --save`
+  npm install humm --save
 ```
   or
 
