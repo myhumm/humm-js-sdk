@@ -92,7 +92,7 @@ module.exports = {
      * @param songId
      * @param cb
      */
-    'get': function get(songId, cb){
+    get: function get(songId, cb){
         var requestData = {
                 url: baseURL + '/songs/'+ songId,
                 type: 'GET',

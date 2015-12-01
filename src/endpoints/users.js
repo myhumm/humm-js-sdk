@@ -183,7 +183,7 @@ module.exports = {
      * @param userId
      * @param cb
      */
-    'get': function get(userId, cb) {
+    get: function get(userId, cb) {
         var requestData = {
                 url: baseURL + '/users/'+ userId ,
                 type: 'GET',
