@@ -8,7 +8,7 @@ Use our API to build your own innovative -- and 100% legal -- music solutions or
 ```
   or
 
-  download the  humm.js file from here {{link}}
+  download the  humm.js file from here https://cdn.rawgit.com/myhumm/humm-js-sdk/master/minified%20/sdk-0.0.7.js
 
 #### Usage
 
