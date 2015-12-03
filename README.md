@@ -16,7 +16,7 @@ Use our API to build your own innovative -- and 100% legal -- music solutions or
 
 ```javascript
 
-<script src="xxxxxxxxxxxxxxxxxx/sdk/sdk-1.0.0.js"></script>
+<script src="https://cdn.rawgit.com/myhumm/humm-js-sdk/master/minified%20/sdk-0.0.7.js"></script>
 <script>
    humm.init({
         client_id: ''
