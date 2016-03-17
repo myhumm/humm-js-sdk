@@ -20,7 +20,6 @@ module.exports = global.humm = {
     init: function init(options) {
         config.set('client_id', options.client_id);
         config.set('client_secret', options.client_secret);
-        config.set('client_secret', options.client_secret);
     },
 
     /**
